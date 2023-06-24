@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -12,43 +12,48 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Autocomplete from '@mui/material/Autocomplete';
-import axios from 'axios';
 import { CookiesProvider } from 'react-cookie';
 import { useCookies } from 'react-cookie';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 
 const validationSchema = yup.object({
-  email: yup
-    .string('Enter your email')
-    .email('Enter a valid email')
+  bio: yup
+    .string('Enter your Bio')
+    .min(10, 'Password should be of minimum 250 characters length')
+    .required('Name is required'),
+  education: yup
+    .string('Enter your education')
+    .min(10, 'Password should be of minimum 250 characters length')
     .required('Email is required'),
-  password: yup
-    .string('Enter your password')
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
 });
 
 const SignUp = () => {
   const [cookies, setCookie] = useCookies(['user']);
   const router = useRouter();
-
+  console.log('cookeise', cookies.Name);
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      bio: '',
+      education: '',
     },
-    // localhost:300/course
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log('signin hoche');
       try {
-        const user = await axios.post(
-          'http://localhost:5000/users/signin',
-          values,
-        );
-        setCookie('token', user.data.token, { path: '/', webDomain: '' });
-        setCookie('data', user.data, { path: '/' });
+        let link = '';
+
+        if (cookies.data.user.type === 'STUDENT') {
+          link = 'http://localhost:5000/student/create';
+        } else {
+          link = 'http://localhost:5000/tutor/tutorcreate';
+        }
+        const user = await axios.post(link, values, {
+          headers: {
+            'content-type': 'application/json',
+            Authorization: `token ${cookies.data.token}`,
+          },
+        });
         await router.push('/home');
       } catch (err) {
         console.log(err.message);
@@ -66,24 +71,27 @@ const SignUp = () => {
           >
             <TextField
               fullWidth
-              id="email"
-              name="email"
-              label="Email"
-              value={formik.values.email}
+              id="bio"
+              name="bio"
+              label="bio"
+              value={formik.values.bio}
               onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
+              error={formik.touched.bio && Boolean(formik.errors.bio)}
+              helperText={formik.touched.bio && formik.errors.bio}
             />
+
             <TextField
               fullWidth
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              value={formik.values.password}
+              id="education"
+              name="education"
+              label="education"
+              type="education"
+              value={formik.values.education}
               onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
+              error={
+                formik.touched.education && Boolean(formik.errors.education)
+              }
+              helperText={formik.touched.education && formik.errors.education}
             />
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit

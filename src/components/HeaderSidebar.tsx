@@ -27,6 +27,8 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Button } from '@mui/material';
 import Courses from '~/components/Courses';
+import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 const drawerWidth = 240;
 
@@ -104,6 +106,7 @@ export default function MiniDrawer({
 }: {
   children: React.ReactElement;
 }) {
+  const router = useRouter();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -114,6 +117,8 @@ export default function MiniDrawer({
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const [cookie, setCookie, removeCookie] = useCookies(['user']);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -141,7 +146,16 @@ export default function MiniDrawer({
             alignItems="flex-end"
             className="w-full"
           >
-            <Button className="float-right">Log Out</Button>
+            <Button
+              className="float-right"
+              onClick={() => {
+                removeCookie('data', '/');
+                removeCookie('token', '/');
+                router.push('/login');
+              }}
+            >
+              Log Out
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
