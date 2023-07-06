@@ -1,19 +1,32 @@
+import Link from 'next/link';
 import React from 'react';
-import './LandingPage.css';
-import img1 from './images/course4.jpg'
+// import './LandingPage.css';
+import img1 from '~/images/course4.jpg';
 
 const LandingPage = () => {
   return (
     <div className="landing-page">
       <header className="header">
         <nav className="navbar">
-          <a className="logo" href="/">Tutor For Hire</a>
+          <Link className="logo" href="/">
+            Tutor For Hire
+          </Link>
           <ul className="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/">Courses</a></li>
-            <li><a href="/">Tutors</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/">Contact</a></li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/">Courses</Link>
+            </li>
+            <li>
+              <Link href="/">Tutors</Link>
+            </li>
+            <li>
+              <Link href="/">About</Link>
+            </li>
+            <li>
+              <Link href="/">Contact</Link>
+            </li>
           </ul>
           <div className="auth-buttons">
             <button className="btn sign-in">Sign In</button>
@@ -25,11 +38,14 @@ const LandingPage = () => {
         <section className="hero-section">
           <div className="hero-content">
             <h1>Learn from the Best Tutors</h1>
-            <p>Explore a wide range of courses taught by experts in their fields.</p>
+            <p>
+              Explore Link wide range of courses taught by experts in their
+              fields.
+            </p>
             <button className="btn">Get Started</button>
           </div>
           <div className="course-card">
-            <img src={img1} alt=""/>
+            <img src="./images/course4.jpg" alt="" />
           </div>
         </section>
         <section className="features-section">
@@ -37,22 +53,28 @@ const LandingPage = () => {
           <div className="feature">
             <i className="fas fa-chalkboard-teacher"></i>
             <h3>Expert Tutors</h3>
-            <p>Learn from experienced tutors who are passionate about teaching.</p>
+            <p>
+              Learn from experienced tutors who are passionate about teaching.
+            </p>
           </div>
           <div className="feature">
             <i className="fas fa-certificate"></i>
             <h3>Certificates</h3>
-            <p>Earn certificates upon completion to showcase your achievements.</p>
+            <p>
+              Earn certificates upon completion to showcase your achievements.
+            </p>
           </div>
           <div className="feature">
             <i className="fas fa-globe"></i>
             <h3>Global Community</h3>
-            <p>Join a diverse community of learners from around the world.</p>
+            <p>
+              Join Link diverse community of learners from around the world.
+            </p>
           </div>
         </section>
         <section className="cta-section">
           <h2>Start Your Learning Journey Today</h2>
-          <p>Sign up now and unlock a world of knowledge.</p>
+          <p>Sign up now and unlock Link world of knowledge.</p>
           <button className="btn">Sign Up</button>
         </section>
       </main>
