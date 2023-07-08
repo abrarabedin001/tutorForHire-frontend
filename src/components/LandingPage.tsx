@@ -1,9 +1,20 @@
 import Link from 'next/link';
 import React from 'react';
+
 // import './LandingPage.css';
 import img1 from '~/images/course4.jpg';
 
 const LandingPage = () => {
+
+
+  const handleSignIn = () => {
+    window.location.href = "/login";
+  };
+
+  const handleSignUp = () => {
+    window.location.href = "/signup";
+  };
+
   return (
     <div className="landing-page">
       <header className="header">
@@ -13,13 +24,13 @@ const LandingPage = () => {
           </Link>
           <ul className="nav-links">
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/home">Home</Link>
             </li>
             <li>
-              <Link href="/">Courses</Link>
+              <Link href="/course">Courses</Link>
             </li>
             <li>
-              <Link href="/">Tutors</Link>
+              <Link href="/tutor">Tutors</Link>
             </li>
             <li>
               <Link href="/">About</Link>
@@ -29,8 +40,12 @@ const LandingPage = () => {
             </li>
           </ul>
           <div className="auth-buttons">
-            <button className="btn sign-in">Sign In</button>
-            <button className="btn sign-up">Sign Up</button>
+            <button className="btn sign-in" onClick={handleSignIn}>
+              Sign In
+            </button>
+            <button className="btn sign-up" onClick={handleSignUp}>
+              Sign Up
+            </button>
           </div>
         </nav>
       </header>
