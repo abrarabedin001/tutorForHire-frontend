@@ -1,3 +1,5 @@
+// http://localhost:5000/enrollcourse/enrolledcourses
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react';
 
 import Box from '@mui/material/Box';
@@ -12,21 +14,26 @@ export default function LoginHome() {
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
     console.log('cookies', cookies?.data?.user?.type);
-    if (!cookies?.data?.user) {
+    if (cookies?.data?.user?.type === 'TEACHER') {
       window.location.href = '/';
     }
 
     const fetchCourses = async () => {
       try {
-        const link = 'http://localhost:5000/course/showcourse';
+        const link = 'http://localhost:5000/enrollcourse/enrolledcourses';
+        console.log('link', link);
         const response = await axios.get(link, {
           headers: {
             'content-type': 'application/json',
             Authorization: `token ${cookies?.data?.token}`,
           },
         });
-        console.log('kaj kore ki?', response.data.courseshow);
-        setCourses(response.data.courseshow);
+        console.log('response', response.data.enrolledCourses);
+        const courses = response.data.enrolledCourses.map(
+          (course) => course['Course'],
+        );
+        console.log(courses);
+        setCourses(courses);
       } catch (error) {
         console.error('Error fetching courses:', error);
       }
