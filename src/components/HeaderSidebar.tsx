@@ -25,7 +25,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 import Courses from '~/components/Courses';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
@@ -146,8 +146,12 @@ export default function MiniDrawer({
             alignItems="flex-end"
             className="w-full"
           >
+            <Link href="slkdjflsj" style={{ color: 'white' }}>
+              SOmehwere link
+            </Link>
             <Button
-              className="float-right"
+              className="float-right text-white"
+              style={{ color: 'white' }}
               onClick={() => {
                 removeCookie('data', '/');
                 removeCookie('token', '/');
