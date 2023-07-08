@@ -148,3 +148,9 @@
   width: 600px; /* Set the desired width */
   height: 400px; /* Set the desired height */
 }
+
+.button.active {
+  padding: 8px 16px;
+  border: 2px solid darkblue;
+  background-color: darkblue;
+}
