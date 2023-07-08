@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 // import './LandingPage.css';
 
 const LandingPage = () => {
-
   const testimonialsData = [
     {
       id: 1,
@@ -30,11 +29,15 @@ const LandingPage = () => {
   const [testimonialPosition, setTestimonialPosition] = useState(0);
 
   const handlePrevTestimonial = () => {
-    setActiveTestimonial((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
+    setActiveTestimonial((prev) =>
+      prev === 0 ? testimonialsData.length - 1 : prev - 1,
+    );
   };
 
   const handleNextTestimonial = () => {
-    setActiveTestimonial((prev) => (prev === testimonialsData.length - 1 ? 0 : prev + 1));
+    setActiveTestimonial((prev) =>
+      prev === testimonialsData.length - 1 ? 0 : prev + 1,
+    );
   };
 
   const handleMouseDown = (event) => {
@@ -53,16 +56,13 @@ const LandingPage = () => {
     setMouseDown(false);
     setMouseDownX(null);
     setTestimonialPosition(0);
-
-
-
+  };
   const handleSignIn = () => {
-    window.location.href = "/login";
+    window.location.href = '/login';
   };
 
   const handleSignUp = () => {
-    window.location.href = "/signup";
-
+    window.location.href = '/signup';
   };
 
   return (
@@ -103,7 +103,9 @@ const LandingPage = () => {
         <section className="hero-section">
           <div className="hero-content">
             <h1>Learn from the Best Tutors</h1>
-            <p>Explore a wide range of courses taught by experts in their fields.</p>
+            <p>
+              Explore a wide range of courses taught by experts in their fields.
+            </p>
             <button className="btn">Get Started</button>
           </div>
           <div className="course-card">
@@ -115,12 +117,16 @@ const LandingPage = () => {
           <div className="feature">
             <i className="fas fa-chalkboard-teacher"></i>
             <h3>Expert Tutors</h3>
-            <p>Learn from experienced tutors who are passionate about teaching.</p>
+            <p>
+              Learn from experienced tutors who are passionate about teaching.
+            </p>
           </div>
           <div className="feature">
             <i className="fas fa-certificate"></i>
             <h3>Certificates</h3>
-            <p>Earn certificates upon completion to showcase your achievements.</p>
+            <p>
+              Earn certificates upon completion to showcase your achievements.
+            </p>
           </div>
           <div className="feature">
             <i className="fas fa-globe"></i>
@@ -154,7 +160,9 @@ const LandingPage = () => {
               {testimonialsData.map((testimonial, index) => (
                 <div
                   key={testimonial.id}
-                  className={`testimonial-item ${index === activeTestimonial ? 'active' : ''}`}
+                  className={`testimonial-item ${
+                    index === activeTestimonial ? 'active' : ''
+                  }`}
                 >
                   <img src={testimonial.image} alt="Testimonial" />
                   <p>{testimonial.description}</p>
@@ -173,7 +181,9 @@ const LandingPage = () => {
               {testimonialsData.map((_, index) => (
                 <div
                   key={index}
-                  className={`dot ${index === activeTestimonial ? 'active' : ''}`}
+                  className={`dot ${
+                    index === activeTestimonial ? 'active' : ''
+                  }`}
                 />
               ))}
             </div>
