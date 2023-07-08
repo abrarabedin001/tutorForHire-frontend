@@ -24,13 +24,13 @@ const LandingPage = () => {
           </Link>
           <ul className="nav-links">
             <li>
-              <Link href="/home">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/course">Courses</Link>
+              <Link href="/">Courses</Link>
             </li>
             <li>
-              <Link href="/tutor">Tutors</Link>
+              <Link href="/">Tutors</Link>
             </li>
             <li>
               <Link href="/">About</Link>
