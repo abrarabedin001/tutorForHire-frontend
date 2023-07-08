@@ -52,7 +52,7 @@ const validationSchema = yup.object({
 });
 
 const SignUp = () => {
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie] = useCookies(['data']);
   const router = useRouter();
   // console.log('cookeise', cookies.data.user.id);
   const formik = useFormik({
@@ -80,6 +80,8 @@ const SignUp = () => {
         console.log(newValue);
 
         const link = 'http://localhost:5000/course/coursepost';
+        const { data } = cookies;
+        console.log(data);
         const user = await axios.post(link, newValue, {
           headers: {
             'content-type': 'application/json',

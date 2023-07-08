@@ -1,24 +1,15 @@
 import { Grid } from '@mui/material';
 import CourseCard from './CourseCard';
 
-const Courses = () => {
+const Courses = ({ courses }: { courses?: any[] }) => {
   return (
-    <>
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <CourseCard />
+    <Grid container spacing={2}>
+      {courses.map((course) => (
+        <Grid item xs={4} key={course.id}>
+          <CourseCard course={course} />
         </Grid>
-        <Grid item xs={4}>
-          <CourseCard />
-        </Grid>
-        <Grid item xs={4}>
-          <CourseCard />
-        </Grid>
-        <Grid item xs={8}>
-          <CourseCard />
-        </Grid>
-      </Grid>
-    </>
+      ))}
+    </Grid>
   );
 };
 
