@@ -16,40 +16,71 @@ import { CookiesProvider } from 'react-cookie';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
 
 const validationSchema = yup.object({
-  bio: yup
+  title: yup
     .string('Enter your Bio')
-    .min(10, 'Password should be of minimum 250 characters length')
+    .min(1, 'Password should be of minimum 250 characters length')
     .required('Name is required'),
   description: yup
     .string('Enter your description')
-    .min(10, 'Password should be of minimum 250 characters length')
+    .min(1, 'Password should be of minimum 250 characters length')
+    .required('Email is required'),
+  categories: yup
+    .string('Enter your description')
+    .min(1, 'Password should be of minimum 250 characters length')
+    .required('Email is required'),
+  seatStatus: yup
+    .string('Enter your description')
+    .min(1, 'Password should be of minimum 250 characters length')
+    .required('Email is required'),
+  // teacherProfileId: yup
+  //   .string('Enter your description')
+  //   .min(1, 'Password should be of minimum 250 characters length')
+  //   .required('Email is required'),
+  address: yup
+    .string('Enter your description')
+    .min(1, 'Password should be of minimum 250 characters length')
+    .required('Email is required'),
+  endDate: yup
+    .date('Enter the end date of this course')
     .required('Email is required'),
 });
 
 const SignUp = () => {
   const [cookies, setCookie] = useCookies(['user']);
   const router = useRouter();
-  console.log('cookeise', cookies.Name);
+  // console.log('cookeise', cookies.data.user.id);
   const formik = useFormik({
     initialValues: {
       title: '',
       description: '',
       categories: '',
+      seatStatus: '0',
+      // teacherProfileId: cookies.data.user.id,
+      address: '',
+      endDate: new Date(),
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        let link = '';
+        // const link = '';
+        const newValue = {
+          ...values,
+          teacherProfileId: cookies.data.user.id,
+          seatStatus: parseInt(values.seatStatus),
+          newDate: new Date(values.endDate),
+        };
+        // values.push('teacherProfileId', cookies.data.user.id);
+        console.log(newValue);
 
-        if (cookies.data.user.type === 'STUDENT') {
-          link = 'http://localhost:5000/student/create';
-        } else {
-          link = 'http://localhost:5000/tutor/tutorcreate';
-        }
-        const user = await axios.post(link, values, {
+        const link = 'http://localhost:5000/course/coursepost';
+        const user = await axios.post(link, newValue, {
           headers: {
             'content-type': 'application/json',
             Authorization: `token ${cookies.data.token}`,
@@ -61,20 +92,6 @@ const SignUp = () => {
       }
     },
   });
-
-  // id               String         @id @default(uuid())
-  // title            String
-  // published        Boolean        @default(false)
-  // description      String?
-  // seatStatus       Int?
-  // address          String?
-  // endDate          DateTime?
-  // categories       String
-  // CourseEnroll     CourseEnroll[]
-  // teacherProfileId String
-  // TeacherProfile   TeacherProfile @relation(fields: [teacherProfileId], references: [id])
-  // createdAt        DateTime       @default(now())
-  // updatedAt        DateTime       @updatedAt
 
   return (
     <CookiesProvider>
@@ -110,6 +127,19 @@ const SignUp = () => {
                 formik.touched.description && formik.errors.description
               }
             />
+            <TextField
+              fullWidth
+              id="seatStatus"
+              name="seatStatus"
+              label="seatStatus"
+              type="seatStatus"
+              value={formik.values.seatStatus}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.seatStatus && Boolean(formik.errors.seatStatus)
+              }
+              helperText={formik.touched.seatStatus && formik.errors.seatStatus}
+            />
 
             <TextField
               fullWidth
@@ -124,6 +154,46 @@ const SignUp = () => {
               }
               helperText={formik.touched.categories && formik.errors.categories}
             />
+            {/* <TextField
+              fullWidth
+              id="teacherProfileId"
+              name="teacherProfileId"
+              label="teacherProfileId"
+              type="teacherProfileId"
+              value={formik.values.teacherProfileId}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.teacherProfileId &&
+                Boolean(formik.errors.teacherProfileId)
+              }
+              helperText={
+                formik.touched.categorteacherProfileIdies &&
+                formik.errors.teacherProfileId
+              }
+            /> */}
+            <TextField
+              fullWidth
+              id="address"
+              name="address"
+              label="address"
+              type="address"
+              value={formik.values.address}
+              onChange={formik.handleChange}
+              error={formik.touched.address && Boolean(formik.errors.address)}
+              helperText={formik.touched.address && formik.errors.address}
+            />
+            <label for="date">
+              Enter a date and time for your party booking:
+            </label>
+            <input
+              id="date"
+              type="date"
+              name="endDate"
+              value={formik.values.endDate}
+              onChange={formik.handleChange}
+              style={{ width: '100%', color: 'black' }}
+            />
+
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit
             </Button>
