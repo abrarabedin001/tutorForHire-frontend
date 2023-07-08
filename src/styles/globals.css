@@ -167,6 +167,7 @@ color: #fff;
   transition: opacity 0.3s ease-in-out;
 }
 
+
 .testimonial-item.active {
   opacity: 1;
 }
@@ -223,3 +224,10 @@ color: #fff;
   color: #fff;
   text-align: center;
 }
+
+.button.active {
+  padding: 8px 16px;
+  border: 2px solid darkblue;
+  background-color: darkblue;
+}
+

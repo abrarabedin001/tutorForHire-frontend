@@ -15,6 +15,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Rating from '@mui/material/Rating';
+import Link from 'next/link';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,27 +31,30 @@ const ExpandMore = styled((props) => {
 export default function CourseCard({ course }: { course: any }) {
   const [expanded, setExpanded] = React.useState(false);
   const [value, setValue] = React.useState(2);
-
+  console.log(course.id, 'course');
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={course?.title}
-        subheader={course?.createdAt.split('T')[0]}
-      />
+      <Link href={'http://localhost:3000/course/personal/' + course?.id}>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={course?.title}
+          subheader={course?.createdAt.split('T')[0]}
+        />
+      </Link>
+
       <CardMedia
         component="img"
         height="194"

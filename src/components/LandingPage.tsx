@@ -1,8 +1,11 @@
 import Link from 'next/link';
+
 import React, { useState } from 'react';
+
 // import './LandingPage.css';
 
 const LandingPage = () => {
+
   const testimonialsData = [
     {
       id: 1,
@@ -50,6 +53,16 @@ const LandingPage = () => {
     setMouseDown(false);
     setMouseDownX(null);
     setTestimonialPosition(0);
+
+
+
+  const handleSignIn = () => {
+    window.location.href = "/login";
+  };
+
+  const handleSignUp = () => {
+    window.location.href = "/signup";
+
   };
 
   return (
@@ -77,8 +90,12 @@ const LandingPage = () => {
             </li>
           </ul>
           <div className="auth-buttons">
-            <button className="btn sign-in">Sign In</button>
-            <button className="btn sign-up">Sign Up</button>
+            <button className="btn sign-in" onClick={handleSignIn}>
+              Sign In
+            </button>
+            <button className="btn sign-up" onClick={handleSignUp}>
+              Sign Up
+            </button>
           </div>
         </nav>
       </header>

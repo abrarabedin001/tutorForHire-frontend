@@ -119,6 +119,10 @@ export default function MiniDrawer({
   };
 
   const [cookie, setCookie, removeCookie] = useCookies(['user']);
+  const isActiveRoute = (href: string) => {
+    console.log(router.pathname, href);
+    return router.pathname === href;
+  };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -146,11 +150,72 @@ export default function MiniDrawer({
             alignItems="flex-end"
             className="w-full"
           >
-            <Link href="slkdjflsj" style={{ color: 'white' }}>
-              SOmehwere link
-            </Link>
+            <div className="center-buttons button.active">
+              <Button>
+                <Link
+                  href="/home"
+                  className={` ${
+                    isActiveRoute('/home')
+                      ? 'm-5 border-spacing-3 border-dashed border-gray-950 bg-black p-5 text-white'
+                      : ''
+                  }`}
+                >
+                  Home
+                </Link>
+              </Button>
+
+              <Button
+                className={`text-white ${
+                  isActiveRoute('/course') ? 'active' : ''
+                }`}
+              >
+                <Link href="/course" style={{ color: 'white' }}>
+                  Courses
+                </Link>
+              </Button>
+
+              <Button
+                className={`text-white ${
+                  isActiveRoute('/tutor') ? 'active' : ''
+                }`}
+              >
+                <Link href="/tutor" style={{ color: 'white' }}>
+                  Tutors
+                </Link>
+              </Button>
+
+              <Button
+                className={`text-white ${
+                  isActiveRoute('/about') ? 'active' : ''
+                }`}
+              >
+                <Link href="/about" style={{ color: 'white' }}>
+                  About
+                </Link>
+              </Button>
+
+              <Button
+                className={`text-white ${
+                  isActiveRoute('/contact') ? 'active' : ''
+                }`}
+              >
+                <Link href="/contact" style={{ color: 'white' }}>
+                  Contact
+                </Link>
+              </Button>
+            </div>
+          </Box>
+
+          <Box
+            m={1}
+            //margin
+            display="flex"
+            justifyContent="flex-end"
+            alignItems="flex-end"
+            className="w-full"
+          >
             <Button
-              className="float-right text-white"
+              className="text-white"
               style={{ color: 'white' }}
               onClick={() => {
                 removeCookie('data', '/');
