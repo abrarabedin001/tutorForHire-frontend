@@ -120,6 +120,7 @@ export default function MiniDrawer({
 
   const [cookie, setCookie, removeCookie] = useCookies(['user']);
   const isActiveRoute = (href: string) => {
+    console.log(router.pathname, href);
     return router.pathname === href;
   };
 
@@ -141,7 +142,6 @@ export default function MiniDrawer({
             <MenuIcon />
           </IconButton>
 
-
           <Box
             m={1}
             //margin
@@ -150,44 +150,60 @@ export default function MiniDrawer({
             alignItems="flex-end"
             className="w-full"
           >
-          <div className="center-buttons button.active" >
+            <div className="center-buttons button.active">
+              <Button>
+                <Link
+                  href="/home"
+                  className={` ${
+                    isActiveRoute('/home')
+                      ? 'm-5 border-spacing-3 border-dashed border-gray-950 bg-black p-5 text-white'
+                      : ''
+                  }`}
+                >
+                  Home
+                </Link>
+              </Button>
 
+              <Button
+                className={`text-white ${
+                  isActiveRoute('/course') ? 'active' : ''
+                }`}
+              >
+                <Link href="/course" style={{ color: 'white' }}>
+                  Courses
+                </Link>
+              </Button>
 
-          <Button className={`text-white ${isActiveRoute('/home') ? 'active' : ''}`}>
-            <Link href="/home" style={{ color: 'white' }}>
-              Home
-            </Link>
-          </Button>
+              <Button
+                className={`text-white ${
+                  isActiveRoute('/tutor') ? 'active' : ''
+                }`}
+              >
+                <Link href="/tutor" style={{ color: 'white' }}>
+                  Tutors
+                </Link>
+              </Button>
 
+              <Button
+                className={`text-white ${
+                  isActiveRoute('/about') ? 'active' : ''
+                }`}
+              >
+                <Link href="/about" style={{ color: 'white' }}>
+                  About
+                </Link>
+              </Button>
 
-          <Button className={`text-white ${isActiveRoute('/course') ? 'active' : ''}`}>
-            <Link href="/course" style={{ color: 'white' }}>
-              Courses
-            </Link>
-          </Button>
-
-
-
-          <Button className={`text-white ${isActiveRoute('/tutor') ? 'active' : ''}`}>
-            <Link href="/tutor" style={{ color: 'white' }}>
-              Tutors
-            </Link>
-          </Button>
-
-
-          <Button className={`text-white ${isActiveRoute('/about') ? 'active' : ''}`}>
-            <Link href="/about" style={{ color: 'white' }}>
-              About
-            </Link>
-          </Button>
-
-          <Button className={`text-white ${isActiveRoute('/contact') ? 'active' : ''}`}>
-            <Link href="/contact" style={{ color: 'white' }}>
-              Contact
-            </Link>
-          </Button>
-
-          </div>
+              <Button
+                className={`text-white ${
+                  isActiveRoute('/contact') ? 'active' : ''
+                }`}
+              >
+                <Link href="/contact" style={{ color: 'white' }}>
+                  Contact
+                </Link>
+              </Button>
+            </div>
           </Box>
 
           <Box
@@ -198,7 +214,6 @@ export default function MiniDrawer({
             alignItems="flex-end"
             className="w-full"
           >
-        
             <Button
               className="text-white"
               style={{ color: 'white' }}
