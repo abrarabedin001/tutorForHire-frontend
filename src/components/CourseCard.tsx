@@ -16,6 +16,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Rating from '@mui/material/Rating';
 import Link from 'next/link';
+import { Button } from '@mui/material';
+import { useRouter } from 'next/router';
+import { useCookies, CookiesProvider } from 'react-cookie';
+import axios from 'axios';
+import { is } from 'date-fns/locale';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,6 +34,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function CourseCard({ course }: { course: any }) {
+  const router = useRouter();
   const [expanded, setExpanded] = React.useState(false);
   const [value, setValue] = React.useState(2);
   console.log(course.id, 'course');
@@ -36,66 +42,156 @@ export default function CourseCard({ course }: { course: any }) {
     setExpanded(!expanded);
   };
 
+  const isEnrolled = router.asPath.includes('enrolledcourses');
+  const data = useCookies(['data']);
+  const cookie = data[0].data;
+  const enrollCourse = async () => {
+    try {
+      const link = 'http://localhost:5000/enrollcourse/enroll';
+      console.log(course.id, 'course');
+      console.log(cookie.user.id, 'studentProfileId');
+      const user = await axios.post(
+        link,
+        {
+          courseId: course.id,
+        },
+        {
+          headers: {
+            'content-type': 'application/json',
+            Authorization: `token ${cookie.token}`,
+          },
+        },
+      );
+      console.log(user);
+      // await router.push('/home');
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  const UnenrollCourse = async () => {
+    try {
+      const link =
+        'http://localhost:5000/enrollcourse/unenroll/' +
+        course.id +
+        '/' +
+        cookie.user.id;
+      console.log(course.id, 'course');
+      console.log(cookie.user.id, 'studentProfileId');
+      console.log(course.id, 'course');
+      const user = await axios.delete(
+        link,
+        {
+          id: course.id,
+        },
+        {
+          headers: {
+            'content-type': 'application/json',
+            Authorization: `token ${cookie.token}`,
+          },
+        },
+      );
+      console.log(user);
+      // await router.push('/home');
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <Link href={'http://localhost:3000/course/personal/' + course?.id}>
-        <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={course?.title}
-          subheader={course?.createdAt.split('T')[0]}
-        />
-      </Link>
+    <CookiesProvider>
+      <Card sx={{ maxWidth: 345 }}>
+        <Link href={'http://localhost:3000/course/personal/' + course?.id}>
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                R
+              </Avatar>
+            }
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title={course?.title}
+            subheader={course?.createdAt.split('T')[0]}
+          />
+        </Link>
 
-      <CardMedia
-        component="img"
-        height="194"
-        image="https://placehold.co/600x400"
-        alt="Paella dish"
-      />
-      <Rating
-        name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        className="mt-2"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {course?.description}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardMedia
+          component="img"
+          height="194"
+          image="https://placehold.co/600x400"
+          alt="Paella dish"
+        />
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={async (event, newValue) => {
+            console.log(newValue);
+            try {
+              await axios.post(
+                'http://localhost:5000/rating/giverating',
+                { courseId: course.id, rate: newValue },
+                {
+                  headers: {
+                    'content-type': 'application/json',
+                    Authorization: `token ${cookie.token}`,
+                  },
+                },
+              );
+            } catch (e) {
+              console.log(e);
+            }
+          }}
+          className="mt-2"
+        />
         <CardContent>
-          <Typography paragraph>Descriptions:</Typography>
-          <Typography paragraph>{course?.description}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {course?.description}
+          </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          {cookie?.user?.type === 'STUDENT' ? (
+            isEnrolled ? (
+              <Button
+                className="m-2 border border-black bg-red-500 p-2"
+                onClick={UnenrollCourse}
+              >
+                UnEnroll
+              </Button>
+            ) : (
+              <Button
+                className="m-2 border border-black bg-red-500 p-2"
+                onClick={enrollCourse}
+              >
+                Enroll
+              </Button>
+            )
+          ) : (
+            ''
+          )}
+
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>Descriptions:</Typography>
+            <Typography paragraph>{course?.description}</Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </CookiesProvider>
   );
 }
