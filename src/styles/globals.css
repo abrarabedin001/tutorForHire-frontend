@@ -161,6 +161,7 @@
 .testimonial-wrapper {
   display: flex;
   transition: transform 0.3s ease-in-out;
+  align-items: center; /* Added */
 }
 
 .testimonial-item {
@@ -168,6 +169,10 @@
   max-width: 100%;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
+  display: flex; /* Added */
+  flex-direction: column; /* Added */
+  align-items: center; /* Added */
+  justify-content: center; /* Added */
 }
 
 .testimonial-item.active {
@@ -175,8 +180,8 @@
 }
 
 .testimonial-item img {
-  width: 100px;
-  height: 100px;
+  width: 600px;
+  height: 300px;
   border-radius: 50%;
   margin-bottom: 10px;
 }
@@ -196,7 +201,7 @@
 .next-button {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 40px;
   color: #1c7cd6;
   cursor: pointer;
 }
@@ -220,6 +225,7 @@
 .dot.active {
   background-color: #1c7cd6;
 }
+
 .footer {
   background-color: #1c7cd6;
   padding: 20px;
