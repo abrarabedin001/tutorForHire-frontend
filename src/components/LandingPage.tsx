@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-
+import Menu from '~/components/Menu';
 const LandingPage = () => {
   const testimonialsData = [
     {
@@ -26,19 +26,19 @@ const LandingPage = () => {
 
   const handlePrevTestimonial = () => {
     setActiveTestimonial((prev) =>
-      prev === 0 ? testimonialsData.length - 1 : prev - 1
+      prev === 0 ? testimonialsData.length - 1 : prev - 1,
     );
     setActiveDot((prev) =>
-      prev === 0 ? testimonialsData.length - 1 : prev - 1
+      prev === 0 ? testimonialsData.length - 1 : prev - 1,
     );
   };
 
   const handleNextTestimonial = () => {
     setActiveTestimonial((prev) =>
-      prev === testimonialsData.length - 1 ? 0 : prev + 1
+      prev === testimonialsData.length - 1 ? 0 : prev + 1,
     );
     setActiveDot((prev) =>
-      prev === testimonialsData.length - 1 ? 0 : prev + 1
+      prev === testimonialsData.length - 1 ? 0 : prev + 1,
     );
   };
 
@@ -52,57 +52,7 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <header className="header">
-        <nav className="navbar">
-          <Link className="logo" href="/">
-            Tutor For Hire
-          </Link>
-          <ul className="nav-links">
-            <li>
-              <Link href="/" className="active">
-                <Button color="inherit">Home</Button>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <Button color="inherit">Courses</Button>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <Button color="inherit">Tutors</Button>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <Button color="inherit">About</Button>
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="active">
-                <Button color="inherit">Contact</Button>
-              </Link>
-            </li>
-          </ul>
-          <div className="auth-buttons">
-            <Button
-              className="btn sign-in"
-              variant="contained"
-              onClick={handleSignIn}
-            >
-              Sign In
-            </Button>
-            <Button
-              className="btn sign-up"
-              variant="contained"
-              color="primary"
-              onClick={handleSignUp}
-            >
-              Sign Up
-            </Button>
-          </div>
-        </nav>
-      </header>
+      <Menu />
       <main className="main-content">
         <section className="hero-section">
           <div className="hero-content">
