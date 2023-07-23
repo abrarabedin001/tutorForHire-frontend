@@ -1,24 +1,17 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Autocomplete from '@mui/material/Autocomplete';
 import { CookiesProvider } from 'react-cookie';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Textarea from '@mui/joy/Textarea';
+
 // import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
 
 const validationSchema = yup.object({
@@ -102,7 +95,7 @@ const SignUp = () => {
           >
             <h1 className="text-center text-2xl font-bold">Create Course</h1>
             <p className=" text-lg font-semibold">Title: </p>
-            <TextField
+            <Textarea
               fullWidth
               id="title"
               name="title"
@@ -114,7 +107,7 @@ const SignUp = () => {
               className="bg-white"
             />
             <p className=" text-lg font-semibold">Description: </p>
-            <TextField
+            <Textarea
               fullWidth
               id="description"
               name="description"
@@ -131,7 +124,7 @@ const SignUp = () => {
               }
             />
             <p className=" text-lg font-semibold">Seat Status: </p>
-            <TextField
+            <Textarea
               fullWidth
               id="seatStatus"
               name="seatStatus"
@@ -146,7 +139,7 @@ const SignUp = () => {
               helperText={formik.touched.seatStatus && formik.errors.seatStatus}
             />
             <p className=" text-lg font-semibold">Categories: </p>
-            <TextField
+            <Textarea
               fullWidth
               id="categories"
               name="categories"
@@ -161,7 +154,7 @@ const SignUp = () => {
               helperText={formik.touched.categories && formik.errors.categories}
             />
             <p className=" text-lg font-semibold">Address: </p>
-            <TextField
+            <Textarea
               fullWidth
               id="address"
               name="address"
