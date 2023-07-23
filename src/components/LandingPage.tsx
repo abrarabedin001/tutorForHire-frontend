@@ -1,8 +1,6 @@
 import Link from 'next/link';
-
 import React, { useState } from 'react';
-
-// import './LandingPage.css';
+import Button from '@mui/material/Button';
 
 const LandingPage = () => {
   const testimonialsData = [
@@ -24,39 +22,26 @@ const LandingPage = () => {
   ];
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [mouseDown, setMouseDown] = useState(false);
-  const [mouseDownX, setMouseDownX] = useState(null);
-  const [testimonialPosition, setTestimonialPosition] = useState(0);
+  const [activeDot, setActiveDot] = useState(0);
 
   const handlePrevTestimonial = () => {
     setActiveTestimonial((prev) =>
-      prev === 0 ? testimonialsData.length - 1 : prev - 1,
+      prev === 0 ? testimonialsData.length - 1 : prev - 1
+    );
+    setActiveDot((prev) =>
+      prev === 0 ? testimonialsData.length - 1 : prev - 1
     );
   };
 
   const handleNextTestimonial = () => {
     setActiveTestimonial((prev) =>
-      prev === testimonialsData.length - 1 ? 0 : prev + 1,
+      prev === testimonialsData.length - 1 ? 0 : prev + 1
+    );
+    setActiveDot((prev) =>
+      prev === testimonialsData.length - 1 ? 0 : prev + 1
     );
   };
 
-  const handleMouseDown = (event) => {
-    setMouseDown(true);
-    setMouseDownX(event.clientX);
-  };
-
-  const handleMouseMove = (event) => {
-    if (mouseDown) {
-      const deltaX = event.clientX - mouseDownX;
-      setTestimonialPosition(deltaX);
-    }
-  };
-
-  const handleMouseUp = () => {
-    setMouseDown(false);
-    setMouseDownX(null);
-    setTestimonialPosition(0);
-  };
   const handleSignIn = () => {
     window.location.href = '/login';
   };
@@ -74,28 +59,47 @@ const LandingPage = () => {
           </Link>
           <ul className="nav-links">
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/" className="active">
+                <Button color="inherit">Home</Button>
+              </Link>
             </li>
             <li>
-              <Link href="/">Courses</Link>
+              <Link href="/">
+                <Button color="inherit">Courses</Button>
+              </Link>
             </li>
             <li>
-              <Link href="/">Tutors</Link>
+              <Link href="/">
+                <Button color="inherit">Tutors</Button>
+              </Link>
             </li>
             <li>
-              <Link href="/">About</Link>
+              <Link href="/">
+                <Button color="inherit">About</Button>
+              </Link>
             </li>
             <li>
-              <Link href="/">Contact</Link>
+              <Link href="/" className="active">
+                <Button color="inherit">Contact</Button>
+              </Link>
             </li>
           </ul>
           <div className="auth-buttons">
-            <button className="btn sign-in" onClick={handleSignIn}>
+            <Button
+              className="btn sign-in"
+              variant="contained"
+              onClick={handleSignIn}
+            >
               Sign In
-            </button>
-            <button className="btn sign-up" onClick={handleSignUp}>
+            </Button>
+            <Button
+              className="btn sign-up"
+              variant="contained"
+              color="primary"
+              onClick={handleSignUp}
+            >
               Sign Up
-            </button>
+            </Button>
           </div>
         </nav>
       </header>
@@ -106,7 +110,9 @@ const LandingPage = () => {
             <p>
               Explore a wide range of courses taught by experts in their fields.
             </p>
-            <button className="btn">Get Started</button>
+            <Button variant="contained" color="primary">
+              Get Started
+            </Button>
           </div>
           <div className="course-card">
             <img src="./images/course4.jpg" alt="" />
@@ -137,24 +143,18 @@ const LandingPage = () => {
         <section className="cta-section">
           <h2>Start Your Learning Journey Today</h2>
           <p>Sign up now and unlock a world of knowledge.</p>
-          <button className="btn">Sign Up</button>
+          <Button variant="contained" color="primary">
+            Sign Up
+          </Button>
         </section>
         <section className="testimonial-section">
           <h2>Testimonials</h2>
-          <div
-            className="testimonial-slider"
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-          >
+          <div className="testimonial-slider">
             <div
               className="testimonial-wrapper"
               style={{
-                transform: `translateX(calc(${testimonialPosition}px - ${
-                  activeTestimonial * 100
-                }%))`,
-                transition: mouseDown ? 'none' : 'transform 0.3s ease-in-out',
+                transform: `translateX(-${activeTestimonial * 100}%)`,
+                transition: 'transform 0.3s ease-in-out',
               }}
             >
               {testimonialsData.map((testimonial, index) => (
@@ -170,20 +170,36 @@ const LandingPage = () => {
               ))}
             </div>
             <div className="testimonial-controls">
-              <button className="prev-button" onClick={handlePrevTestimonial}>
+              <Button
+                className={`prev-button ${
+                  activeTestimonial === 0 ? 'disabled' : ''
+                }`}
+                onClick={handlePrevTestimonial}
+                sx={{ boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}
+              >
                 &lt;
-              </button>
-              <button className="next-button" onClick={handleNextTestimonial}>
+              </Button>
+              <Button
+                className={`next-button ${
+                  activeTestimonial === testimonialsData.length - 1
+                    ? 'disabled'
+                    : ''
+                }`}
+                onClick={handleNextTestimonial}
+                sx={{ boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}
+              >
                 &gt;
-              </button>
+              </Button>
             </div>
             <div className="testimonial-dots">
               {testimonialsData.map((_, index) => (
                 <div
                   key={index}
-                  className={`dot ${
-                    index === activeTestimonial ? 'active' : ''
-                  }`}
+                  className={`dot ${index === activeDot ? 'active' : ''}`}
+                  onClick={() => {
+                    setActiveTestimonial(index);
+                    setActiveDot(index);
+                  }}
                 />
               ))}
             </div>
