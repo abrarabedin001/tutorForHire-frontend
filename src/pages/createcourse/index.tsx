@@ -38,10 +38,7 @@ const validationSchema = yup.object({
     .string('Enter your description')
     .min(1, 'Password should be of minimum 250 characters length')
     .required('Email is required'),
-  // teacherProfileId: yup
-  //   .string('Enter your description')
-  //   .min(1, 'Password should be of minimum 250 characters length')
-  //   .required('Email is required'),
+
   address: yup
     .string('Enter your description')
     .min(1, 'Password should be of minimum 250 characters length')
@@ -101,8 +98,10 @@ const SignUp = () => {
         <Box className="flex w-full justify-center">
           <form
             onSubmit={formik.handleSubmit}
-            className="mt-7 max-w-md space-y-3"
+            className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
+            <h1 className="text-center text-2xl font-bold">Create Course</h1>
+            <p className=" text-lg font-semibold">Title: </p>
             <TextField
               fullWidth
               id="title"
@@ -112,8 +111,9 @@ const SignUp = () => {
               onChange={formik.handleChange}
               error={formik.touched.title && Boolean(formik.errors.title)}
               helperText={formik.touched.title && formik.errors.title}
+              className="bg-white"
             />
-
+            <p className=" text-lg font-semibold">Description: </p>
             <TextField
               fullWidth
               id="description"
@@ -122,6 +122,7 @@ const SignUp = () => {
               type="description"
               value={formik.values.description}
               onChange={formik.handleChange}
+              className="bg-white"
               error={
                 formik.touched.description && Boolean(formik.errors.description)
               }
@@ -129,6 +130,7 @@ const SignUp = () => {
                 formik.touched.description && formik.errors.description
               }
             />
+            <p className=" text-lg font-semibold">Seat Status: </p>
             <TextField
               fullWidth
               id="seatStatus"
@@ -137,12 +139,13 @@ const SignUp = () => {
               type="seatStatus"
               value={formik.values.seatStatus}
               onChange={formik.handleChange}
+              className="bg-white"
               error={
                 formik.touched.seatStatus && Boolean(formik.errors.seatStatus)
               }
               helperText={formik.touched.seatStatus && formik.errors.seatStatus}
             />
-
+            <p className=" text-lg font-semibold">Categories: </p>
             <TextField
               fullWidth
               id="categories"
@@ -151,28 +154,13 @@ const SignUp = () => {
               type="categories"
               value={formik.values.categories}
               onChange={formik.handleChange}
+              className="bg-white"
               error={
                 formik.touched.categories && Boolean(formik.errors.categories)
               }
               helperText={formik.touched.categories && formik.errors.categories}
             />
-            {/* <TextField
-              fullWidth
-              id="teacherProfileId"
-              name="teacherProfileId"
-              label="teacherProfileId"
-              type="teacherProfileId"
-              value={formik.values.teacherProfileId}
-              onChange={formik.handleChange}
-              error={
-                formik.touched.teacherProfileId &&
-                Boolean(formik.errors.teacherProfileId)
-              }
-              helperText={
-                formik.touched.categorteacherProfileIdies &&
-                formik.errors.teacherProfileId
-              }
-            /> */}
+            <p className=" text-lg font-semibold">Address: </p>
             <TextField
               fullWidth
               id="address"
@@ -181,11 +169,12 @@ const SignUp = () => {
               type="address"
               value={formik.values.address}
               onChange={formik.handleChange}
+              className="bg-white"
               error={formik.touched.address && Boolean(formik.errors.address)}
               helperText={formik.touched.address && formik.errors.address}
             />
-            <label for="date">
-              Enter a date and time for your party booking:
+            <label className=" text-lg font-semibold" for="date">
+              Enter start date
             </label>
             <input
               id="date"
