@@ -73,11 +73,12 @@ const SignUp = () => {
   return (
     <CookiesProvider>
       <Container>
-        <Box className="flex w-full justify-center">
+        <Box className="flex w-full  justify-center">
           <form
             onSubmit={formik.handleSubmit}
-            className="mt-7 max-w-md space-y-3"
+            className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 font-semibold"
           >
+            <h1 className="w-full text-center text-3xl font-bold">Sign Up</h1>
             <TextField
               fullWidth
               id="name"
@@ -87,6 +88,7 @@ const SignUp = () => {
               onChange={formik.handleChange}
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
+              className="bg-white"
             />
             <TextField
               fullWidth
@@ -97,6 +99,7 @@ const SignUp = () => {
               onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
+              className="bg-white"
             />
 
             <InputLabel id="demo-simple-select-label">
@@ -111,6 +114,7 @@ const SignUp = () => {
               onChange={formik.handleChange}
               error={formik.touched.type && Boolean(formik.errors.type)}
               helperText={formik.touched.type && formik.errors.type}
+              className="min-w-[100px] bg-white"
             >
               <MenuItem value={'TEACHER'}>TEACHER</MenuItem>
               <MenuItem value={'STUDENT'}>STUDENT</MenuItem>
@@ -125,6 +129,7 @@ const SignUp = () => {
               onChange={formik.handleChange}
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
+              className="bg-white"
             />
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit
