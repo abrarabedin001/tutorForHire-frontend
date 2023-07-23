@@ -37,8 +37,7 @@ const SignUp = () => {
       email: '',
       password: '',
     },
-    // localhost:300/course
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       console.log('signin hoche');
@@ -59,17 +58,19 @@ const SignUp = () => {
   return (
     <CookiesProvider>
       <Container>
-        <Box className="flex w-full justify-center">
+        <Box className="flex w-full  justify-center">
           <form
             onSubmit={formik.handleSubmit}
-            className="mt-7 max-w-md space-y-3"
+            className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
+            <h1 className="w-full text-center text-3xl font-bold">Log In</h1>
             <TextField
               fullWidth
               id="email"
               name="email"
               label="Email"
               value={formik.values.email}
+              className="bg-white"
               onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
@@ -80,6 +81,7 @@ const SignUp = () => {
               name="password"
               label="Password"
               type="password"
+              className="bg-white"
               value={formik.values.password}
               onChange={formik.handleChange}
               error={formik.touched.password && Boolean(formik.errors.password)}
