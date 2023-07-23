@@ -1,28 +1,17 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Autocomplete from '@mui/material/Autocomplete';
 import { CookiesProvider } from 'react-cookie';
-import { useCookies } from 'react-cookie';
-
 import { useRouter } from 'next/router';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import hook from './hooks/hook';
-
+import Textarea from '@mui/joy/Textarea';
 import axios from 'axios';
-// import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
+import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
 
 const validationSchema = yup.object({
   title: yup
@@ -60,14 +49,14 @@ const FormikComponent = ({
   endDate,
   cookies,
 }: {
-  slug: any;
-  title: any;
-  description: any;
-  categories: any;
-  seatStatus: any;
-  address: any;
-  endDate: any;
-  cookies: any;
+  slug: string;
+  title: string;
+  description: string;
+  categories: string;
+  seatStatus: number;
+  address: string;
+  endDate: Date;
+  cookies: Date;
 }) => {
   const router = useRouter();
   const formik = useFormik({
@@ -117,9 +106,11 @@ const FormikComponent = ({
         <Box className="flex w-full justify-center">
           <form
             onSubmit={formik.handleSubmit}
-            className="mt-7 max-w-md space-y-3"
+            className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
-            <TextField
+            <h1 className="text-center text-2xl font-bold">Edit Course</h1>
+            <p className=" text-lg font-semibold">Title: </p>
+            <Textarea
               fullWidth
               id="title"
               name="title"
@@ -128,9 +119,12 @@ const FormikComponent = ({
               onChange={formik.handleChange}
               error={formik.touched.title && Boolean(formik.errors.title)}
               helperText={formik.touched.title && formik.errors.title}
+              className="bg-white"
             />
 
-            <TextField
+            <p className=" text-lg font-semibold">Description: </p>
+
+            <Textarea
               fullWidth
               id="description"
               name="description"
@@ -138,6 +132,7 @@ const FormikComponent = ({
               type="description"
               value={formik.values.description}
               onChange={formik.handleChange}
+              className="bg-white"
               error={
                 formik.touched.description && Boolean(formik.errors.description)
               }
@@ -145,27 +140,31 @@ const FormikComponent = ({
                 formik.touched.description && formik.errors.description
               }
             />
-            <TextField
+
+            <p className=" text-lg font-semibold">Seat Status: </p>
+            <Textarea
               fullWidth
               id="seatStatus"
               name="seatStatus"
               label="seatStatus"
               type="seatStatus"
               value={formik.values.seatStatus}
+              className="bg-white"
               onChange={formik.handleChange}
               error={
                 formik.touched.seatStatus && Boolean(formik.errors.seatStatus)
               }
               helperText={formik.touched.seatStatus && formik.errors.seatStatus}
             />
-
-            <TextField
+            <p className=" text-lg font-semibold">Categories: </p>
+            <Textarea
               fullWidth
               id="categories"
               name="categories"
               label="categories"
               type="categories"
               value={formik.values.categories}
+              className="bg-white"
               onChange={formik.handleChange}
               error={
                 formik.touched.categories && Boolean(formik.errors.categories)
@@ -173,7 +172,8 @@ const FormikComponent = ({
               helperText={formik.touched.categories && formik.errors.categories}
             />
 
-            <TextField
+            <p className=" text-lg font-semibold">Address: </p>
+            <Textarea
               fullWidth
               id="address"
               name="address"
@@ -181,11 +181,12 @@ const FormikComponent = ({
               type="address"
               value={formik.values.address}
               onChange={formik.handleChange}
+              className="bg-white"
               error={formik.touched.address && Boolean(formik.errors.address)}
               helperText={formik.touched.address && formik.errors.address}
             />
-            <label for="date">
-              Enter a date and time for your party booking:
+            <label className=" text-lg font-semibold" for="date">
+              Enter start date
             </label>
             <input
               id="date"
@@ -193,6 +194,7 @@ const FormikComponent = ({
               name="endDate"
               value={formik.values.endDate}
               onChange={formik.handleChange}
+              className="bg-white"
               style={{ width: '100%', color: 'black' }}
             />
 
