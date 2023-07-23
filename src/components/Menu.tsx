@@ -61,8 +61,8 @@ const LandingPage = () => {
               className="w-full"
             >
               <Button
-                className="text-white"
-                style={{ color: 'white' }}
+                className="text-black"
+                style={{ color: 'black' }}
                 onClick={() => {
                   removeCookie('data', '/');
                   removeCookie('token', '/');
@@ -76,19 +76,20 @@ const LandingPage = () => {
             <>
               <Button
                 className="btn sign-in"
-                variant="contained"
+                // variant="contained"
+                color="inherit"
                 onClick={handleSignIn}
               >
-                Sign In
+                Log in
               </Button>
-              <Button
+              {/* <Button
                 className="btn sign-up"
-                variant="contained"
-                color="primary"
+                // variant="contained"
+                // color="primary"
                 onClick={handleSignUp}
               >
-                Sign Up
-              </Button>
+                Sign up
+              </Button> */}
             </>
           )}
         </div>
