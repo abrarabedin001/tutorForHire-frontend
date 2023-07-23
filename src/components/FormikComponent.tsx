@@ -140,9 +140,9 @@ const FormikComponent = ({
                 formik.touched.description && formik.errors.description
               }
             />
-            {/* <Textarea placeholder="Type anything…" /> */}
+
             <p className=" text-lg font-semibold">Seat Status: </p>
-            <TextField
+            <Textarea
               fullWidth
               id="seatStatus"
               name="seatStatus"
