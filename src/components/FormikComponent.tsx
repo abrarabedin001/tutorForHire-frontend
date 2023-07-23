@@ -48,6 +48,7 @@ const FormikComponent = ({
   address,
   endDate,
   cookies,
+  classes,
 }: {
   slug: string;
   title: string;
@@ -57,6 +58,7 @@ const FormikComponent = ({
   address: string;
   endDate: Date;
   cookies: Date;
+  classes?: string;
 }) => {
   const router = useRouter();
   const formik = useFormik({
@@ -93,7 +95,7 @@ const FormikComponent = ({
             Authorization: `token ${cookies.data.token}`,
           },
         });
-        await router.push('/home');
+        await router.push('/course/personal/' + slug);
       } catch (err) {
         console.log(err.message);
       }
@@ -102,108 +104,104 @@ const FormikComponent = ({
 
   return (
     <CookiesProvider>
-      <Container>
-        <Box className="flex w-full justify-center">
-          <form
-            onSubmit={formik.handleSubmit}
-            className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
-          >
-            <h1 className="text-center text-2xl font-bold">Edit Course</h1>
-            <p className=" text-lg font-semibold">Title: </p>
-            <Textarea
-              fullWidth
-              id="title"
-              name="title"
-              label={formik.values.title}
-              value={formik.values.title}
-              onChange={formik.handleChange}
-              error={formik.touched.title && Boolean(formik.errors.title)}
-              helperText={formik.touched.title && formik.errors.title}
-              className="bg-white"
-            />
+      <Box className={classes}>
+        <form
+          onSubmit={formik.handleSubmit}
+          className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
+        >
+          <h1 className="text-center text-2xl font-bold">Edit Course</h1>
+          <p className=" text-lg font-semibold">Title: </p>
+          <Textarea
+            fullWidth
+            id="title"
+            name="title"
+            label={formik.values.title}
+            value={formik.values.title}
+            onChange={formik.handleChange}
+            error={formik.touched.title && Boolean(formik.errors.title)}
+            helperText={formik.touched.title && formik.errors.title}
+            className="bg-white"
+          />
 
-            <p className=" text-lg font-semibold">Description: </p>
+          <p className=" text-lg font-semibold">Description: </p>
 
-            <Textarea
-              fullWidth
-              id="description"
-              name="description"
-              label="description"
-              type="description"
-              value={formik.values.description}
-              onChange={formik.handleChange}
-              className="bg-white"
-              error={
-                formik.touched.description && Boolean(formik.errors.description)
-              }
-              helperText={
-                formik.touched.description && formik.errors.description
-              }
-            />
+          <Textarea
+            fullWidth
+            id="description"
+            name="description"
+            label="description"
+            type="description"
+            value={formik.values.description}
+            onChange={formik.handleChange}
+            className="bg-white"
+            error={
+              formik.touched.description && Boolean(formik.errors.description)
+            }
+            helperText={formik.touched.description && formik.errors.description}
+          />
 
-            <p className=" text-lg font-semibold">Seat Status: </p>
-            <Textarea
-              fullWidth
-              id="seatStatus"
-              name="seatStatus"
-              label="seatStatus"
-              type="seatStatus"
-              value={formik.values.seatStatus}
-              className="bg-white"
-              onChange={formik.handleChange}
-              error={
-                formik.touched.seatStatus && Boolean(formik.errors.seatStatus)
-              }
-              helperText={formik.touched.seatStatus && formik.errors.seatStatus}
-            />
-            <p className=" text-lg font-semibold">Categories: </p>
-            <Textarea
-              fullWidth
-              id="categories"
-              name="categories"
-              label="categories"
-              type="categories"
-              value={formik.values.categories}
-              className="bg-white"
-              onChange={formik.handleChange}
-              error={
-                formik.touched.categories && Boolean(formik.errors.categories)
-              }
-              helperText={formik.touched.categories && formik.errors.categories}
-            />
+          <p className=" text-lg font-semibold">Seat Status: </p>
+          <Textarea
+            fullWidth
+            id="seatStatus"
+            name="seatStatus"
+            label="seatStatus"
+            type="seatStatus"
+            value={formik.values.seatStatus}
+            className="bg-white"
+            onChange={formik.handleChange}
+            error={
+              formik.touched.seatStatus && Boolean(formik.errors.seatStatus)
+            }
+            helperText={formik.touched.seatStatus && formik.errors.seatStatus}
+          />
+          <p className=" text-lg font-semibold">Categories: </p>
+          <Textarea
+            fullWidth
+            id="categories"
+            name="categories"
+            label="categories"
+            type="categories"
+            value={formik.values.categories}
+            className="bg-white"
+            onChange={formik.handleChange}
+            error={
+              formik.touched.categories && Boolean(formik.errors.categories)
+            }
+            helperText={formik.touched.categories && formik.errors.categories}
+          />
 
-            <p className=" text-lg font-semibold">Address: </p>
-            <Textarea
-              fullWidth
-              id="address"
-              name="address"
-              label="address"
-              type="address"
-              value={formik.values.address}
-              onChange={formik.handleChange}
-              className="bg-white"
-              error={formik.touched.address && Boolean(formik.errors.address)}
-              helperText={formik.touched.address && formik.errors.address}
-            />
-            <label className=" text-lg font-semibold" for="date">
-              Enter start date
-            </label>
-            <input
-              id="date"
-              type="date"
-              name="endDate"
-              value={formik.values.endDate}
-              onChange={formik.handleChange}
-              className="bg-white"
-              style={{ width: '100%', color: 'black' }}
-            />
+          <p className=" text-lg font-semibold">Address: </p>
+          <Textarea
+            fullWidth
+            id="address"
+            name="address"
+            label="address"
+            type="address"
+            value={formik.values.address}
+            onChange={formik.handleChange}
+            className="bg-white"
+            error={formik.touched.address && Boolean(formik.errors.address)}
+            helperText={formik.touched.address && formik.errors.address}
+          />
+          <label className=" text-lg font-semibold" for="date">
+            Enter start date
+          </label>
+          <input
+            id="date"
+            type="date"
+            name="endDate"
+            value={formik.values.endDate}
+            onChange={formik.handleChange}
+            className="bg-white"
+            style={{ width: '100%', color: 'black' }}
+          />
 
-            <Button color="primary" variant="contained" type="submit" fullWidth>
-              Submit
-            </Button>
-          </form>
-        </Box>
-      </Container>
+          <Button color="primary" variant="contained" type="submit" fullWidth>
+            Submit
+          </Button>
+        </form>
+      </Box>
     </CookiesProvider>
   );
 };
