@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 const LandingPage = () => {
   const router = useRouter();
   const [cookie, setCookie, removeCookie] = useCookies(['user']);
+  const user = cookie?.data?.user;
   const handleSignIn = () => {
     window.location.href = '/login';
   };
@@ -50,41 +51,46 @@ const LandingPage = () => {
           </li>
         </ul>
         <div className="auth-buttons">
-          <Button
-            className="btn sign-in"
-            variant="contained"
-            onClick={handleSignIn}
-          >
-            Sign In
-          </Button>
-          <Button
-            className="btn sign-up"
-            variant="contained"
-            color="primary"
-            onClick={handleSignUp}
-          >
-            Sign Up
-          </Button>
-          <Box
-            m={1}
-            //margin
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="flex-end"
-            className="w-full"
-          >
-            <Button
-              className="text-white"
-              style={{ color: 'white' }}
-              onClick={() => {
-                removeCookie('data', '/');
-                removeCookie('token', '/');
-                router.push('/login');
-              }}
+          {user ? (
+            <Box
+              m={1}
+              //margin
+              display="flex"
+              justifyContent="flex-end"
+              alignItems="flex-end"
+              className="w-full"
             >
-              Log Out
-            </Button>
-          </Box>
+              <Button
+                className="text-white"
+                style={{ color: 'white' }}
+                onClick={() => {
+                  removeCookie('data', '/');
+                  removeCookie('token', '/');
+                  router.push('/login');
+                }}
+              >
+                Log Out
+              </Button>
+            </Box>
+          ) : (
+            <>
+              <Button
+                className="btn sign-in"
+                variant="contained"
+                onClick={handleSignIn}
+              >
+                Sign In
+              </Button>
+              <Button
+                className="btn sign-up"
+                variant="contained"
+                color="primary"
+                onClick={handleSignUp}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </div>
       </nav>
     </header>
