@@ -18,8 +18,6 @@ import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import Menu from '~/components/Menu';
 
-
-
 const validationSchema = yup.object({
   name: yup
     .string('Enter your name')
@@ -75,8 +73,8 @@ const SignUp = () => {
 
   return (
     <CookiesProvider>
+      <Menu />
       <Container>
-      <Menu/>
         <Box className="flex w-full  justify-center">
           <form
             onSubmit={formik.handleSubmit}
