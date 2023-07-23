@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import { Box } from '@mui/material';
+import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 const LandingPage = () => {
+  const router = useRouter();
+  const [cookie, setCookie, removeCookie] = useCookies(['user']);
   const handleSignIn = () => {
     window.location.href = '/login';
   };
@@ -19,7 +24,7 @@ const LandingPage = () => {
         </Link>
         <ul className="nav-links">
           <li>
-            <Link href="/" className="active">
+            <Link href="/home" className="active">
               <Button color="inherit">Home</Button>
             </Link>
           </li>
@@ -60,6 +65,26 @@ const LandingPage = () => {
           >
             Sign Up
           </Button>
+          <Box
+            m={1}
+            //margin
+            display="flex"
+            justifyContent="flex-end"
+            alignItems="flex-end"
+            className="w-full"
+          >
+            <Button
+              className="text-white"
+              style={{ color: 'white' }}
+              onClick={() => {
+                removeCookie('data', '/');
+                removeCookie('token', '/');
+                router.push('/login');
+              }}
+            >
+              Log Out
+            </Button>
+          </Box>
         </div>
       </nav>
     </header>

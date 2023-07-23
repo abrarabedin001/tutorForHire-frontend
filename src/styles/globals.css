@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+  /*  background-image: url('../../public/images/moroccan-flower-dark.webp'); */
+  background-image: url('../../public/images/moroccan-flower.png');
+  background-repeat: repeat;
+}
 
 .landing-page {
   font-family: Arial, sans-serif;
