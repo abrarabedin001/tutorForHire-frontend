@@ -3,8 +3,8 @@
 @tailwind utilities;
 body {
   /*  background-image: url('../../public/images/moroccan-flower-dark.webp'); */
-  background-image: url('../../public/images/moroccan-flower.png');
-  background-repeat: repeat;
+  background-image: url('../../public/images/cool-background.svg');
+  background-size: cover;
 }
 
 .landing-page {
