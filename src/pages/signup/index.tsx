@@ -16,6 +16,9 @@ import axios from 'axios';
 import { CookiesProvider } from 'react-cookie';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
+import Menu from '~/components/Menu';
+
+
 
 const validationSchema = yup.object({
   name: yup
@@ -73,6 +76,7 @@ const SignUp = () => {
   return (
     <CookiesProvider>
       <Container>
+      <Menu/>
         <Box className="flex w-full  justify-center">
           <form
             onSubmit={formik.handleSubmit}
