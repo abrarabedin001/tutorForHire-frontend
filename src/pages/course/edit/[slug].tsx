@@ -17,8 +17,8 @@ const EditCourse = () => {
   const [data, setData] = React.useState([]);
   const router = useRouter();
 
-  const slug1 = router.asPath.split('course/personal/')[1];
-  console.log('slug', typeof slug1);
+  const slug1 = router.asPath.split('course/edit/')[1];
+  console.log('slug', slug1);
   const link = 'http://localhost:5000/course/singlecourse/' + slug1;
   console.log('link', link);
   console.log('cookeise', cookies?.data?.user?.id);
@@ -31,17 +31,19 @@ const EditCourse = () => {
   return (
     <CookiesProvider>
       <Box className=" flex w-full justify-center">
-        <CourseMainBody
-          slug={slug1}
-          cookies={cookies}
-          title={data1?.course?.title}
-          description={data1?.course?.description}
-          categories={data1?.course?.categories}
-          seatStatus={data1?.course?.seatStatus}
-          address={data1?.course?.address}
-          endDate={data1?.course?.endDate}
-          classes={'w-[75%] flex-row space-y-2 '}
-        ></CourseMainBody>
+        {data1?.course && (
+          <FormikComponent
+            slug={slug1}
+            cookies={cookies}
+            title={data1?.course?.title}
+            description={data1?.course?.description}
+            categories={data1?.course?.categories}
+            seatStatus={data1?.course?.seatStatus}
+            address={data1?.course?.address}
+            endDate={data1?.course?.endDate}
+            classes={'flex w-[50%] justify-center'}
+          />
+        )}
       </Box>
 
       {/* somehtingnkj */}
