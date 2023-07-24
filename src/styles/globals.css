@@ -3,8 +3,13 @@
 @tailwind utilities;
 body {
   /*  background-image: url('../../public/images/moroccan-flower-dark.webp'); */
-  background-image: url('../../public/images/OQCI8X0.jpg');
+
+  background-image: url('../../public/images/img10.png');
+
   background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .landing-page {
@@ -12,9 +17,9 @@ body {
 }
 
 .header {
-  background-color: #1c7cd6;
+  background-color:transparent;
   padding: 20px;
-  color: #fff;
+  /* color:white; */
 }
 
 .navbar {
@@ -25,7 +30,7 @@ body {
 
 .logo {
   font-weight: bold;
-  color: #fff;
+  color: #270404;
   text-decoration: none;
   font-size: 24px;
 }
@@ -36,13 +41,14 @@ body {
 }
 
 .nav-links a {
-  color: #fff;
+  color:rgb(21, 1, 19);
   text-decoration: none;
+  font-weight: bold;
 }
 
 .btn {
-  background-color: #1c7cd6;
-  color: #fff;
+  background-color: #1f1cd6;
+  color: #181111;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -132,7 +138,7 @@ body {
 
 .sign-in {
   background-color: transparent;
-  color: #fff;
+  color:#170505;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -140,7 +146,7 @@ body {
 
 .sign-up {
   background-color: #1c7cd6;
-  color: #fff;
+  color:#fff;
   border: none;
   padding: 10px 20px;
   font-size: 16px;

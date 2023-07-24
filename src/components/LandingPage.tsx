@@ -6,7 +6,7 @@ const LandingPage = () => {
   const testimonialsData = [
     {
       id: 1,
-      image: './images/course4.jpg',
+      image: './images/img2.png',
       description: 'Testimonial 1',
     },
     {
@@ -63,9 +63,6 @@ const LandingPage = () => {
             <Button variant="contained" color="primary">
               Get Started
             </Button>
-          </div>
-          <div className="course-card">
-            <img src="./images/course4.jpg" alt="" />
           </div>
         </section>
         <section className="features-section">

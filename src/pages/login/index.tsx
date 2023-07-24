@@ -166,9 +166,9 @@ const SignUp = () => {
         <Box className="flex w-full  justify-center">
           <form
             onSubmit={formik.handleSubmit}
-            className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
+            className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8"
           >
-            <h1 className="w-full text-center text-3xl font-bold">Log In</h1>
+            {/* <h1 className="w-full text-center text-3xl font-bold">Log In</h1> */}
             <TextField
               fullWidth
               id="email"
@@ -193,8 +193,12 @@ const SignUp = () => {
               helperText={formik.touched.password && formik.errors.password}
             />
             <Button color="primary" variant="contained" type="submit" fullWidth>
-              Submit
+              Log in
             </Button>
+            <p className='text-center'>don't have an account? 
+            <a href="/signup" class="ml-2 text-blue-600 hover:text-blue-800 underline font-bold">
+      Sign up
+    </a></p>
           </form>
         </Box>
       </Container>

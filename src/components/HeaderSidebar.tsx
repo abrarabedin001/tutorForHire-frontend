@@ -215,8 +215,8 @@ export default function MiniDrawer({
             className="w-full"
           >
             <Button
-              className="text-white"
-              style={{ color: 'white' }}
+              className="text-black"
+              style={{ color: 'black' }}
               onClick={() => {
                 removeCookie('data', '/');
                 removeCookie('token', '/');

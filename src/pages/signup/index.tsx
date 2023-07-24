@@ -80,7 +80,7 @@ const SignUp = () => {
             onSubmit={formik.handleSubmit}
             className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 font-semibold"
           >
-            <h1 className="w-full text-center text-3xl font-bold">Sign Up</h1>
+            {/* <h1 className="w-full text-center text-3xl font-bold">Sign Up</h1> */}
             <TextField
               fullWidth
               id="name"
@@ -134,7 +134,7 @@ const SignUp = () => {
               className="bg-white"
             />
             <Button color="primary" variant="contained" type="submit" fullWidth>
-              Submit
+              Sign up
             </Button>
             {signUp && (
               <div className="m-1 p-5 text-green-700">
