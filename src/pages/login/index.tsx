@@ -161,8 +161,8 @@ const SignUp = () => {
 
   return (
     <CookiesProvider>
+      <Menu />
       <Container>
-        <Menu/>
         <Box className="flex w-full  justify-center">
           <form
             onSubmit={formik.handleSubmit}
