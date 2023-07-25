@@ -51,6 +51,15 @@ const LandingPage = () => {
               alignItems="flex-end"
               className="w-full"
             >
+              {' '}
+              <div className="p-1 text-center font-bold"></div>
+              <Button
+                disabled
+                className="text-black"
+                style={{ color: 'black' }}
+              >
+                {user?.name}
+              </Button>
               <Button
                 className="text-black"
                 style={{ color: 'black' }}
@@ -73,14 +82,6 @@ const LandingPage = () => {
               >
                 Log in
               </Button>
-              {/* <Button
-                className="btn sign-up"
-                // variant="contained"
-                // color="primary"
-                onClick={handleSignUp}
-              >
-                Sign up
-              </Button> */}
             </>
           )}
         </div>
