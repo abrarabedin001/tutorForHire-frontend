@@ -22,6 +22,10 @@ import { useCookies, CookiesProvider } from 'react-cookie';
 import axios from 'axios';
 import { is } from 'date-fns/locale';
 
+<div className='margin'>
+
+</div>
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -135,7 +139,7 @@ export default function CourseCard({ course }: { course: any }) {
   };
   return (
     <CookiesProvider>
-      <Card sx={{ maxWidth: 345,backgroundColor: 'rgba(255, 255, 255, 0.5);',border:'2px solid black' }}>
+      <Card sx={{ maxWidth: 345,backgroundColor: 'rgba(255, 255, 255, 0.5)',boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)'}}>
         <Link href={'http://localhost:3000/course/personal/' + course?.id}>
           <CardHeader
             avatar={
