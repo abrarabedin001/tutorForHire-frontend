@@ -15,14 +15,15 @@ body {
 }
 
 .header {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color:rgb(223, 246, 150);
   padding: 10px;
-  border: 1px solid lightpink;
-  /* position: fixed;
+  /* border: 1px solid lightpink; */
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 100;
-  margin-bottom: 20px; */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  /* margin-bottom: 0; */
 
 }
 
@@ -62,7 +63,7 @@ body {
 
 .main-content {
   padding: 40px;
-  /* margin-top: 70px; */
+
 }
 
 .hero-section {
