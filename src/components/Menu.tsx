@@ -41,7 +41,7 @@ const LandingPage = () => {
             </Link>
           </li>
         </ul>
-        <div className="auth-buttons">
+        <Box className="auth-buttons">
           {user ? (
             <Box
               m={1}
@@ -51,8 +51,6 @@ const LandingPage = () => {
               alignItems="flex-end"
               className="w-full"
             >
-              {' '}
-              <div className="p-1 text-center font-bold"></div>
               <Button
                 disabled
                 className="text-black"
@@ -73,18 +71,16 @@ const LandingPage = () => {
               </Button>
             </Box>
           ) : (
-            <>
-              <Button
-                className="btn sign-in"
-                // variant="contained"
-                color="inherit"
-                onClick={handleSignIn}
-              >
-                Log in
-              </Button>
-            </>
+            <Button
+              className="btn sign-in"
+              // variant="contained"
+              color="inherit"
+              onClick={handleSignIn}
+            >
+              Log in
+            </Button>
           )}
-        </div>
+        </Box>
       </nav>
     </header>
   );

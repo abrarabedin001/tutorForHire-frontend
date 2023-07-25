@@ -48,7 +48,7 @@ const EditCourse = () => {
             classes={'w-full flex-col justify-center space-y-2 '}
           ></CourseMainBody>
           <Box className="flex w-full ">
-            <CommentForm />
+            <CommentForm id={data1?.course?.id} />
           </Box>
         </Box>
       </Container>

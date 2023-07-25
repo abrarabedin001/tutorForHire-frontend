@@ -144,18 +144,8 @@ export default function CourseCard({ course }: { course: any }) {
           }}
           className="mt-2"
         />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {course?.description}
-          </Typography>
-        </CardContent>
+
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
           {cookie?.user?.type === 'STUDENT' ? (
             isEnrolled ? (
               <Button
