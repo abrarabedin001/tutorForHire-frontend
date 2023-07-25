@@ -42,6 +42,43 @@ export default function CourseCard({ course }: { course: any }) {
     setExpanded(!expanded);
   };
 
+  //newly added by anik
+  const CourseImage = ({ title }) => {
+    const imageStyle = {
+      width: '345px',
+      height: '194px',
+      backgroundImage: 'url(https://rb.gy/h90m3)', // Replace with your image URL
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      color: 'white',
+      textAlign: 'center',
+      padding: '20px',
+      borderRadius: '5px',
+      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+    };
+    const titleStyle = {
+      color: 'white',
+      fontWeight: 'bolder',
+      fontSize: '1.5rem', // Adjust the font size as needed
+      padding: '20px',
+      borderRadius: '50%',
+      backgroundColor: 'transparent',
+      border:'2px dotted white',
+      textTransform:'uppercase'
+  
+    };
+    return (
+      <div style={imageStyle}>
+        <Typography variant="h5" component="h5" style={titleStyle}>
+          {title}
+        </Typography>
+      </div>
+    );
+  };
   const isEnrolled = router.asPath.includes('enrolledcourses');
   const data = useCookies(['data']);
   const cookie = data[0].data;
@@ -98,7 +135,7 @@ export default function CourseCard({ course }: { course: any }) {
   };
   return (
     <CookiesProvider>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345,backgroundColor: 'rgba(255, 255, 255, 0.5);',border:'2px solid black' }}>
         <Link href={'http://localhost:3000/course/personal/' + course?.id}>
           <CardHeader
             avatar={
@@ -116,12 +153,13 @@ export default function CourseCard({ course }: { course: any }) {
           />
         </Link>
 
-        <CardMedia
+        {/* <CardMedia
           component="img"
           height="194"
-          image="https://placehold.co/600x400"
+          image="https://rb.gy/h90m3"
           alt="Paella dish"
-        />
+        /> */}
+        <CourseImage title={course?.title}/>
         <Rating
           name="simple-controlled"
           value={value}
@@ -142,7 +180,7 @@ export default function CourseCard({ course }: { course: any }) {
               console.log(e);
             }
           }}
-          className="mt-2"
+          className="ml-2"
         />
 
         <CardActions disableSpacing>

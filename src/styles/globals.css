@@ -3,9 +3,7 @@
 @tailwind utilities;
 body {
   /*  background-image: url('../../public/images/moroccan-flower-dark.webp'); */
-
   background-image: url('../../public/images/img10.png');
-
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -17,9 +15,15 @@ body {
 }
 
 .header {
-  background-color:transparent;
-  padding: 20px;
-  /* color:white; */
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border: 1px solid lightpink;
+  /* position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  margin-bottom: 20px; */
+
 }
 
 .navbar {
@@ -58,6 +62,7 @@ body {
 
 .main-content {
   padding: 40px;
+  /* margin-top: 70px; */
 }
 
 .hero-section {
