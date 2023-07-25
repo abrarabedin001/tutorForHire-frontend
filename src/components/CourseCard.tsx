@@ -135,7 +135,7 @@ export default function CourseCard({ course }: { course: any }) {
   };
   return (
     <CookiesProvider>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345,backgroundColor: 'rgba(255, 255, 255, 0.5);',border:'2px solid black' }}>
         <Link href={'http://localhost:3000/course/personal/' + course?.id}>
           <CardHeader
             avatar={
@@ -180,7 +180,7 @@ export default function CourseCard({ course }: { course: any }) {
               console.log(e);
             }
           }}
-          className="mt-2"
+          className="ml-2"
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
