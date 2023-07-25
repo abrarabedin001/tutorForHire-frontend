@@ -5,7 +5,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 
-import { Rating } from '@mui/material';
+import { Card, Rating } from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
@@ -76,50 +76,64 @@ export default function CommentForm({ id }: { id: string }) {
   };
 
   return (
-    <FormControl sx={{ width: '100%' }}>
-      <FormLabel>Your comment</FormLabel>
-      <Textarea
-        placeholder="Type something here…"
-        minRows={3}
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        endDecorator={
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 'var(--Textarea-paddingBlock)',
-              pt: 'var(--Textarea-paddingBlock)',
-              borderTop: '1px solid',
-              borderColor: 'divider',
-              width: '100%',
-              flex: 'auto',
-            }}
-          >
-            <Rating
-              name="simple-controlled"
-              value={2}
-              onChange={(event, newValue) => {
-                // setValue(newValue);
+    <div className="flex h-7 w-full flex-col">
+      <FormControl sx={{ width: '100%' }}>
+        <FormLabel>Your comment</FormLabel>
+        <Textarea
+          placeholder="Type something here…"
+          minRows={3}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          endDecorator={
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 'var(--Textarea-paddingBlock)',
+                pt: 'var(--Textarea-paddingBlock)',
+                borderTop: '1px solid',
+                borderColor: 'divider',
+                width: '100%',
+                flex: 'auto',
               }}
-            />
+            >
+              <Rating
+                name="simple-controlled"
+                value={2}
+                onChange={(event, newValue) => {
+                  // setValue(newValue);
+                }}
+              />
 
-            <Button sx={{ ml: 'auto' }} onClick={() => onSubmit()}>
-              Send
-            </Button>
-          </Box>
-        }
-        sx={{
-          minWidth: 300,
-          fontWeight,
-          fontStyle: italic ? 'italic' : 'initial',
-        }}
-      />
+              <Button sx={{ ml: 'auto' }} onClick={() => onSubmit()}>
+                Send
+              </Button>
+            </Box>
+          }
+          sx={{
+            minWidth: 300,
+            fontWeight,
+            fontStyle: italic ? 'italic' : 'initial',
+          }}
+        />
+      </FormControl>
       <Box sx={{ mt: 2 }}>
         <FormLabel>Comments</FormLabel>
-        {/* {commentList?.map((comment) => ({
-           comment
-        }))} */}
+
+        {commentList?.map((el) => (
+          <Card
+            className=" m-2 flex flex-col rounded-xl border-black p-5 text-left shadow-xl"
+            key={el.id}
+          >
+            {' '}
+            <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
+              <h4>{el.StudentProfile.user.name}</h4>
+              <h4>{el.reviewDate.split('T')[0]}</h4>
+            </Box>
+            <br />
+            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.comment}</h6>
+          </Card>
+        ))}
       </Box>
-    </FormControl>
+    </div>
   );
 }
