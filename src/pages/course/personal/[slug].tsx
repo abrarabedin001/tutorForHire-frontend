@@ -12,6 +12,7 @@ import FormikComponent from '~/components/FormikComponent';
 import HeaderSidebar from '~/components/HeaderSidebar';
 import CourseMainBody from '~/components/CourseMainBody';
 import Menu from '~/components/Menu';
+import CommentForm from '~/components/CommentForm';
 
 const EditCourse = () => {
   const [cookies, setCookie] = useCookies(['user']);
@@ -33,7 +34,7 @@ const EditCourse = () => {
     <CookiesProvider>
       <Menu />
       <Container>
-        <Box className=" flex w-full justify-center">
+        <Box className=" flex w-full flex-col justify-center">
           <CourseMainBody
             id={data1?.course?.id}
             slug={slug1}
@@ -46,6 +47,9 @@ const EditCourse = () => {
             endDate={data1?.course?.endDate}
             classes={'w-full flex-col justify-center space-y-2 '}
           ></CourseMainBody>
+          <Box className="flex w-full ">
+            <CommentForm />
+          </Box>
         </Box>
       </Container>
 

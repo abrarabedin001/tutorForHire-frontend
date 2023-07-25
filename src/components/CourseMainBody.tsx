@@ -61,7 +61,7 @@ const CourseMainBody = ({
   return (
     // <Box className="w-70 flex-row space-y-2 ">
     <Box className={classes}>
-      <Card className="m-3  flex flex-col justify-center p-3 shadow-lg ">
+      <Card className="  flex flex-col justify-center p-3 shadow-lg ">
         <Grid container spacing={2} className="mt-5 bg-blue-100 p-3 shadow-lg">
           <Grid item xs={8}>
             <Typography className="px-10 py-5">{title}</Typography>
