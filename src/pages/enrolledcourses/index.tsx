@@ -8,6 +8,8 @@ import Courses from '~/components/Courses';
 import HeaderSidebar from '~/components/HeaderSidebar';
 import { CookiesProvider, useCookies } from 'react-cookie';
 import axios from 'axios';
+import Menu from '~/components/Menu';
+import Container from '@mui/joy/Container/Container';
 
 export default function LoginHome() {
   const [cookies, setCookie] = useCookies(['data']);
@@ -45,11 +47,12 @@ export default function LoginHome() {
   console.log('where are my courses', courses);
   return (
     <CookiesProvider>
-      <Box sx={{ display: 'flex' }}>
-        <HeaderSidebar>
+      <Menu />
+      <Container>
+        <Box sx={{ display: 'flex' }}>
           <Courses courses={courses}></Courses>
-        </HeaderSidebar>
-      </Box>
+        </Box>
+      </Container>
     </CookiesProvider>
   );
 }
