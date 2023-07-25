@@ -18,9 +18,9 @@ const LandingPage = () => {
   };
 
   return (
-    <header className="header">
-      <nav className="navbar">
-        <Link className="logo" href="/">
+    <header className="header bg-white ">
+      <nav className="  flex  justify-between">
+        <Link className="logo inline-block align-middle" href="/">
           Tutor For Hire
         </Link>
         <ul className="nav-links">
