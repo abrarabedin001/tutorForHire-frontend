@@ -7,7 +7,7 @@ import HeaderSidebar from '~/components/HeaderSidebar';
 import { CookiesProvider, useCookies } from 'react-cookie';
 import axios from 'axios';
 import Menu from '~/components/Menu';
-import Container from '@mui/material/Container/Container';
+import Container from '@mui/material/Container';
 
 export default function LoginHome() {
   const [cookies, setCookie] = useCookies(['data']);
