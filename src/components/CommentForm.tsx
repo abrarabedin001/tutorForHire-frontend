@@ -20,8 +20,8 @@ export default function CommentForm({ id }: { id: string }) {
     const comments = async () => {
       try {
         const link = 'http://localhost:5000/review/seereview';
-        console.log(id, 'course');
-        console.log(cookies.data.user.id, 'studentProfileId');
+        // console.log(id, 'course');
+        // console.log(cookies.data.user.id, 'studentProfileId');
         const list = await axios.get(
           link,
           {
@@ -34,13 +34,13 @@ export default function CommentForm({ id }: { id: string }) {
             },
           },
         );
-        console.log('comments lists');
-        console.log(list.data.review);
+        // console.log('comments lists');
+        // console.log(list.data.review);
         setCommentList(list.data.review);
 
         // await router.push('/home');
       } catch (err) {
-        console.log(err.message);
+        // console.log(err.message);
       }
     };
     comments();
@@ -48,7 +48,7 @@ export default function CommentForm({ id }: { id: string }) {
 
   const onSubmit = async () => {
     try {
-      console.log('enters');
+      // console.log('enters');
       let link = '';
 
       if (cookies.data.user.type === 'STUDENT') {
@@ -57,7 +57,7 @@ export default function CommentForm({ id }: { id: string }) {
         window.alert('A teacher can not comment on a course');
         return;
       }
-      console.log({ courseId: id, comment: comment });
+      // console.log({ courseId: id, comment: comment });
       const response = await axios.post(
         link,
         { courseId: id, comment: comment },
@@ -68,10 +68,10 @@ export default function CommentForm({ id }: { id: string }) {
           },
         },
       );
-      console.log(response);
+      // console.log(response);
       // await router.reload();
     } catch (err) {
-      console.log(err.message);
+      // console.log(err.message);
     }
   };
 

@@ -20,15 +20,15 @@ const EditCourse = () => {
   const router = useRouter();
 
   const slug1 = router.asPath.split('course/personal/')[1];
-  console.log('slug', typeof slug1);
+  // console.log('slug', typeof slug1);
   const link = 'http://localhost:5000/course/singlecourse/' + slug1;
-  console.log('link', link);
-  console.log('cookeise', cookies?.data?.user?.id);
+  // console.log('link', link);
+  // console.log('cookeise', cookies?.data?.user?.id);
   const [type] = React.useState(cookies?.data?.user?.type);
 
   const data1 = hook(link);
-  console.log('data', data1?.course);
-  console.log(data1?.course?.title);
+  // console.log('data', data1?.course);
+  // console.log(data1?.course?.title);
 
   return (
     <CookiesProvider>
