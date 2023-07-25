@@ -121,10 +121,16 @@ export default function CommentForm({ id }: { id: string }) {
 
         {commentList?.map((el) => (
           <Card
-            className=" rounded-xl border-black p-5 text-left shadow-xl"
+            className=" m-2 flex flex-col rounded-xl border-black p-5 text-left shadow-xl"
             key={el.id}
           >
-            {el.comment}
+            {' '}
+            <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
+              <h4>{el.StudentProfile.user.name}</h4>
+              <h4>{el.reviewDate.split('T')[0]}</h4>
+            </Box>
+            <br />
+            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.comment}</h6>
           </Card>
         ))}
       </Box>
