@@ -35,6 +35,7 @@ const EditCourse = () => {
       <Container>
         <Box className=" flex w-full justify-center">
           <CourseMainBody
+            id={data1?.course?.id}
             slug={slug1}
             cookies={cookies}
             title={data1?.course?.title}
@@ -43,7 +44,7 @@ const EditCourse = () => {
             seatStatus={data1?.course?.seatStatus}
             address={data1?.course?.address}
             endDate={data1?.course?.endDate}
-            classes={'w-full flex-row space-y-2 '}
+            classes={'w-full flex-col justify-center space-y-2 '}
           ></CourseMainBody>
         </Box>
       </Container>
