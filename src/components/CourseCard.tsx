@@ -152,6 +152,7 @@ export default function CourseCard({ course }: { course: any }) {
                 <MoreVertIcon />
               </IconButton>
             }
+            titleTypographyProps={{ style: { color: 'blue' },fontWeight:'bold',textTransform:'capitalize' }}
             title={course?.title}
             subheader={course?.createdAt.split('T')[0]}
           />
@@ -184,7 +185,7 @@ export default function CourseCard({ course }: { course: any }) {
               console.log(e);
             }
           }}
-          className="ml-2"
+          className=" mt-2 ml-2"
         />
 
         <CardActions disableSpacing>
