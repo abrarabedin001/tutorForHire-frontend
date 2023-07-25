@@ -11,6 +11,7 @@ import axios from 'axios';
 import FormikComponent from '~/components/FormikComponent';
 import HeaderSidebar from '~/components/HeaderSidebar';
 import CourseMainBody from '~/components/CourseMainBody';
+import Menu from '~/components/Menu';
 
 const EditCourse = () => {
   const [cookies, setCookie] = useCookies(['user']);
@@ -30,19 +31,22 @@ const EditCourse = () => {
 
   return (
     <CookiesProvider>
-      <Box className=" flex w-full justify-center">
-        <CourseMainBody
-          slug={slug1}
-          cookies={cookies}
-          title={data1?.course?.title}
-          description={data1?.course?.description}
-          categories={data1?.course?.categories}
-          seatStatus={data1?.course?.seatStatus}
-          address={data1?.course?.address}
-          endDate={data1?.course?.endDate}
-          classes={'w-[75%] flex-row space-y-2 '}
-        ></CourseMainBody>
-      </Box>
+      <Menu />
+      <Container>
+        <Box className=" flex w-full justify-center">
+          <CourseMainBody
+            slug={slug1}
+            cookies={cookies}
+            title={data1?.course?.title}
+            description={data1?.course?.description}
+            categories={data1?.course?.categories}
+            seatStatus={data1?.course?.seatStatus}
+            address={data1?.course?.address}
+            endDate={data1?.course?.endDate}
+            classes={'w-full flex-row space-y-2 '}
+          ></CourseMainBody>
+        </Box>
+      </Container>
 
       {/* somehtingnkj */}
     </CookiesProvider>

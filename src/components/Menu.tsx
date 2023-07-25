@@ -29,24 +29,15 @@ const LandingPage = () => {
               <Button color="inherit">Home</Button>
             </Link>
           </li>
+
           <li>
-            <Link href="/">
-              <Button color="inherit">Courses</Button>
+            <Link href="/createcourse">
+              <Button color="inherit">Create Course</Button>
             </Link>
           </li>
           <li>
-            <Link href="/">
-              <Button color="inherit">Tutors</Button>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <Button color="inherit">About</Button>
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="active">
-              <Button color="inherit">Contact</Button>
+            <Link href="/enrolledcourses">
+              <Button color="inherit">Enrolled Course</Button>
             </Link>
           </li>
         </ul>

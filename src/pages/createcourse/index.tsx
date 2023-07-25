@@ -11,6 +11,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Textarea from '@mui/joy/Textarea';
+import Menu from '~/components/Menu';
 
 // import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
 
@@ -87,6 +88,7 @@ const SignUp = () => {
 
   return (
     <CookiesProvider>
+      <Menu />
       <Container>
         <Box className="flex w-full justify-center">
           <form
