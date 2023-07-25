@@ -17,7 +17,7 @@ body {
 .header {
   background-color: rgb(247, 247, 247);
   padding: 10px;
-  opacity: 0.5;
+  opacity: 0.9;
   margin-bottom: 50px;
   /* border: 1px solid lightpink; */
   position: sticky;

@@ -19,25 +19,28 @@ const LandingPage = () => {
 
   return (
     <header className="header bg-white ">
-      <nav className="  flex  justify-between">
-        <Link className="logo inline-block align-middle" href="/">
+      <nav className="  flex  justify-between align-middle">
+        <Link
+          className="logo m-5 inline-block align-middle opacity-100"
+          href="/"
+        >
           Tutor For Hire
         </Link>
-        <ul className="nav-links">
+        <ul className="nav-links m-5 flex justify-center text-center">
           <li>
             <Link href="/home" className="active">
-              <Button color="inherit">Home</Button>
+              <Button className="bg-red-500">Home</Button>
             </Link>
           </li>
 
           <li>
-            <Link href="/createcourse">
-              <Button color="inherit">Create Course</Button>
+            <Link href="/createcourse" className="active">
+              <Button>Create Course</Button>
             </Link>
           </li>
           <li>
-            <Link href="/enrolledcourses">
-              <Button color="inherit">Enrolled Course</Button>
+            <Link href="/enrolledcourses" className="active">
+              <Button>Enrolled Course</Button>
             </Link>
           </li>
         </ul>
