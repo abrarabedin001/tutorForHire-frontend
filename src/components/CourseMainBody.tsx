@@ -10,6 +10,43 @@ import TeacherCard from './TeacherCard';
 import { useCookies, CookiesProvider } from 'react-cookie';
 import axios from 'axios';
 
+const CourseImage = ({ title }) => {
+  const imageStyle = {
+    width: '100%',
+    height: '100%',
+    backgroundImage: 'url(https://rb.gy/h90m3)', // Replace with your image URL
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    color: 'white',
+    textAlign: 'center',
+    padding: '20px',
+    borderRadius: '5px',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+  };
+  const titleStyle = {
+    color: 'white',
+    fontWeight: 'bolder',
+    fontSize: '1.5rem', // Adjust the font size as needed
+    padding: '20px',
+    borderRadius: '50%',
+    backgroundColor: 'transparent',
+    border:'2px dotted white',
+    textTransform:'uppercase'
+
+  };
+  return (
+    <div style={imageStyle}>
+      <Typography variant="h5" component="h5" style={titleStyle}>
+        {title}
+      </Typography>
+    </div>
+  );
+};
+
 const CourseMainBody = ({
   id,
   slug,
@@ -76,11 +113,7 @@ const CourseMainBody = ({
             </Box>
           </Grid>
           <Grid item xs={4}>
-            <img
-              src="https://placehold.co/400x200"
-              alt="just a photo"
-              loading="lazy"
-            />
+            <CourseImage title={title} />
           </Grid>
         </Grid>
         <Card className="m-3 bg-blue-500 p-3 shadow-lg">
