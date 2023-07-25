@@ -16,6 +16,10 @@ const LandingPage = () => {
   const handleSignUp = () => {
     window.location.href = '/signup';
   };
+  
+  const isLinkActive = (route) => {
+    return router.pathname === route ? 'active' : '';
+  };
 
   return (
     <header className="header">
@@ -25,18 +29,18 @@ const LandingPage = () => {
         </Link>
         <ul className="nav-links">
           <li>
-            <Link href="/home" className="active">
+            <Link href="/home" aria-current="page" className={isLinkActive('/home')}>
               <Button color="inherit">Home</Button>
             </Link>
           </li>
 
           <li>
-            <Link href="/createcourse">
+            <Link href="/createcourse" className={isLinkActive('/createcourse')}>
               <Button color="inherit">Create Course</Button>
             </Link>
           </li>
           <li>
-            <Link href="/enrolledcourses">
+            <Link href="/enrolledcourses" className={isLinkActive('/enrolledcourses')}>
               <Button color="inherit">Enrolled Course</Button>
             </Link>
           </li>
@@ -51,10 +55,11 @@ const LandingPage = () => {
               alignItems="flex-end"
               className="w-full"
             >
+              
               <Button
                 disabled
                 className="text-black"
-                style={{ color: 'black' }}
+                style={{ color: 'black',boxShadow:'none' }}
               >
                 {user?.name}
               </Button>
