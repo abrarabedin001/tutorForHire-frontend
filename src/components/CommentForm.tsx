@@ -13,13 +13,14 @@ export default function CommentForm({ id }: { id: string }) {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [rate, setRate] = React.useState(0);
   const [comment, setComment] = React.useState('');
   const [commentList, setCommentList] = React.useState([]);
   const [cookies, setCookie] = useCookies(['data']);
   React.useEffect(() => {
     const comments = async () => {
       try {
-        const link = 'http://localhost:5000/review/seereview';
+        const link = 'http://localhost:5000/review/seereview/' + id;
         // console.log(id, 'course');
         // console.log(cookies.data.user.id, 'studentProfileId');
         const list = await axios.get(
@@ -57,8 +58,9 @@ export default function CommentForm({ id }: { id: string }) {
         window.alert('A teacher can not comment on a course');
         return;
       }
+
       // console.log({ courseId: id, comment: comment });
-      const response = await axios.post(
+      const response_comment = await axios.post(
         link,
         { courseId: id, comment: comment },
         {
@@ -68,6 +70,16 @@ export default function CommentForm({ id }: { id: string }) {
           },
         },
       );
+      // const response_rating = await axios.post(
+      //   'http://localhost:5000/rating/giverating',
+      //   { courseId: id, rate: rate },
+      //   {
+      //     headers: {
+      //       'content-type': 'application/json',
+      //       Authorization: `token ${cookies.data.token}`,
+      //     },
+      //   },
+      // );
       // console.log(response);
       // await router.reload();
     } catch (err) {
@@ -98,9 +110,10 @@ export default function CommentForm({ id }: { id: string }) {
             >
               <Rating
                 name="simple-controlled"
-                value={2}
+                value={rate}
                 onChange={(event, newValue) => {
-                  // setValue(newValue);
+                  setRate(newValue);
+                  console.log(newValue);
                 }}
               />
 
