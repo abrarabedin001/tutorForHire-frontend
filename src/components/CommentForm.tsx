@@ -20,14 +20,15 @@ export default function CommentForm({ id }: { id: string }) {
   React.useEffect(() => {
     const comments = async () => {
       try {
-        const link = 'http://localhost:5000/review/seereview/' + id;
+        console.log('comments sections');
+        const link =
+          'http://localhost:5000/ratingreview/showRatingReview/' + id;
         // console.log(id, 'course');
         // console.log(cookies.data.user.id, 'studentProfileId');
+        console.log('link', link);
         const list = await axios.get(
           link,
-          {
-            courseId: id,
-          },
+
           {
             headers: {
               'content-type': 'application/json',
@@ -35,9 +36,9 @@ export default function CommentForm({ id }: { id: string }) {
             },
           },
         );
-        // console.log('comments lists');
-        // console.log(list.data.review);
-        setCommentList(list.data.review);
+        console.log('comments lists');
+        console.log(list.data.ratingReview);
+        setCommentList(list.data.ratingReview);
 
         // await router.push('/home');
       } catch (err) {
@@ -53,7 +54,7 @@ export default function CommentForm({ id }: { id: string }) {
       let link = '';
 
       if (cookies.data.user.type === 'STUDENT') {
-        link = 'http://localhost:5000/review/givereview';
+        link = 'http://localhost:5000/ratingreview/giveRatingReview';
       } else {
         window.alert('A teacher can not comment on a course');
         return;
@@ -62,7 +63,7 @@ export default function CommentForm({ id }: { id: string }) {
       // console.log({ courseId: id, comment: comment });
       const response_comment = await axios.post(
         link,
-        { courseId: id, comment: comment },
+        { courseId: id, comment: comment, rate: rate },
         {
           headers: {
             'content-type': 'application/json',
@@ -89,6 +90,7 @@ export default function CommentForm({ id }: { id: string }) {
 
   return (
     <div className="flex h-7 w-full flex-col">
+      something
       <FormControl sx={{ width: '100%' }}>
         <FormLabel>Your comment</FormLabel>
         <Textarea
@@ -140,7 +142,7 @@ export default function CommentForm({ id }: { id: string }) {
             {' '}
             <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
               <h4>{el.StudentProfile.user.name}</h4>
-              <h4>{el.reviewDate.split('T')[0]}</h4>
+              <h4>{el.ratingReviewDate.split('T')[0]}</h4>
             </Box>
             <br />
             <h6 className="fit-content m-1 bg-blue-200 p-2">{el.comment}</h6>
