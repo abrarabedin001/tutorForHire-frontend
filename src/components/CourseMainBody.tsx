@@ -100,7 +100,8 @@ const CourseMainBody = ({
       <Card className="  flex flex-col justify-center p-3 shadow-lg ">
         <Grid container spacing={2} className="mt-5 bg-blue-100 p-3 shadow-lg">
           <Grid item xs={8}>
-            <Typography className="px-10 py-5">{title}</Typography>
+          <Typography className="px-10 py-5" variant="h5" component="h5" style={{ fontWeight: 'bold' }}>
+            {title} </Typography>
             <Divider />
             <Box className="flex gap-x-3 p-5">
               <Button variant="contained" onClick={enrollCourse}>
@@ -122,28 +123,48 @@ const CourseMainBody = ({
           </Typography>
         </Card>
         <Box className="flex justify-center">
-          <Card className="m-3  w-[70%]  bg-blue-500 p-3 shadow-lg">
-            <Typography variant="p" component="p">
-              {'Description: '}
-              {description}
-            </Typography>
-            <Typography variant="p" component="p">
-              {' '}
-              {address}
-            </Typography>
-            <Typography variant="p" component="p">
-              {' '}
-              {seatStatus}
-            </Typography>
-            <Typography variant="p" component="p">
-              {' '}
-              {categories}
-            </Typography>
-            <Typography variant="p" component="p">
-              {' '}
-              {endDate}
-            </Typography>
-          </Card>
+        <Card className="m-3  w-[70%]  bg-blue-500 p-3 shadow-lg">
+        <Box mb={2}>
+          <Typography variant="h6" component="p" style={{ fontWeight: 'bold' }}>
+            Description:
+          </Typography>
+          <Typography variant="p" component="p">
+            {description}
+          </Typography>
+        </Box>
+        <Box mb={2}>
+          <Typography variant="h6" component="p" style={{ fontWeight: 'bold' }}>
+            Address:
+          </Typography>
+          <Typography variant="p" component="p">
+            {address}
+          </Typography>
+        </Box>
+        <Box mb={2}>
+          <Typography variant="h6" component="p" style={{ fontWeight: 'bold' }}>
+            Seat Status:
+          </Typography>
+          <Typography variant="p" component="p">
+            {seatStatus}
+          </Typography>
+        </Box>
+        <Box mb={2}>
+          <Typography variant="h6" component="p" style={{ fontWeight: 'bold' }}>
+            Categories:
+          </Typography>
+          <Typography variant="p" component="p">
+            {categories}
+          </Typography>
+        </Box>
+        <Box mb={2}>
+          <Typography variant="h6" component="p" style={{ fontWeight: 'bold' }}>
+            End Date:
+          </Typography>
+          <Typography variant="p" component="p">
+            {new Date(endDate).toLocaleDateString()}
+          </Typography>
+        </Box>
+      </Card>
           <TeacherCard className="w-[30%] " />
         </Box>
       </Card>

@@ -52,7 +52,6 @@ const EditCourse = () => {
           <Box className="flex w-full justify-center space-x-3 bg-green-400 p-5">
             <button
               onClick={() => {
-                console.log('class list s');
                 setOpen('comment');
               }}
             >
@@ -68,7 +67,6 @@ const EditCourse = () => {
             </button>
             <button
               onClick={() => {
-                console.log('class list 2');
                 setOpen('chat');
               }}
             >
@@ -90,8 +88,6 @@ const EditCourse = () => {
           </Box>
         </Box>
       </Container>
-
-      {/* somehtingnkj */}
     </CookiesProvider>
   );
 };
