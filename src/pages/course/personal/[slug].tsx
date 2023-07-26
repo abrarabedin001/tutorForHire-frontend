@@ -52,7 +52,6 @@ const EditCourse = () => {
           <Box className="flex w-full justify-center space-x-3 bg-green-400 p-5">
             <button
               onClick={() => {
-                console.log('class list s');
                 setOpen('comment');
               }}
             >
@@ -68,7 +67,6 @@ const EditCourse = () => {
             </button>
             <button
               onClick={() => {
-                console.log('class list 2');
                 setOpen('chat');
               }}
             >
@@ -78,20 +76,18 @@ const EditCourse = () => {
           <Box className="flex w-full ">
             {open === 'comment'
               ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
-              : 'kichu hoche na'}
+              : ''}
 
             {open === 'class-list'
               ? data1?.course?.id && <ClassList id={data1?.course?.id} />
-              : 'class List'}
+              : ''}
 
             {open === 'chat'
               ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
-              : 'chat '}
+              : ''}
           </Box>
         </Box>
       </Container>
-
-      {/* somehtingnkj */}
     </CookiesProvider>
   );
 };
