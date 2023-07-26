@@ -90,9 +90,8 @@ export default function CommentForm({ id }: { id: string }) {
 
   return (
     <div className="flex h-7 w-full flex-col">
-      something
       <FormControl sx={{ width: '100%' }}>
-        <FormLabel>Your comment</FormLabel>
+      <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Write a comment</FormLabel>
         <Textarea
           placeholder="Type something here…"
           minRows={3}
@@ -132,11 +131,11 @@ export default function CommentForm({ id }: { id: string }) {
         />
       </FormControl>
       <Box sx={{ mt: 2 }}>
-        <FormLabel>Comments</FormLabel>
+        <FormLabel></FormLabel>
 
         {commentList?.map((el) => (
           <Card
-            className=" m-2 flex flex-col rounded-xl border-black p-5 text-left shadow-xl"
+            className=" m-2 flex flex-col justify-between rounded-xl border-black p-5 text-left shadow-xl"
             key={el.id}
           >
             {' '}
