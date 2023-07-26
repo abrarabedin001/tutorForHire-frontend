@@ -22,19 +22,25 @@ const LandingPage = () => {
   };
 
   return (
-    <header className="header">
-      <nav className="navbar">
-        <Link className="logo" href="/">
+    <header className="header bg-white ">
+      <nav className="  flex  justify-between align-middle">
+        <Link
+          className="logo m-5 inline-block align-middle opacity-100"
+          href="/"
+        >
           Tutor For Hire
         </Link>
-        <ul className="nav-links">
+        <ul className="nav-links m-5 flex justify-center text-center">
           <li>
+
             <Link href="/home" aria-current="page" className={isLinkActive('/home')}>
               <Button color="inherit">Home</Button>
+
             </Link>
           </li>
 
           <li>
+
             <Link href="/createcourse" className={isLinkActive('/createcourse')}>
               <Button color="inherit">Create Course</Button>
             </Link>
@@ -42,6 +48,7 @@ const LandingPage = () => {
           <li>
             <Link href="/enrolledcourses" className={isLinkActive('/enrolledcourses')}>
               <Button color="inherit">Enrolled Course</Button>
+
             </Link>
           </li>
         </ul>

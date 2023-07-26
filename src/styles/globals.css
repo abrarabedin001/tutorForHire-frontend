@@ -15,8 +15,10 @@ body {
 }
 
 .header {
-  background-color:rgb(223, 246, 150);
+  background-color: rgb(247, 247, 247);
   padding: 10px;
+  opacity: 0.9;
+  margin-bottom: 50px;
   /* border: 1px solid lightpink; */
   position: sticky;
   top: 0;
@@ -24,7 +26,6 @@ body {
   z-index: 100;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   /* margin-bottom: 0; */
-
 }
 
 .navbar {
@@ -50,6 +51,7 @@ body {
 
 .nav-links a{
   color:rgb(21, 1, 19);
+
   text-decoration: none;
   font-weight: bold;
 
@@ -88,7 +90,6 @@ body {
 
 .main-content {
   padding: 40px;
-
 }
 
 .hero-section {
@@ -179,7 +180,7 @@ body {
 
 .sign-in {
   background-color: transparent;
-  color:#170505;
+  color: #170505;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -187,7 +188,7 @@ body {
 
 .sign-up {
   background-color: #1c7cd6;
-  color:#fff;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
