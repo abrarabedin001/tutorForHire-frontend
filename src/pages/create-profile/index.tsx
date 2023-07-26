@@ -18,6 +18,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import Menu from '~/components/Menu';
+import { Textarea } from '@mui/joy';
 
 const validationSchema = yup.object({
   bio: yup
@@ -60,7 +61,7 @@ const SignUp = () => {
       } catch (err) {
         formik.setErrors({
           bio: 'Before creating a profile, please sign up',
-          education: 'Before creating a profile, please sign up'
+          education: 'Before creating a profile, please sign up',
         });
         console.log(err.message);
       }
@@ -76,7 +77,7 @@ const SignUp = () => {
             onSubmit={formik.handleSubmit}
             className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 font-semibold"
           >
-            <TextField
+            <Textarea
               fullWidth
               id="bio"
               name="bio"
@@ -87,7 +88,7 @@ const SignUp = () => {
               helperText={formik.touched.bio && formik.errors.bio}
             />
 
-            <TextField
+            <Textarea
               fullWidth
               id="education"
               name="education"
