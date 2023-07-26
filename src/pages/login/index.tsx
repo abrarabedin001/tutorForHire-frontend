@@ -154,6 +154,11 @@ const SignUp = () => {
         setCookie('data', user.data, { path: '/' });
         await router.push('/home');
       } catch (err) {
+        formik.setErrors({
+         email:'Incorrect email or password',
+         password:'Incorrect email or password'
+        });
+
         console.log(err.message);
       }
     },

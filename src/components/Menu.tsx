@@ -22,7 +22,7 @@ const LandingPage = () => {
   };
 
   return (
-    <header className="header bg-white ">
+    <header className="header">
       <nav className="  flex  justify-between align-middle">
         <Link
           className="logo m-5 inline-block align-middle opacity-100"

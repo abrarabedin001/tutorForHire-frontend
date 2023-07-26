@@ -34,8 +34,11 @@ const CourseImage = ({ title }) => {
     padding: '20px',
     borderRadius: '50%',
     backgroundColor: 'transparent',
-    border: '2px dotted white',
-    textTransform: 'uppercase',
+
+    border:'2px solid white',
+    textTransform:'uppercase'
+
+
   };
   return (
     <div style={imageStyle}>
