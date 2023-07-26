@@ -17,6 +17,8 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
+import Menu from '~/components/Menu';
+
 const validationSchema = yup.object({
   bio: yup
     .string('Enter your Bio')
@@ -56,6 +58,10 @@ const SignUp = () => {
         });
         await router.push('/home');
       } catch (err) {
+        formik.setErrors({
+          bio: 'Before creating a profile, please sign up',
+          education: 'Before creating a profile, please sign up'
+        });
         console.log(err.message);
       }
     },
@@ -63,11 +69,12 @@ const SignUp = () => {
 
   return (
     <CookiesProvider>
+      <Menu />
       <Container>
         <Box className="flex w-full justify-center">
           <form
             onSubmit={formik.handleSubmit}
-            className="mt-7 max-w-md space-y-3"
+            className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 font-semibold"
           >
             <TextField
               fullWidth

@@ -46,9 +46,9 @@ const SignUp = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: 'name',
-      email: 'foobar@example.com',
-      password: 'foobar',
+      name: '',
+      email: '',
+      password: '',
       type: '',
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -66,8 +66,13 @@ const SignUp = () => {
         setsignUp(true);
         await router.push('/create-profile');
       } catch (err) {
+        formik.setErrors({
+          email: 'Sorry.. This email already exists',
+        });
+
         console.log(err.message);
       }
+      
     },
   });
 
@@ -86,6 +91,7 @@ const SignUp = () => {
               id="name"
               name="name"
               label="Name"
+              placeholder='Ex: footbar'
               value={formik.values.name}
               onChange={formik.handleChange}
               error={formik.touched.name && Boolean(formik.errors.name)}
@@ -97,6 +103,7 @@ const SignUp = () => {
               id="email"
               name="email"
               label="Email"
+              placeholder='Ex: footbar@gmail.com'
               value={formik.values.email}
               onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
@@ -126,6 +133,7 @@ const SignUp = () => {
               id="password"
               name="password"
               label="Password"
+              placeholder='Ex: foot1234'
               type="password"
               value={formik.values.password}
               onChange={formik.handleChange}

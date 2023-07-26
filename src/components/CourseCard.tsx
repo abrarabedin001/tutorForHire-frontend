@@ -69,7 +69,7 @@ export default function CourseCard({ course }: { course: any }) {
       padding: '20px',
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      border:'2px dotted white',
+      border:'2px solid white',
       textTransform:'uppercase'
   
     };

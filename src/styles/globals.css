@@ -16,9 +16,9 @@ body {
 
 .header {
   background-color: rgb(247, 247, 247);
-  padding: 10px;
-  opacity: 0.9;
-  margin-bottom: 50px;
+  padding: 2px;
+  /* opacity: 0.9; */
+  margin-bottom: 5px;
   /* border: 1px solid lightpink; */
   position: sticky;
   top: 0;
@@ -65,17 +65,20 @@ body {
 
 .nav-links button:hover {
   /* padding: 10px 2px; */
-  background-color:white;
+  background-color:blue;
   font-weight: bold;
-  color:#1f1cd6
+  color:white
 
 }
 
 
-.nav-links a.active {
+.nav-links a.active button {
   font-weight: bold;
-  color: blue;
+  color:white;
+  box-sizing: border-box;
+  background-color: #1f1cd6;
 }
+
 
 
 .btn {
@@ -173,9 +176,9 @@ body {
   font-weight: bold;
 }
 .auth-buttons button:hover{
-    background-color:white;
+    background-color:blue;
     font-weight: bold;
-    color:blue
+    color:white
 }
 
 .sign-in {
