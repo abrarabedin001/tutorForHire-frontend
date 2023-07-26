@@ -46,6 +46,7 @@ const EditCourse = () => {
             categories={data1?.course?.categories}
             seatStatus={data1?.course?.seatStatus}
             address={data1?.course?.address}
+            startDate={data1?.course?.startDate}
             endDate={data1?.course?.endDate}
             classes={'w-full flex-col justify-center space-y-2 '}
           ></CourseMainBody>

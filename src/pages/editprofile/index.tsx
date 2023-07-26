@@ -4,7 +4,7 @@ import React, { use } from 'react';
 
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
-
+import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
@@ -18,11 +18,11 @@ import { Textarea } from '@mui/joy';
 const validationSchema = yup.object({
   bio: yup
     .string('Enter your Bio')
-    .min(10, 'Password should be of minimum 250 characters length')
+    .min(10, 'Minimum 10 characters')
     .required('Name is required'),
   education: yup
     .string('Enter your education')
-    .min(10, 'Password should be of minimum 250 characters length')
+    .min(10, 'Minimum 10 characters')
     .required('Email is required'),
 });
 
@@ -102,31 +102,35 @@ const SignUp = () => {
             }}
             className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
-            <h1 className="text-center text-2xl font-bold">Edit Course</h1>
-            <p className=" text-lg font-semibold">bio: </p>
-            <Textarea
+           <h1 className="text-center text-2xl font-bold">Edit Course</h1>
+            <p className=" text-lg font-semibold">Bio: </p>
+            <TextField
               fullWidth
               id="bio"
               name="bio"
-              label={bio}
+              label="bio"
+              multiline
+              minRows={1} // Limiting to 2 rows
+              maxRows={4}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               className="bg-white"
             />
 
-            <p className=" text-lg font-semibold">education: </p>
+            <p className=" text-lg font-semibold">Education: </p>
 
-            <Textarea
+            <TextField
               fullWidth
               id="education"
               name="education"
               label="education"
-              type="education"
+              multiline
+              minRows={1} // Limiting to 2 rows
+              maxRows={4}
               value={education}
               onChange={(e) => setEducation(e.target.value)}
               className="bg-white"
             />
-
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit
             </Button>

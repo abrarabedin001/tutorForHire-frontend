@@ -37,6 +37,9 @@ const validationSchema = yup.object({
     .string('Enter your description')
     .min(1, 'Password should be of minimum 250 characters length')
     .required('Email is required'),
+  startDate: yup
+    .date('Enter the start date of this course')
+    .required('Email is required'),
   endDate: yup
     .date('Enter the end date of this course')
     .required('Email is required'),
@@ -54,6 +57,7 @@ const SignUp = () => {
       seatStatus: '0',
       // teacherProfileId: cookies.data.user.id,
       address: '',
+      startDate:new Date(),
       endDate: new Date(),
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -65,7 +69,8 @@ const SignUp = () => {
           ...values,
           teacherProfileId: cookies.data.user.id,
           seatStatus: parseInt(values.seatStatus),
-          newDate: new Date(values.endDate),
+          startDate: new Date(values.startDate),
+          endDate: new Date(values.endDate),
         };
         // values.push('teacherProfileId', cookies.data.user.id);
         console.log(newValue);
@@ -168,11 +173,24 @@ const SignUp = () => {
               error={formik.touched.address && Boolean(formik.errors.address)}
               helperText={formik.touched.address && formik.errors.address}
             />
-            <label className=" text-lg font-semibold" for="date">
-              Enter start date
+
+              <label className=" text-lg font-semibold" for="startdate">
+              Start Date
             </label>
             <input
-              id="date"
+              id="startdate"
+              type="date"
+              name="startDate"
+              value={formik.values.startDate}
+              onChange={formik.handleChange}
+              style={{ width: '100%', color: 'black' }}
+            />
+
+            <label className=" text-lg font-semibold" for="startdate">
+              End Date
+            </label>
+            <input
+              id="enddate"
               type="date"
               name="endDate"
               value={formik.values.endDate}
