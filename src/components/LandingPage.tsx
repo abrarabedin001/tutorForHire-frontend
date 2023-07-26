@@ -2,6 +2,10 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '~/components/Menu';
+import DemoCourseSection from '~/components/DemoCourseSection';
+
+
+
 const LandingPage = () => {
   const testimonialsData = [
     {
@@ -95,7 +99,10 @@ const LandingPage = () => {
           </Button>
         </section>
         <section className="testimonial-section">
-          <h2>Testimonials</h2>
+        <div className="testimonial-header">
+        <h2>Be Inspired by Our Students' Success Stories</h2>
+        <p>Read what our students have experienced with us and how our courses transformed their lives.</p>
+      </div>
           <div className="testimonial-slider">
             <div
               className="testimonial-wrapper"
@@ -149,6 +156,7 @@ const LandingPage = () => {
                   }}
                 />
               ))}
+              <DemoCourseSection />
             </div>
           </div>
         </section>

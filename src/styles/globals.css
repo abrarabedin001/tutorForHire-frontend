@@ -209,6 +209,25 @@ body {
   margin-bottom: 40px;
 }
 
+
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.testimonial-header h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.testimonial-header p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #000000;
+}
+
+
 .testimonial-slider {
   position: relative;
   overflow: hidden;
@@ -293,4 +312,166 @@ body {
   padding: 8px 16px;
   border: 2px solid darkblue;
   background-color: darkblue;
+}
+
+
+/* demo
+
+
+/* Global CSS for DemoCourseSection component */
+
+.demo-course-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.demo-course-header-line {
+  margin-bottom: 20px;
+}
+
+.demo-course-header-line h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.demo-course-header-line p {
+  font-size: 16px;
+}
+
+.demo-course-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-course-wrapper {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  align-items: center;
+}
+
+.demo-course-item {
+  flex: 0 0 100%;
+  max-width: 100%;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-course-item.active {
+  opacity: 1;
+}
+
+.demo-course-item img {
+  width: 600px;
+  height: 300px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.demo-course-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+.demo-course-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.demo-course-prevButton,
+.demo-course-nextButton {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: #1c7cd6;
+  cursor: pointer;
+}
+
+.demo-course-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.demo-course-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.demo-course-dot.active {
+  background-color: #1c7cd6;
+}
+
+.demo-course-disabled {
+  pointer-events: none;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Individual Feature Card Styles */
+.feature-card {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.feature {
+  width: 300px;
+  background-color: #16b95a;
+  border: 1px solid #c75e5e;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1); /* Updated box-shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.3s ease-in-out; /* Add transition effect on hover */
+}
+
+.feature:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2); /* Updated box-shadow on hover */
+}
+
+.feature i {
+  font-size: 40px;
+  color: #1c7cd6;
+  margin-bottom: 10px;
+}
+
+.feature h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.feature p {
+  font-size: 16px;
+  color: #555;
 }
