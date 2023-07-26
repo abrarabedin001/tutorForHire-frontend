@@ -14,6 +14,7 @@ export default function CommentForm({ id }: { id: string }) {
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [rate, setRate] = React.useState(0);
+
   const [comment, setComment] = React.useState('');
   const [commentList, setCommentList] = React.useState([]);
   const [cookies, setCookie] = useCookies(['data']);
@@ -36,6 +37,7 @@ export default function CommentForm({ id }: { id: string }) {
             },
           },
         );
+
         console.log('comments lists');
         console.log(list.data.ratingReview);
         setCommentList(list.data.ratingReview);
@@ -91,7 +93,9 @@ export default function CommentForm({ id }: { id: string }) {
   return (
     <div className="flex h-7 w-full flex-col">
       <FormControl sx={{ width: '100%' }}>
-      <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>Write a comment</FormLabel>
+        <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+          Write a comment
+        </FormLabel>
         <Textarea
           placeholder="Type something here…"
           minRows={3}
@@ -141,6 +145,7 @@ export default function CommentForm({ id }: { id: string }) {
             {' '}
             <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
               <h4>{el.StudentProfile.user.name}</h4>
+              <Rating name="simple-controlled" value={el.rate} readOnly />
               <h4>{el.ratingReviewDate.split('T')[0]}</h4>
             </Box>
             <br />
