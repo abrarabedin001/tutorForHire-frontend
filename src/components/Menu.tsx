@@ -16,41 +16,43 @@ const LandingPage = () => {
   const handleSignUp = () => {
     window.location.href = '/signup';
   };
+  
+  const isLinkActive = (route) => {
+    return router.pathname === route ? 'active' : '';
+  };
 
   return (
-    <header className="header">
-      <nav className="navbar">
-        <Link className="logo" href="/">
+    <header className="header bg-white ">
+      <nav className="  flex  justify-between align-middle">
+        <Link
+          className="logo m-5 inline-block align-middle opacity-100"
+          href="/"
+        >
           Tutor For Hire
         </Link>
-        <ul className="nav-links">
+        <ul className="nav-links m-5 flex justify-center text-center">
           <li>
-            <Link href="/home" className="active">
+
+            <Link href="/home" aria-current="page" className={isLinkActive('/home')}>
               <Button color="inherit">Home</Button>
+
+            </Link>
+          </li>
+
+          <li>
+
+            <Link href="/createcourse" className={isLinkActive('/createcourse')}>
+              <Button color="inherit">Create Course</Button>
             </Link>
           </li>
           <li>
-            <Link href="/">
-              <Button color="inherit">Courses</Button>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <Button color="inherit">Tutors</Button>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <Button color="inherit">About</Button>
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="active">
-              <Button color="inherit">Contact</Button>
+            <Link href="/enrolledcourses" className={isLinkActive('/enrolledcourses')}>
+              <Button color="inherit">Enrolled Course</Button>
+
             </Link>
           </li>
         </ul>
-        <div className="auth-buttons">
+        <Box className="auth-buttons">
           {user ? (
             <Box
               m={1}
@@ -60,9 +62,17 @@ const LandingPage = () => {
               alignItems="flex-end"
               className="w-full"
             >
+              
               <Button
-                className="text-white"
-                style={{ color: 'white' }}
+                disabled
+                className="text-black"
+                style={{ color: 'black',boxShadow:'none' }}
+              >
+                {user?.name}
+              </Button>
+              <Button
+                className="text-black"
+                color= 'inherit'
                 onClick={() => {
                   removeCookie('data', '/');
                   removeCookie('token', '/');
@@ -73,25 +83,16 @@ const LandingPage = () => {
               </Button>
             </Box>
           ) : (
-            <>
-              <Button
-                className="btn sign-in"
-                variant="contained"
-                onClick={handleSignIn}
-              >
-                Sign In
-              </Button>
-              <Button
-                className="btn sign-up"
-                variant="contained"
-                color="primary"
-                onClick={handleSignUp}
-              >
-                Sign Up
-              </Button>
-            </>
+            <Button
+              className="btn sign-in"
+              // variant="contained"
+              color="inherit"
+              onClick={handleSignIn}
+            >
+              Log in
+            </Button>
           )}
-        </div>
+        </Box>
       </nav>
     </header>
   );

@@ -3,8 +3,11 @@
 @tailwind utilities;
 body {
   /*  background-image: url('../../public/images/moroccan-flower-dark.webp'); */
-  background-image: url('../../public/images/cool-background.svg');
+  background-image: url('../../public/images/img10.png');
   background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .landing-page {
@@ -12,9 +15,17 @@ body {
 }
 
 .header {
-  background-color: #1c7cd6;
-  padding: 20px;
-  color: #fff;
+  background-color: rgb(247, 247, 247);
+  padding: 10px;
+  opacity: 0.9;
+  margin-bottom: 50px;
+  /* border: 1px solid lightpink; */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  /* margin-bottom: 0; */
 }
 
 .navbar {
@@ -25,24 +36,51 @@ body {
 
 .logo {
   font-weight: bold;
-  color: #fff;
+  color: #270404;
   text-decoration: none;
   font-size: 24px;
 }
 
+
 .nav-links li {
   display: inline;
   margin-right: 15px;
+  
 }
 
-.nav-links a {
-  color: #fff;
+
+.nav-links a{
+  color:rgb(21, 1, 19);
+
   text-decoration: none;
+  font-weight: bold;
+
 }
+.nav-links button{
+
+  box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.15);
+  /* padding: 6px; */
+  box-sizing: border-box;
+}
+
+.nav-links button:hover {
+  /* padding: 10px 2px; */
+  background-color:white;
+  font-weight: bold;
+  color:#1f1cd6
+
+}
+
+
+.nav-links a.active {
+  font-weight: bold;
+  color: blue;
+}
+
 
 .btn {
-  background-color: #1c7cd6;
-  color: #fff;
+  background-color: #1f1cd6;
+  color: #181111;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -122,17 +160,27 @@ body {
 }
 
 .auth-buttons {
+  
   display: flex;
   align-items: center;
+  
 }
 
 .auth-buttons button {
   margin-left: 10px;
+  box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  font-weight: bold;
+}
+.auth-buttons button:hover{
+    background-color:white;
+    font-weight: bold;
+    color:blue
 }
 
 .sign-in {
   background-color: transparent;
-  color: #fff;
+  color: #170505;
   border: none;
   font-size: 16px;
   cursor: pointer;

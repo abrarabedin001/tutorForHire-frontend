@@ -7,6 +7,7 @@ import HeaderSidebar from '~/components/HeaderSidebar';
 import { CookiesProvider, useCookies } from 'react-cookie';
 import axios from 'axios';
 import Menu from '~/components/Menu';
+import Container from '@mui/material/Container';
 
 export default function LoginHome() {
   const [cookies, setCookie] = useCookies(['data']);
@@ -39,10 +40,12 @@ export default function LoginHome() {
   console.log('where are my courses', courses);
   return (
     <CookiesProvider>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Menu />
-        <Courses courses={courses}></Courses>
-      </Box>
+      <Menu />
+      <Container>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Courses courses={courses}></Courses>
+        </Box>
+      </Container>
     </CookiesProvider>
   );
 }
