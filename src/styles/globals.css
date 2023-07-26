@@ -40,6 +40,7 @@ body {
   font-size: 24px;
 }
 
+
 .nav-links li {
   display: inline;
   margin-right: 15px;
@@ -168,6 +169,7 @@ body {
   margin-left: 10px;
   box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
+  font-weight: bold;
 }
 .auth-buttons button:hover{
     background-color:white;

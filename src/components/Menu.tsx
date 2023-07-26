@@ -65,7 +65,7 @@ const LandingPage = () => {
               </Button>
               <Button
                 className="text-black"
-                style={{ color: 'black' }}
+                color= 'inherit'
                 onClick={() => {
                   removeCookie('data', '/');
                   removeCookie('token', '/');
