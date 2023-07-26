@@ -77,6 +77,7 @@ const SignUp = () => {
             onSubmit={formik.handleSubmit}
             className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 font-semibold"
           >
+            <p>Bio</p>
             <Textarea
               fullWidth
               id="bio"
@@ -87,7 +88,7 @@ const SignUp = () => {
               error={formik.touched.bio && Boolean(formik.errors.bio)}
               helperText={formik.touched.bio && formik.errors.bio}
             />
-
+            <p>Education</p>
             <Textarea
               fullWidth
               id="education"
