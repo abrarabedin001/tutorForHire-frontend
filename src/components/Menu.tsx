@@ -57,6 +57,11 @@ const LandingPage = () => {
               <Button color="inherit">Enrolled Course</Button>
             </Link>
           </li>
+          <li>
+            <Link href="/editprofile" className={isLinkActive('/editprofile')}>
+              <Button color="inherit">Edit Profile</Button>
+            </Link>
+          </li>
         </ul>
         <Box className="auth-buttons">
           {user ? (
