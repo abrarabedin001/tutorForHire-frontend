@@ -14,7 +14,7 @@ const CourseImage = ({ title }) => {
   const imageStyle = {
     width: '100%',
     height: '100%',
-    backgroundImage: 'url(https://rb.gy/h90m3)', // Replace with your image URL
+    backgroundImage: 'url(/images/img3.png)', // Replace with your image URL
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     display: 'flex',

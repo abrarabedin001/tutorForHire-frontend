@@ -22,9 +22,7 @@ import { useCookies, CookiesProvider } from 'react-cookie';
 import axios from 'axios';
 import { is } from 'date-fns/locale';
 
-<div className='margin'>
 
-</div>
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -51,7 +49,7 @@ export default function CourseCard({ course }: { course: any }) {
     const imageStyle = {
       width: '345px',
       height: '194px',
-      backgroundImage: 'url(https://rb.gy/h90m3)', // Replace with your image URL
+      backgroundImage: 'url(/images/img3.png)', // Replace with your image URL
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       display: 'flex',
@@ -152,6 +150,7 @@ export default function CourseCard({ course }: { course: any }) {
                 <MoreVertIcon />
               </IconButton>
             }
+            titleTypographyProps={{ style: { color: 'blue' },fontWeight:'bold',textTransform:'capitalize' }}
             title={course?.title}
             subheader={course?.createdAt.split('T')[0]}
           />
@@ -184,7 +183,7 @@ export default function CourseCard({ course }: { course: any }) {
               console.log(e);
             }
           }}
-          className="ml-2"
+          className=" mt-2 ml-2"
         />
 
         <CardActions disableSpacing>

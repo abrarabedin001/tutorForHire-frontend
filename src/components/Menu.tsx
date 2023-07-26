@@ -16,6 +16,10 @@ const LandingPage = () => {
   const handleSignUp = () => {
     window.location.href = '/signup';
   };
+  
+  const isLinkActive = (route) => {
+    return router.pathname === route ? 'active' : '';
+  };
 
   return (
     <header className="header bg-white ">
@@ -28,19 +32,23 @@ const LandingPage = () => {
         </Link>
         <ul className="nav-links m-5 flex justify-center text-center">
           <li>
-            <Link href="/home" className="active">
-              <Button className="bg-red-500">Home</Button>
+
+            <Link href="/home" aria-current="page" className={isLinkActive('/home')}>
+              <Button color="inherit">Home</Button>
+
             </Link>
           </li>
 
           <li>
-            <Link href="/createcourse" className="active">
-              <Button>Create Course</Button>
+
+            <Link href="/createcourse" className={isLinkActive('/createcourse')}>
+              <Button color="inherit">Create Course</Button>
             </Link>
           </li>
           <li>
-            <Link href="/enrolledcourses" className="active">
-              <Button>Enrolled Course</Button>
+            <Link href="/enrolledcourses" className={isLinkActive('/enrolledcourses')}>
+              <Button color="inherit">Enrolled Course</Button>
+
             </Link>
           </li>
         </ul>
@@ -54,16 +62,17 @@ const LandingPage = () => {
               alignItems="flex-end"
               className="w-full"
             >
+              
               <Button
                 disabled
                 className="text-black"
-                style={{ color: 'black' }}
+                style={{ color: 'black',boxShadow:'none' }}
               >
                 {user?.name}
               </Button>
               <Button
                 className="text-black"
-                style={{ color: 'black' }}
+                color= 'inherit'
                 onClick={() => {
                   removeCookie('data', '/');
                   removeCookie('token', '/');
