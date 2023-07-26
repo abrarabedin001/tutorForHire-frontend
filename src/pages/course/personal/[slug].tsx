@@ -13,11 +13,13 @@ import HeaderSidebar from '~/components/HeaderSidebar';
 import CourseMainBody from '~/components/CourseMainBody';
 import Menu from '~/components/Menu';
 import CommentForm from '~/components/CommentForm';
+import ClassList from '~/components/ClassList';
 
 const EditCourse = () => {
   const [cookies, setCookie] = useCookies(['user']);
   const [data, setData] = React.useState([]);
   const router = useRouter();
+  const [open, setOpen] = React.useState('comment');
 
   const slug1 = router.asPath.split('course/personal/')[1];
   // console.log('slug', typeof slug1);
@@ -47,8 +49,44 @@ const EditCourse = () => {
             endDate={data1?.course?.endDate}
             classes={'w-full flex-col justify-center space-y-2 '}
           ></CourseMainBody>
+          <Box className="flex w-full justify-center space-x-3 bg-green-400 p-5">
+            <button
+              onClick={() => {
+                console.log('class list s');
+                setOpen('comment');
+              }}
+            >
+              Comments
+            </button>
+            <button
+              onClick={() => {
+                console.log('class list');
+                setOpen('class-list');
+              }}
+            >
+              Class List
+            </button>
+            <button
+              onClick={() => {
+                console.log('class list 2');
+                setOpen('chat');
+              }}
+            >
+              Chats
+            </button>
+          </Box>
           <Box className="flex w-full ">
-            {data1?.course?.id && <CommentForm id={data1?.course?.id} />}
+            {open === 'comment'
+              ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
+              : 'kichu hoche na'}
+
+            {open === 'class-list'
+              ? data1?.course?.id && <ClassList id={data1?.course?.id} />
+              : 'class List'}
+
+            {open === 'chat'
+              ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
+              : 'chat '}
           </Box>
         </Box>
       </Container>
