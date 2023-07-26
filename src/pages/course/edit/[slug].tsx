@@ -11,6 +11,7 @@ import axios from 'axios';
 import FormikComponent from '~/components/FormikComponent';
 import HeaderSidebar from '~/components/HeaderSidebar';
 import CourseMainBody from '~/components/CourseMainBody';
+import Menu from '~/components/Menu';
 
 const EditCourse = () => {
   const [cookies, setCookie] = useCookies(['user']);
@@ -30,6 +31,7 @@ const EditCourse = () => {
 
   return (
     <CookiesProvider>
+      <Menu />
       <Box className=" flex w-full justify-center">
         {data1?.course && (
           <FormikComponent
