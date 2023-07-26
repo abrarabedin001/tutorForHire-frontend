@@ -122,6 +122,14 @@ body {
   margin-bottom: 40px;
 }
 
+.features-section h2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+
 .feature {
   text-align: center;
 }
