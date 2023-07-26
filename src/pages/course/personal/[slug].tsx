@@ -78,15 +78,15 @@ const EditCourse = () => {
           <Box className="flex w-full ">
             {open === 'comment'
               ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
-              : 'kichu hoche na'}
+              : ''}
 
             {open === 'class-list'
               ? data1?.course?.id && <ClassList id={data1?.course?.id} />
-              : 'class List'}
+              : ''}
 
             {open === 'chat'
               ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
-              : 'chat '}
+              : ''}
           </Box>
         </Box>
       </Container>

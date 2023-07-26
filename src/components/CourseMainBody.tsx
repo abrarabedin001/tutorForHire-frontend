@@ -34,9 +34,8 @@ const CourseImage = ({ title }) => {
     padding: '20px',
     borderRadius: '50%',
     backgroundColor: 'transparent',
-    border:'2px dotted white',
-    textTransform:'uppercase'
-
+    border: '2px dotted white',
+    textTransform: 'uppercase',
   };
   return (
     <div style={imageStyle}>
@@ -113,7 +112,7 @@ const CourseMainBody = ({
             </Box>
           </Grid>
           <Grid item xs={4}>
-          <CourseImage title={title} />
+            <CourseImage title={title} />
           </Grid>
         </Grid>
         <Card className="m-3 bg-blue-500 p-3 shadow-lg">
