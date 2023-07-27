@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '~/components/Menu';
 import DemoCourseSection from '~/components/DemoCourseSection';
+import InfiniteImageRotation from '~/components/InfiniteImageRotation';
 
 
 
@@ -57,6 +58,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <Menu />
+      <InfiniteImageRotation />
       <main className="main-content">
         <section className="hero-section">
           <div className="hero-content">
