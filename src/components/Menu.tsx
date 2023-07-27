@@ -40,6 +40,14 @@ const LandingPage = () => {
               <Button color="inherit">Home</Button>
             </Link>
           </li>
+          <li>
+            <Link
+              href="/mycourses"
+              className={isLinkActive('/mycourses')}
+            >
+              <Button color="inherit">My Courses</Button>
+            </Link>
+          </li>
 
           <li>
             <Link
@@ -60,6 +68,22 @@ const LandingPage = () => {
           <li>
             <Link href="/editprofile" className={isLinkActive('/editprofile')}>
               <Button color="inherit">Edit Profile</Button>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="#helpdesk"
+              className={isLinkActive('/#helpdesk')}
+            >
+              <Button color="inherit">Help-Desk</Button>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="#about"
+              className={isLinkActive('#about')}
+            >
+              <Button color="inherit">About</Button>
             </Link>
           </li>
         </ul>
