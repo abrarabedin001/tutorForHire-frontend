@@ -486,7 +486,7 @@ body {
   height: 100%;
   object-fit: cover; /* Ensure the images maintain their aspect ratio */
   opacity: 0;
-  animation: slideLeftToRight 15s linear infinite; /* Adjust the duration (15s) as per your preference */
+  animation: slideLeftToRight 20s linear infinite; /* Adjust the duration (15s) as per your preference */
   z-index: -1;
   left: 0; /* Initially set to 0 to start from the left */
 }
