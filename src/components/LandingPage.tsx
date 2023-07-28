@@ -2,6 +2,12 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '~/components/Menu';
+import DemoCourseSection from '~/components/DemoCourseSection';
+import InfiniteImageRotation from '~/components/InfiniteImageRotation';
+import Footer from '~/components/Footer';
+
+
+
 const LandingPage = () => {
   const testimonialsData = [
     {
@@ -53,6 +59,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <Menu />
+      <InfiniteImageRotation />
       <main className="main-content">
         <section className="hero-section">
           <div className="hero-content">
@@ -95,7 +102,10 @@ const LandingPage = () => {
           </Button>
         </section>
         <section className="testimonial-section">
-          <h2>Testimonials</h2>
+        <div className="testimonial-header">
+        <h2>Be Inspired by Our Students' Success Stories</h2>
+        <p>Read what our students have experienced with us and how our courses transformed their lives.</p>
+      </div>
           <div className="testimonial-slider">
             <div
               className="testimonial-wrapper"
@@ -149,13 +159,14 @@ const LandingPage = () => {
                   }}
                 />
               ))}
+              <DemoCourseSection />
             </div>
           </div>
         </section>
       </main>
-      <footer id="about" className="footer">
-        <p>&copy; 2023 Tutor For Hire. All rights reserved.</p>
-      </footer>
+
+      <Footer />
+
     </div>
   );
 };

@@ -18,7 +18,7 @@ body {
   background-color: rgb(247, 247, 247);
   padding: 2px;
   /* opacity: 0.9; */
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   /* border: 1px solid lightpink; */
   position: sticky;
   top: 0;
@@ -123,6 +123,14 @@ body {
   margin-bottom: 40px;
 }
 
+.features-section h2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+
 .feature {
   text-align: center;
 }
@@ -156,12 +164,6 @@ body {
   margin-bottom: 30px;
 }
 
-.footer {
-  background-color: #1c7cd6;
-  padding: 20px;
-  color: #fff;
-  text-align: center;
-}
 
 .auth-buttons {
   
@@ -210,6 +212,25 @@ body {
   text-align: center;
   margin-bottom: 40px;
 }
+
+
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.testimonial-header h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.testimonial-header p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #000000;
+}
+
 
 .testimonial-slider {
   position: relative;
@@ -295,4 +316,242 @@ body {
   padding: 8px 16px;
   border: 2px solid darkblue;
   background-color: darkblue;
+}
+
+
+/* demo
+
+
+/* Global CSS for DemoCourseSection component */
+
+.demo-course-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.demo-course-header-line {
+  margin-bottom: 20px;
+}
+
+.demo-course-header-line h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.demo-course-header-line p {
+  font-size: 16px;
+}
+
+.demo-course-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-course-wrapper {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  align-items: center;
+}
+
+.demo-course-item {
+  flex: 0 0 100%;
+  max-width: 100%;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-course-item.active {
+  opacity: 1;
+}
+
+.demo-course-item img {
+  width: 600px;
+  height: 300px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.demo-course-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+.demo-course-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.demo-course-prevButton,
+.demo-course-nextButton {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: #1c7cd6;
+  cursor: pointer;
+}
+
+.demo-course-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.demo-course-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.demo-course-dot.active {
+  background-color: #1c7cd6;
+}
+
+.demo-course-disabled {
+  pointer-events: none;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.feature-card {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.feature {
+  width: 300px;
+  background-color: white;
+  border: 1px solid #e4d1d1;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1); /* Updated box-shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0.8;
+  transition: box-shadow 0.3s ease-in-out; /* Add transition effect on hover */
+}
+
+.feature:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2); /* Updated box-shadow on hover */
+}
+
+.feature i {
+  font-size: 40px;
+  color: #1c7cd6;
+  margin-bottom: 10px;
+}
+
+.feature h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.feature p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* InfiniteImageRotation.css */
+
+.image-rotation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55vh;
+}
+
+.infinite-image-rotation {
+  position: relative;
+  overflow: hidden;
+  /* width: 1200px; /* Set the width and height as per your image dimensions
+  height: 800px; */
+  width: 100%;
+  height: 100%;
+}
+
+.infinite-image-rotation img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the images maintain their aspect ratio */
+  opacity: 0;
+  animation: slideLeftToRight 20s linear infinite; /* Adjust the duration (15s) as per your preference */
+  z-index: -1;
+  left: 0; /* Initially set to 0 to start from the left */
+}
+
+@keyframes slideLeftToRight {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  8.33%, 91.67% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 10px;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 24px;
+  color: #fff;
+  margin: 0 5px;
+}
+
+.icon:hover {
+  color: #00aced;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-bottom p {
+  font-size: 12px;
 }
