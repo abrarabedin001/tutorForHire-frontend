@@ -63,6 +63,7 @@ const CourseMainBody = ({
   categories,
   seatStatus,
   address,
+  startDate,
   endDate,
   cookies,
   classes,
@@ -74,6 +75,7 @@ const CourseMainBody = ({
   categories: string;
   seatStatus: number;
   address: string;
+  startDate: Date;
   endDate: Date;
   cookies: Date;
   classes: string;
@@ -215,6 +217,19 @@ const CourseMainBody = ({
                 {categories}
               </Typography>
             </Box>
+            <Box mb={2}>
+              <Typography
+                variant="h6"
+                component="p"
+                style={{ fontWeight: 'bold' }}
+              >
+                Start Date:
+              </Typography>
+              <Typography variant="p" component="p">
+                {new Date(startDate).toLocaleDateString()}
+              </Typography>
+            </Box>
+            
             <Box mb={2}>
               <Typography
                 variant="h6"

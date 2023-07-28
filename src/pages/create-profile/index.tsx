@@ -23,11 +23,11 @@ import { Textarea } from '@mui/joy';
 const validationSchema = yup.object({
   bio: yup
     .string('Enter your Bio')
-    .min(10, 'Password should be of minimum 250 characters length')
+    .min(10, 'Minimum 10 characters')
     .required('Name is required'),
   education: yup
     .string('Enter your education')
-    .min(10, 'Password should be of minimum 250 characters length')
+    .min(10, 'Minimum 10 characters')
     .required('Email is required'),
 });
 
@@ -78,28 +78,31 @@ const SignUp = () => {
             className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 font-semibold"
           >
             <p>Bio</p>
-            <Textarea
+            <TextField
               fullWidth
               id="bio"
               name="bio"
-              label="bio"
+              label="Bio"
+              multiline // Set the multiline prop to true to make it behave like a textarea
+              minRows={1}
+              maxRows={4} // Optionally, set the number of rows for the textarea
               value={formik.values.bio}
               onChange={formik.handleChange}
               error={formik.touched.bio && Boolean(formik.errors.bio)}
               helperText={formik.touched.bio && formik.errors.bio}
             />
             <p>Education</p>
-            <Textarea
+            <TextField
               fullWidth
               id="education"
               name="education"
-              label="education"
-              type="education"
+              label="Education"
+              multiline // Set the multiline prop to true to make it behave like a textarea
+              minRows={1}
+              maxRows={4} // Optionally, set the number of rows for the textarea
               value={formik.values.education}
               onChange={formik.handleChange}
-              error={
-                formik.touched.education && Boolean(formik.errors.education)
-              }
+              error={formik.touched.education && Boolean(formik.errors.education)}
               helperText={formik.touched.education && formik.errors.education}
             />
             <Button color="primary" variant="contained" type="submit" fullWidth>
