@@ -61,6 +61,7 @@ body {
   box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.15);
   /* padding: 6px; */
   box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .nav-links button:hover {
@@ -176,6 +177,7 @@ body {
   box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   font-weight: bold;
+  border-radius: 10px;
 }
 .auth-buttons button:hover{
     background-color:blue;
