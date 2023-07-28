@@ -153,7 +153,7 @@ const LandingPage = () => {
           </div>
         </section>
       </main>
-      <footer className="footer">
+      <footer id="about" className="footer">
         <p>&copy; 2023 Tutor For Hire. All rights reserved.</p>
       </footer>
     </div>

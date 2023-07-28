@@ -56,6 +56,7 @@ const FormikComponent = ({
   categories: string;
   seatStatus: number;
   address: string;
+  startDate: Date;
   endDate: Date;
   cookies: Date;
   classes?: string;
@@ -69,6 +70,7 @@ const FormikComponent = ({
       seatStatus: seatStatus,
       // teacherProfileId: cookies.data.user.id,
       address: address,
+      startDate: new Date(startDate),
       endDate: new Date(endDate),
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
