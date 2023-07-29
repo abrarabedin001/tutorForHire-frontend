@@ -14,6 +14,7 @@ export default function CoursePage() {
       <Container>
         <CourseMainBody></CourseMainBody>
       </Container>
+      <Footer />
     </>
   );
 }

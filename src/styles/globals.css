@@ -15,7 +15,7 @@ body {
 }
 
 .header {
-  background-color: rgb(247, 247, 247);
+  background-color: rgba(247, 247, 247, 0.85);
   padding: 2px;
   /* opacity: 0.9; */
   margin-bottom: 2px;
@@ -41,49 +41,40 @@ body {
   font-size: 24px;
 }
 
-
 .nav-links li {
   display: inline;
-  margin-right: 15px;
-  
+  margin-right: 5px;
 }
 
-
-.nav-links a{
-  color:rgb(21, 1, 19);
+.nav-links a {
+  color: rgb(21, 1, 19);
 
   text-decoration: none;
   font-weight: bold;
-
 }
-.nav-links button{
-
-  box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.15);
+.nav-links button {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
   /* padding: 6px; */
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 .nav-links button:hover {
   /* padding: 10px 2px; */
-  background-color:blue;
+  background-color: rgb(107, 107, 229);
   font-weight: bold;
-  color:white
-
+  color: white;
 }
-
 
 .nav-links a.active button {
   font-weight: bold;
-  color:white;
+  color: white;
   box-sizing: border-box;
-  background-color: #1f1cd6;
+  background-color: rgb(107, 107, 229);
 }
 
-
-
 .btn {
-  background-color: #1f1cd6;
+  background-color: rgb(107, 107, 229);
   color: #181111;
   border: none;
   padding: 10px 20px;
@@ -130,7 +121,6 @@ body {
   margin-bottom: 40px;
 }
 
-
 .feature {
   text-align: center;
 }
@@ -164,25 +154,22 @@ body {
   margin-bottom: 30px;
 }
 
-
 .auth-buttons {
-  
   display: flex;
   align-items: center;
-  
 }
 
 .auth-buttons button {
   margin-left: 10px;
-  box-shadow:  0px 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 8px;
 }
-.auth-buttons button:hover{
-    background-color:blue;
-    font-weight: bold;
-    color:white
+.auth-buttons button:hover {
+  background-color: rgb(107, 107, 229);
+  font-weight: bold;
+  color: white;
 }
 
 .sign-in {
@@ -213,7 +200,6 @@ body {
   margin-bottom: 40px;
 }
 
-
 .testimonial-header {
   text-align: center;
   margin-bottom: 40px;
@@ -230,7 +216,6 @@ body {
   margin-bottom: 30px;
   color: #000000;
 }
-
 
 .testimonial-slider {
   position: relative;
@@ -314,10 +299,9 @@ body {
 
 .button.active {
   padding: 8px 16px;
-  border: 2px solid darkblue;
-  background-color: darkblue;
+  border: 2px solid rgb(107, 107, 229);
+  background-color: rgb(107, 107, 229);
 }
-
 
 /* demo
 
@@ -388,7 +372,7 @@ body {
 
 .demo-course-prevButton,
 .demo-course-nextButton {
-  background: none;
+  background-color: #589af0;
   border: none;
   font-size: 40px;
   color: #1c7cd6;
@@ -421,7 +405,6 @@ body {
   cursor: not-allowed;
 }
 
-
 .feature-card {
   display: flex;
   justify-content: center;
@@ -430,16 +413,16 @@ body {
 
 .feature {
   width: 300px;
-  background-color: white;
-  border: 1px solid #e4d1d1;
+
+  /* border: 1px solid #e4d1d1; */
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1); /* Updated box-shadow */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1); Updated box-shadow */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  opacity: 0.8;
+
   transition: box-shadow 0.3s ease-in-out; /* Add transition effect on hover */
 }
 
@@ -456,12 +439,12 @@ body {
 .feature h3 {
   font-size: 20px;
   margin-bottom: 10px;
-  color: #333;
+  color: #090909;
 }
 
 .feature p {
   font-size: 16px;
-  color: #555;
+  color: #070707;
 }
 
 /* InfiniteImageRotation.css */
@@ -480,6 +463,7 @@ body {
   height: 800px; */
   width: 100%;
   height: 100%;
+  opacity: 1;
 }
 
 .infinite-image-rotation img {
@@ -487,23 +471,24 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensure the images maintain their aspect ratio */
-  opacity: 0;
+  opacity: 1;
   animation: slideLeftToRight 20s linear infinite; /* Adjust the duration (15s) as per your preference */
   z-index: -1;
   left: 0; /* Initially set to 0 to start from the left */
 }
 
 @keyframes slideLeftToRight {
-  0%, 100% {
-    opacity: 0;
+  0%,
+  100% {
+    opacity: 1;
     transform: translateX(-100%);
   }
-  8.33%, 91.67% {
+  8.33%,
+  91.67% {
     opacity: 1;
     transform: translateX(0);
   }
 }
-
 
 .footer {
   background-color: #333;

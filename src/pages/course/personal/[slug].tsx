@@ -15,6 +15,7 @@ import CourseMainBody from '~/components/CourseMainBody';
 import Menu from '~/components/Menu';
 import CommentForm from '~/components/CommentForm';
 import ClassList from '~/components/ClassList';
+import Footer from '~/components/Footer';
 
 const EditCourse = () => {
   const [cookies, setCookie] = useCookies(['user']);
@@ -36,60 +37,63 @@ const EditCourse = () => {
   return (
     <CookiesProvider>
       <Menu />
-      <Container>
-        <Box className=" flex w-full flex-col justify-center">
-          <CourseMainBody
-            id={data1?.course?.id}
-            slug={slug1}
-            cookies={cookies}
-            title={data1?.course?.title}
-            description={data1?.course?.description}
-            categories={data1?.course?.categories}
-            seatStatus={data1?.course?.seatStatus}
-            address={data1?.course?.address}
-            startDate={data1?.course?.startDate}
-            endDate={data1?.course?.endDate}
-            classes={'w-full flex-col justify-center space-y-2 '}
-          ></CourseMainBody>
-          <Box className="flex w-full justify-center space-x-3 bg-green-400 p-5">
-            <button
-              onClick={() => {
-                setOpen('comment');
-              }}
-            >
-              Comments
-            </button>
-            <button
-              onClick={() => {
-                console.log('class list');
-                setOpen('class-list');
-              }}
-            >
-              Class List
-            </button>
-            <button
-              onClick={() => {
-                setOpen('chat');
-              }}
-            >
-              Chats
-            </button>
-          </Box>
-          <Box className="flex w-full ">
-            {open === 'comment'
-              ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
-              : ''}
+      <Container className="mb-10 mt-7">
+        {data1?.course && (
+          <Box className=" flex w-full flex-col justify-center">
+            <CourseMainBody
+              id={data1?.course?.id}
+              slug={slug1}
+              cookies={cookies}
+              title={data1?.course?.title}
+              description={data1?.course?.description}
+              categories={data1?.course?.categories}
+              seatStatus={data1?.course?.seatStatus}
+              address={data1?.course?.address}
+              startDate={data1?.course?.startDate}
+              endDate={data1?.course?.endDate}
+              classes={'w-full flex-col justify-center space-y-2 '}
+            ></CourseMainBody>
+            <Box className="flex w-full justify-center space-x-3 bg-green-400 p-5">
+              <button
+                onClick={() => {
+                  setOpen('comment');
+                }}
+              >
+                Comments
+              </button>
+              <button
+                onClick={() => {
+                  console.log('class list');
+                  setOpen('class-list');
+                }}
+              >
+                Class List
+              </button>
+              <button
+                onClick={() => {
+                  setOpen('chat');
+                }}
+              >
+                Chats
+              </button>
+            </Box>
+            <Box className="flex w-full ">
+              {open === 'comment'
+                ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
+                : ''}
 
-            {open === 'class-list'
-              ? data1?.course?.id && <ClassList id={data1?.course?.id} />
-              : ''}
+              {open === 'class-list'
+                ? data1?.course?.id && <ClassList id={data1?.course?.id} />
+                : ''}
 
-            {open === 'chat'
-              ? data1?.course?.id && <Chat id={data1?.course?.id} />
-              : ''}
+              {open === 'chat'
+                ? data1?.course?.id && <Chat id={data1?.course?.id} />
+                : ''}
+            </Box>
           </Box>
-        </Box>
+        )}
       </Container>
+      <Footer />
     </CookiesProvider>
   );
 };

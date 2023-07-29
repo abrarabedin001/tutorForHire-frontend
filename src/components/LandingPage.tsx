@@ -4,9 +4,7 @@ import Button from '@mui/material/Button';
 import Menu from '~/components/Menu';
 import DemoCourseSection from '~/components/DemoCourseSection';
 import InfiniteImageRotation from '~/components/InfiniteImageRotation';
-import Footer from '~/components/Footer';
-
-
+import Footer from '~/components/footer';
 
 const LandingPage = () => {
   const testimonialsData = [
@@ -58,11 +56,9 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <Menu />
-      <InfiniteImageRotation />
       <main className="main-content">
-        <section className="hero-section">
-          <div className="hero-content">
+        <section className="hero-section flex flex-row rounded-sm bg-gray-200/80 p-5  shadow-md">
+          <div className="hero-content w-1/2 rounded bg-white p-5 text-black  shadow-md">
             <h1>Learn from the Best Tutors</h1>
             <p>
               Explore a wide range of courses taught by experts in their fields.
@@ -71,102 +67,52 @@ const LandingPage = () => {
               Get Started
             </Button>
           </div>
+          <InfiniteImageRotation className="w-1/2 rounded shadow-md" />
         </section>
-        <section className="features-section">
-          <h2>Why Choose Tutor For Hire?</h2>
-          <div className="feature">
-            <i className="fas fa-chalkboard-teacher"></i>
-            <h3>Expert Tutors</h3>
-            <p>
-              Learn from experienced tutors who are passionate about teaching.
-            </p>
-          </div>
-          <div className="feature">
-            <i className="fas fa-certificate"></i>
-            <h3>Certificates</h3>
-            <p>
-              Earn certificates upon completion to showcase your achievements.
-            </p>
-          </div>
-          <div className="feature">
-            <i className="fas fa-globe"></i>
-            <h3>Global Community</h3>
-            <p>Join a diverse community of learners from around the world.</p>
+        <section className="features-section flex flex-col rounded-sm bg-gray-200/80 p-5  shadow-md">
+          <h1 className="m-2 text-center text-2xl font-bold ">
+            Why Choose Tutor For Hire?
+          </h1>
+          <div className="flex flex-row justify-between space-x-5 p-5 ">
+            <div className="feature min-w-[30%] bg-white text-black shadow-md">
+              <i className="fas fa-chalkboard-teacher"></i>
+              <h3 className="text-2xl font-bold">Expert Tutors</h3>
+              <p>
+                Learn from experienced tutors who are passionate about teaching.
+              </p>
+            </div>
+            <div className="feature min-w-[30%] bg-white text-black  shadow-md">
+              <i className="fas fa-certificate"></i>
+              <h3 className="text-2xl font-bold">Certificates</h3>
+              <p>
+                Earn certificates upon completion to showcase your achievements.
+              </p>
+            </div>
+            <div className="feature min-w-[30%] bg-white text-black shadow-md">
+              <i className="fas fa-globe"></i>
+              <h3 className="text-2xl font-bold">Global Community</h3>
+              <p>Join a diverse community of learners from around the world.</p>
+            </div>
           </div>
         </section>
-        <section className="cta-section">
-          <h2>Start Your Learning Journey Today</h2>
-          <p>Sign up now and unlock a world of knowledge.</p>
-          <Button variant="contained" color="primary">
-            Sign Up
-          </Button>
-        </section>
-        <section className="testimonial-section">
-        <div className="testimonial-header">
-        <h2>Be Inspired by Our Students' Success Stories</h2>
-        <p>Read what our students have experienced with us and how our courses transformed their lives.</p>
-      </div>
+
+        <section className="testimonial-section rounded-sm bg-gray-200/80 p-5  shadow-md">
           <div className="testimonial-slider">
-            <div
-              className="testimonial-wrapper"
-              style={{
-                transform: `translateX(-${activeTestimonial * 100}%)`,
-                transition: 'transform 0.3s ease-in-out',
-              }}
-            >
-              {testimonialsData.map((testimonial, index) => (
-                <div
-                  key={testimonial.id}
-                  className={`testimonial-item ${
-                    index === activeTestimonial ? 'active' : ''
-                  }`}
-                >
-                  <img src={testimonial.image} alt="Testimonial" />
-                  <p>{testimonial.description}</p>
-                </div>
-              ))}
-            </div>
-            <div className="testimonial-controls">
-              <Button
-                className={`prev-button ${
-                  activeTestimonial === 0 ? 'disabled' : ''
-                }`}
-                onClick={handlePrevTestimonial}
-                sx={{ boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}
-              >
-                &lt;
-              </Button>
-              <Button
-                className={`next-button ${
-                  activeTestimonial === testimonialsData.length - 1
-                    ? 'disabled'
-                    : ''
-                }`}
-                onClick={handleNextTestimonial}
-                sx={{ boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}
-              >
-                &gt;
-              </Button>
-            </div>
-            <div className="testimonial-dots">
-              {testimonialsData.map((_, index) => (
-                <div
-                  key={index}
-                  className={`dot ${index === activeDot ? 'active' : ''}`}
-                  onClick={() => {
-                    setActiveTestimonial(index);
-                    setActiveDot(index);
-                  }}
-                />
-              ))}
-              <DemoCourseSection />
-            </div>
+            <DemoCourseSection />
+          </div>
+        </section>
+        <section className="cta-section rounded-sm bg-gray-200/80 p-5  shadow-md">
+          <div className="rounded-md  p-5">
+            <h2 className="text-2xl font-bold">
+              Start Your Learning Journey Today
+            </h2>
+            <p>Sign up now and unlock a world of knowledge.</p>
+            <Button variant="contained" color="primary">
+              Sign Up
+            </Button>
           </div>
         </section>
       </main>
-
-      <Footer />
-
     </div>
   );
 };

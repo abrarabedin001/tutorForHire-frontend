@@ -104,7 +104,7 @@ const CourseMainBody = ({
       setTotalRating(totalRating.data.averageRating);
       console.log(totalRating.data.averageRating, 'totalRating');
     };
-    setTimeout(TotalRating, 2000);
+    TotalRating();
   }, []);
 
   const enrollCourse = async () => {
@@ -229,7 +229,7 @@ const CourseMainBody = ({
                 {new Date(startDate).toLocaleDateString()}
               </Typography>
             </Box>
-            
+
             <Box mb={2}>
               <Typography
                 variant="h6"

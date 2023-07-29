@@ -91,7 +91,7 @@ export default function CommentForm({ id }: { id: string }) {
   };
 
   return (
-    <div className="flex h-7 w-full flex-col">
+    <div className="flex w-full flex-col">
       <FormControl sx={{ width: '100%' }}>
         <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
           Write a comment
