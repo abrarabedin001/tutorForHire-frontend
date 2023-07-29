@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import FormLabel from '@mui/material/FormLabel';
 
 const ClassList = ({ id }: { id: string }) => {
   const [cookies, setCookie] = useCookies(['data']);
@@ -64,11 +65,13 @@ const ClassList = ({ id }: { id: string }) => {
   }, []);
   return (
     <div className="w-full">
-      <Box sx={{ mt: 2 }}>
-        class List
+      <Box sx={{}}>
+        <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+          Class List
+        </FormLabel>
         {classList?.map((el) => (
           <Card
-            className=" m-2 flex flex-row justify-between rounded-xl border-black p-5 text-left shadow-xl"
+            className=" mb-1 flex flex-row justify-between rounded-xl border-black p-5 text-left shadow-xl"
             key={el.id}
           >
             {' '}

@@ -73,7 +73,7 @@ export default function Chat({ id }: { id: string }) {
   };
 
   return (
-    <div className="flex h-7 w-full flex-col">
+    <div className="flex  w-full flex-col">
       <FormControl sx={{ width: '100%' }}>
         <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
           Chat
@@ -112,7 +112,7 @@ export default function Chat({ id }: { id: string }) {
 
         {chatList?.map((el) => (
           <Card
-            className=" m-2 flex flex-col justify-between rounded-xl border-black p-5 text-left shadow-xl"
+            className=" mb-1 flex flex-col justify-between rounded-xl border-black p-5 text-left shadow-xl"
             key={el.id}
           >
             {' '}
