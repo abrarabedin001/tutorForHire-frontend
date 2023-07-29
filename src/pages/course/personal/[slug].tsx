@@ -53,8 +53,9 @@ const EditCourse = () => {
               endDate={data1?.course?.endDate}
               classes={'w-full flex-col justify-center space-y-2 '}
             ></CourseMainBody>
-            <Box className="flex w-full justify-center space-x-3 bg-green-400 p-5">
+            <Box className="mb-5 mt-5 flex w-full justify-center space-x-3 bg-blue-400 p-5 shadow-md">
               <button
+                className="rounded-md bg-white p-2 hover:scale-105"
                 onClick={() => {
                   setOpen('comment');
                 }}
@@ -62,6 +63,7 @@ const EditCourse = () => {
                 Comments
               </button>
               <button
+                className="rounded-md bg-white p-2 hover:scale-105"
                 onClick={() => {
                   console.log('class list');
                   setOpen('class-list');
@@ -70,6 +72,7 @@ const EditCourse = () => {
                 Class List
               </button>
               <button
+                className="rounded-md bg-white p-2 hover:scale-105"
                 onClick={() => {
                   setOpen('chat');
                 }}

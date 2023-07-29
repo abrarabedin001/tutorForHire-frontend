@@ -174,7 +174,6 @@ export default function CourseCard({ course }: { course: any }) {
           name="simple-controlled"
           value={value}
           onChange={async (event, newValue) => {
-            console.log(newValue);
             try {
               await axios.post(
                 'http://localhost:5000/rating/giverating',
