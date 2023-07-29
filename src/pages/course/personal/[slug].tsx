@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import axios from 'axios';
 import FormikComponent from '~/components/FormikComponent';
+import Chat from '~/components/Chat';
 import HeaderSidebar from '~/components/HeaderSidebar';
 import CourseMainBody from '~/components/CourseMainBody';
 import Menu from '~/components/Menu';
@@ -84,7 +85,7 @@ const EditCourse = () => {
               : ''}
 
             {open === 'chat'
-              ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
+              ? data1?.course?.id && <Chat id={data1?.course?.id} />
               : ''}
           </Box>
         </Box>
