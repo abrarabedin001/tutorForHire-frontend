@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Menu from '~/components/Menu';
 import DemoCourseSection from '~/components/DemoCourseSection';
 import InfiniteImageRotation from '~/components/InfiniteImageRotation';
-import Footer from '~/components/footer';
+import Footer from '~/components/Footer';
 
 const LandingPage = () => {
   const testimonialsData = [
@@ -57,7 +57,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <main className="main-content">
-        <section className="hero-section flex flex-row rounded-sm bg-gray-200/80 p-5  shadow-md">
+        <section className="hero-section flex flex-row rounded-sm bg-gray-200/80  p-5  shadow-md">
           <div className="hero-content w-1/2 rounded bg-white p-5 text-black  shadow-md">
             <h1>Learn from the Best Tutors</h1>
             <p>
@@ -67,7 +67,7 @@ const LandingPage = () => {
               Get Started
             </Button>
           </div>
-          <InfiniteImageRotation className="w-1/2 rounded shadow-md" />
+          <InfiniteImageRotation className="z-50 w-1/2  rounded shadow-md" />
         </section>
         <section className="features-section flex flex-col rounded-sm bg-gray-200/80 p-5  shadow-md">
           <h1 className="m-2 text-center text-2xl font-bold ">

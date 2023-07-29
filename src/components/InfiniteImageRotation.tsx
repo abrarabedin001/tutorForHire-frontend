@@ -18,15 +18,13 @@ const InfiniteImageRotation = ({ className }: { className: string }) => {
 
   return (
     <div className={`image-rotation-wrapper ${className}`}>
-      <div className="infinite-image-rotation opacity-100">
+      <div className="infinite-image-rotation ">
         {images.map((image, index) => (
           <img
             key={index}
             src={image}
             alt={`Image ${index + 1}`}
-            className={
-              index === currentImageIndex ? 'visible opacity-100' : 'hidden'
-            }
+            className={index === currentImageIndex ? 'visible ' : 'hidden'}
           />
         ))}
       </div>

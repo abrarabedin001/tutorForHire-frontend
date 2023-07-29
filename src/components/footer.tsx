@@ -1,5 +1,11 @@
 import React from 'react';
-import { FaFacebook, FaTwitter, FaYoutube, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaTwitter,
+  FaYoutube,
+  FaLinkedin,
+  FaInstagram,
+} from 'react-icons/fa';
 import { FiMail, FiPhone } from 'react-icons/fi';
 import { GiEarthAmerica } from 'react-icons/gi'; // Importing the Unicef icon
 import { RiGroup2Line } from 'react-icons/ri'; // Importing the Association for Experiential Education icon
@@ -8,12 +14,15 @@ import { FaGraduationCap } from 'react-icons/fa'; // Correct import for the UNES
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer" id="about">
       <div className="footer-content">
         <div className="footer-section">
           <h3>About Us</h3>
           <p>
-            Welcome to Tutor For Hire, where knowledge meets opportunity. We are committed to empowering learners with quality education and expert-led courses. Unlock your potential and explore new horizons with our diverse range of online learning offerings.
+            Welcome to Tutor For Hire, where knowledge meets opportunity. We are
+            committed to empowering learners with quality education and
+            expert-led courses. Unlock your potential and explore new horizons
+            with our diverse range of online learning offerings.
           </p>
         </div>
         <div className="footer-section">
@@ -44,16 +53,32 @@ const Footer = () => {
         <div className="footer-section partner-section">
           <h3>Partner</h3>
           <div className="partner-icons">
-            <a href="https://www.unicef.org/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.unicef.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <GiEarthAmerica className="partner-icon" />
             </a>
-            <a href="https://www.universityofknowledge.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.universityofknowledge.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <RiGroup2Line className="partner-icon" />
             </a>
-            <a href="https://en.unesco.org/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://en.unesco.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaUniversity className="partner-icon" />
             </a>
-            <a href="https://www.enlightenedscholarsacademy.edu" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.enlightenedscholarsacademy.edu"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaGraduationCap className="partner-icon" />
             </a>
           </div>
@@ -64,19 +89,39 @@ const Footer = () => {
           <h3>Follow Us</h3>
         </div>
         <div className="social-icons">
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaFacebook className="icon" />
           </a>
-          <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaTwitter className="icon" />
           </a>
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaYoutube className="icon" />
           </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaLinkedin className="icon" />
           </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaInstagram className="icon" />
           </a>
           {/* Add more social media icons with links here */}
