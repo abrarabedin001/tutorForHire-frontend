@@ -95,7 +95,7 @@ export default function Chat({ id }: { id: string }) {
                 flex: 'auto',
               }}
             >
-              <Button sx={{ ml: 'auto' }} onClick={() => onSubmit()}>
+              <Button sx={{ ml: 'auto' }} onClick={() => void onSubmit()}>
                 Send
               </Button>
             </Box>
