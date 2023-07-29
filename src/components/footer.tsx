@@ -24,14 +24,51 @@ const Footer = () => {
           </p>
         </div>
         <div className="footer-section">
-          <h3>Contact Us</h3>
-          <p>
-            Email: info@example.com
-            <br />
-            Phone: +088 01778097713
-          </p>
+          <h3>Subjects We Offer</h3>
+          <ul>
+            <li>Mathematics</li>
+            <li>Science</li>
+            <li>English</li>
+            <li>History</li>
+            <li>Computer Science</li>
+            <li>Agriculture Science</li>
+            <li>Robotic Science</li>
+            <li>Medical Science</li>
+          </ul>
         </div>
-        <div className="footer-section">
+        <div className="footer-section contact">
+          <h3>Contact Us</h3>
+          <div className="contact-info">
+            <p>
+              <FiMail className="contact-icon" />
+              <span className="contact-text">Email: info@example.com</span>
+            </p>
+            <p>
+              <FiPhone className="contact-icon" />
+              <span className="contact-text">Phone: +088 01778097713</span>
+            </p>
+          </div>
+        </div>
+        <div className="footer-section partner-section">
+          <h3>Partner</h3>
+          <div className="partner-icons">
+            <a href="https://www.unicef.org/" target="_blank" rel="noopener noreferrer">
+              <GiEarthAmerica className="partner-icon" />
+            </a>
+            <a href="https://www.aee.org/" target="_blank" rel="noopener noreferrer">
+              <RiGroup2Line className="partner-icon" />
+            </a>
+            <a href="https://www.universityofknowledge.com" target="_blank" rel="noopener noreferrer">
+              <FaUniversity className="partner-icon" />
+            </a>
+            <a href="https://www.enlightenedscholarsacademy.edu" target="_blank" rel="noopener noreferrer">
+              <FaGraduationCap className="partner-icon" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="follow-us">
+        <div className="footer-content">
           <h3>Follow Us</h3>
           <div className="social-icons">
             <a
@@ -90,7 +127,6 @@ const Footer = () => {
             >
               <FaLinkedin className="icon" />
             </a>
-          </div>
         </div>
       </div>
       <div className="footer-bottom">
