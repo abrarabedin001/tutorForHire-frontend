@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import hook from './hooks/hook';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Footer from '~/components/Footer';
 import axios from 'axios';
 import FormikComponent from '~/components/FormikComponent';
 import HeaderSidebar from '~/components/HeaderSidebar';
@@ -49,7 +50,7 @@ const EditCourse = () => {
         )}
       </Box>
 
-      {/* somehtingnkj */}
+      <Footer />
     </CookiesProvider>
   );
 };

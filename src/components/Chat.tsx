@@ -9,21 +9,20 @@ import { Card, Rating } from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-export default function CommentForm({ id }: { id: string }) {
+export default function Chat({ id }: { id: string }) {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [rate, setRate] = React.useState(0);
 
-  const [comment, setComment] = React.useState('');
-  const [commentList, setCommentList] = React.useState([]);
+  const [chat, setChat] = React.useState('');
+  const [chatList, setChatList] = React.useState([]);
   const [cookies, setCookie] = useCookies(['data']);
   React.useEffect(() => {
-    const comments = async () => {
+    const chats = async () => {
       try {
         console.log('comments sections');
-        const link =
-          'http://localhost:5000/ratingreview/showRatingReview/' + id;
+        const link = 'http://localhost:5000/chat/seechat/' + id;
         // console.log(id, 'course');
         // console.log(cookies.data.user.id, 'studentProfileId');
         console.log('link', link);
@@ -39,33 +38,27 @@ export default function CommentForm({ id }: { id: string }) {
         );
 
         console.log('comments lists');
-        console.log(list.data.ratingReview);
-        setCommentList(list.data.ratingReview);
+        console.log(list.data.showChat);
+        setChatList(list.data.showChat);
 
         // await router.push('/home');
       } catch (err) {
         // console.log(err.message);
       }
     };
-    comments();
+    chats();
   }, []);
 
   const onSubmit = async () => {
     try {
-      // console.log('enters');
-      let link = '';
-
-      if (cookies.data.user.type === 'STUDENT') {
-        link = 'http://localhost:5000/ratingreview/giveRatingReview';
-      } else {
-        window.alert('A teacher can not comment on a course');
-        return;
-      }
+      console.log('enters');
+      console.log(chat);
+      const link = 'http://localhost:5000/chat/givechat';
 
       // console.log({ courseId: id, comment: comment });
-      const response_comment = await axios.post(
+      const response_chat = await axios.post(
         link,
-        { courseId: id, comment: comment, rate: rate },
+        { courseId: id, chat: chat },
         {
           headers: {
             'content-type': 'application/json',
@@ -73,34 +66,23 @@ export default function CommentForm({ id }: { id: string }) {
           },
         },
       );
-      // const response_rating = await axios.post(
-      //   'http://localhost:5000/rating/giverating',
-      //   { courseId: id, rate: rate },
-      //   {
-      //     headers: {
-      //       'content-type': 'application/json',
-      //       Authorization: `token ${cookies.data.token}`,
-      //     },
-      //   },
-      // );
-      // console.log(response);
-      // await router.reload();
+      console.log(response_chat.data);
     } catch (err) {
-      // console.log(err.message);
+      console.log(err.message);
     }
   };
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex h-7 w-full flex-col">
       <FormControl sx={{ width: '100%' }}>
         <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-          Write a comment
+          Chat
         </FormLabel>
         <Textarea
           placeholder="Type something here…"
           minRows={3}
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          value={chat}
+          onChange={(e) => setChat(e.target.value)}
           endDecorator={
             <Box
               sx={{
@@ -113,16 +95,7 @@ export default function CommentForm({ id }: { id: string }) {
                 flex: 'auto',
               }}
             >
-              <Rating
-                name="simple-controlled"
-                value={rate}
-                onChange={(event, newValue) => {
-                  setRate(newValue);
-                  console.log(newValue);
-                }}
-              />
-
-              <Button sx={{ ml: 'auto' }} onClick={() => onSubmit()}>
+              <Button sx={{ ml: 'auto' }} onClick={() => void onSubmit()}>
                 Send
               </Button>
             </Box>
@@ -137,19 +110,19 @@ export default function CommentForm({ id }: { id: string }) {
       <Box sx={{ mt: 2 }}>
         <FormLabel></FormLabel>
 
-        {commentList?.map((el) => (
+        {chatList?.map((el) => (
           <Card
             className=" m-2 flex flex-col justify-between rounded-xl border-black p-5 text-left shadow-xl"
             key={el.id}
           >
             {' '}
             <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
-              <h4>{el.StudentProfile.user.name}</h4>
-              <Rating name="simple-controlled" value={el.rate} readOnly />
-              <h4>{el.ratingReviewDate.split('T')[0]}</h4>
+              <h4>{el.user.name}</h4>
+
+              <h4>{el.created_at.split('T')[0]}</h4>
             </Box>
             <br />
-            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.comment}</h6>
+            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.chat}</h6>
           </Card>
         ))}
       </Box>

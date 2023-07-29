@@ -22,8 +22,6 @@ import { useCookies, CookiesProvider } from 'react-cookie';
 import axios from 'axios';
 import { is } from 'date-fns/locale';
 
-
-
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -69,9 +67,8 @@ export default function CourseCard({ course }: { course: any }) {
       padding: '20px',
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      border:'2px solid white',
-      textTransform:'uppercase'
-  
+      border: '2px solid white',
+      textTransform: 'uppercase',
     };
     return (
       <div style={imageStyle}>
@@ -137,7 +134,13 @@ export default function CourseCard({ course }: { course: any }) {
   };
   return (
     <CookiesProvider>
-      <Card sx={{ maxWidth: 345,backgroundColor: 'rgba(255, 255, 255, 0.5)',boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)'}}>
+      <Card
+        sx={{
+          maxWidth: 345,
+          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+        }}
+      >
         <Link href={'http://localhost:3000/course/personal/' + course?.id}>
           <CardHeader
             avatar={
@@ -150,7 +153,11 @@ export default function CourseCard({ course }: { course: any }) {
                 <MoreVertIcon />
               </IconButton>
             }
-            titleTypographyProps={{ style: { color: 'blue' },fontWeight:'bold',textTransform:'capitalize' }}
+            titleTypographyProps={{
+              style: { color: 'rgb(107, 107, 229)' },
+              fontWeight: 'bold',
+              textTransform: 'capitalize',
+            }}
             title={course?.title}
             subheader={course?.createdAt.split('T')[0]}
           />
@@ -162,7 +169,7 @@ export default function CourseCard({ course }: { course: any }) {
           image="https://rb.gy/h90m3"
           alt="Paella dish"
         /> */}
-        <CourseImage title={course?.title}/>
+        <CourseImage title={course?.title} />
         <Rating
           name="simple-controlled"
           value={value}
@@ -183,7 +190,7 @@ export default function CourseCard({ course }: { course: any }) {
               console.log(e);
             }
           }}
-          className=" mt-2 ml-2"
+          className=" ml-2 mt-2"
         />
 
         <CardActions disableSpacing>

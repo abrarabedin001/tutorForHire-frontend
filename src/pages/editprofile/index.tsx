@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Footer from '~/components/Footer';
 
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -95,14 +96,14 @@ const SignUp = () => {
     <>
       <Menu />
       <Container>
-        <Box className="flex w-full justify-center">
+        <Box className="mb-20 flex w-full justify-center">
           <form
             onSubmit={(e) => {
               submitForm(e);
             }}
             className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
-           <h1 className="text-center text-2xl font-bold">Edit Course</h1>
+            <h1 className="text-center text-2xl font-bold">Edit Course</h1>
             <p className=" text-lg font-semibold">Bio: </p>
             <TextField
               fullWidth
@@ -137,6 +138,7 @@ const SignUp = () => {
           </form>
         </Box>
       </Container>
+      <Footer />
     </>
   );
 };

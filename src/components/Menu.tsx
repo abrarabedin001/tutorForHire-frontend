@@ -30,63 +30,69 @@ const LandingPage = () => {
         >
           Tutor For Hire
         </Link>
-        <ul className="nav-links m-5 flex justify-center text-center">
-          <li>
-            <Link
-              href="/home"
-              aria-current="page"
-              className={isLinkActive('/home')}
-            >
-              <Button color="inherit">Home</Button>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/mycourses"
-              className={isLinkActive('/mycourses')}
-            >
-              <Button color="inherit">My Courses</Button>
-            </Link>
-          </li>
+        {user && (
+          <ul className="nav-links m-5 flex justify-center text-center">
+            <li>
+              <Link
+                href="/home"
+                aria-current="page"
+                className={isLinkActive('/home')}
+              >
+                <Button color="inherit">Home</Button>
+              </Link>
+            </li>
 
-          <li>
-            <Link
-              href="/createcourse"
-              className={isLinkActive('/createcourse')}
-            >
-              <Button color="inherit">Create Course</Button>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/enrolledcourses"
-              className={isLinkActive('/enrolledcourses')}
-            >
-              <Button color="inherit">Enrolled Course</Button>
-            </Link>
-          </li>
-          <li>
-            <Link href="/editprofile" className={isLinkActive('/editprofile')}>
-              <Button color="inherit">Edit Profile</Button>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="#helpdesk"
-              className={isLinkActive('/#helpdesk')}
-            >
-              <Button color="inherit">Help-Desk</Button>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="#about"
-              className={isLinkActive('#about')}
-            >
-              <Button color="inherit">About</Button>
-            </Link>
-          </li>
-        </ul>
+            {user?.type === 'TUTOR' && (
+              <li>
+                <Link href="/mycourses" className={isLinkActive('/mycourses')}>
+                  <Button color="inherit">My Courses</Button>
+                </Link>
+              </li>
+            )}
+            {user?.type === 'TUTOR' && (
+              <li>
+                <Link
+                  href="/createcourse"
+                  className={isLinkActive('/createcourse')}
+                >
+                  <Button color="inherit">Create Course</Button>
+                </Link>
+              </li>
+            )}
+            {user?.type === 'STUDENT' && (
+              <li>
+                <Link
+                  href="/enrolledcourses"
+                  className={isLinkActive('/enrolledcourses')}
+                >
+                  <Button color="inherit">Enrolled Course</Button>
+                </Link>
+              </li>
+            )}
+
+            <li>
+              <Link
+                href="/editprofile"
+                className={isLinkActive('/editprofile')}
+              >
+                <Button color="inherit">Edit Profile</Button>
+              </Link>
+            </li>
+            <li>
+              <Link href="#helpdesk" className={isLinkActive('/#helpdesk')}>
+                <Button color="inherit" className="hover:bg-blue-100">
+                  Help-Desk
+                </Button>
+              </Link>
+            </li>
+            <li>
+              <Link href="#about" className={isLinkActive('#about')}>
+                <Button color="inherit">About</Button>
+              </Link>
+            </li>
+          </ul>
+        )}
+
         <Box className="auth-buttons">
           {user ? (
             <Box

@@ -8,6 +8,7 @@ import { CookiesProvider, useCookies } from 'react-cookie';
 import axios from 'axios';
 import Menu from '~/components/Menu';
 import Container from '@mui/material/Container';
+import Footer from '~/components/Footer';
 
 export default function LoginHome() {
   const [cookies, setCookie] = useCookies(['data']);
@@ -42,10 +43,13 @@ export default function LoginHome() {
     <CookiesProvider>
       <Menu />
       <Container>
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box
+          sx={{ display: 'flex', flexDirection: 'column', minHeight: '1000px' }}
+        >
           <Courses courses={courses}></Courses>
         </Box>
       </Container>
+      <Footer />
     </CookiesProvider>
   );
 }
