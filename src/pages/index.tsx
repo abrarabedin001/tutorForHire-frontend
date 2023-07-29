@@ -5,7 +5,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 
 import { api } from '~/utils/api';
 import LandingPage from '~/components/LandingPage';
-import Footer from '~/components/footer';
+import Footer from '~/components/Footer';
 import Menu from '~/components/Menu';
 
 const Home: NextPage = () => {
