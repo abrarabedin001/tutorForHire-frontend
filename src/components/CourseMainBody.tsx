@@ -110,8 +110,7 @@ const CourseMainBody = ({
   const enrollCourse = async () => {
     try {
       const link = 'http://localhost:5000/enrollcourse/enroll';
-      console.log(id, 'course');
-      console.log(cookie.user.id, 'studentProfileId');
+
       const user = await axios.post(
         link,
         {
@@ -124,10 +123,7 @@ const CourseMainBody = ({
           },
         },
       );
-      console.log('total rating');
-      console.log('');
 
-      console.log(user);
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
@@ -137,7 +133,11 @@ const CourseMainBody = ({
     // <Box className="w-70 flex-row space-y-2 ">
     <Box className={classes}>
       <Card className="  flex flex-col justify-center p-3 shadow-lg ">
-        <Grid container spacing={2} className="mt-5 bg-blue-100 p-3 shadow-lg">
+        <Grid
+          container
+          spacing={2}
+          className="mb-5 mt-5 bg-blue-100 p-3 shadow-lg"
+        >
           <Grid item xs={8}>
             <Typography
               className="px-10 py-5"
@@ -161,12 +161,7 @@ const CourseMainBody = ({
             <CourseImage title={title} />
           </Grid>
         </Grid>
-        <Card className="m-3 bg-blue-500 p-3 shadow-lg">
-          <Typography variant="p" component="p">
-            {' '}
-            Course Name: {title}
-          </Typography>
-        </Card>
+
         <Box className="flex justify-center">
           <Card className="m-3  w-[70%]  bg-blue-500 p-3 shadow-lg">
             <Box mb={2}>

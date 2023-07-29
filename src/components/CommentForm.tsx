@@ -24,9 +24,7 @@ export default function CommentForm({ id }: { id: string }) {
         console.log('comments sections');
         const link =
           'http://localhost:5000/ratingreview/showRatingReview/' + id;
-        // console.log(id, 'course');
-        // console.log(cookies.data.user.id, 'studentProfileId');
-        console.log('link', link);
+
         const list = await axios.get(
           link,
 
@@ -38,8 +36,6 @@ export default function CommentForm({ id }: { id: string }) {
           },
         );
 
-        console.log('comments lists');
-        console.log(list.data.ratingReview);
         setCommentList(list.data.ratingReview);
 
         // await router.push('/home');
@@ -73,20 +69,8 @@ export default function CommentForm({ id }: { id: string }) {
           },
         },
       );
-      // const response_rating = await axios.post(
-      //   'http://localhost:5000/rating/giverating',
-      //   { courseId: id, rate: rate },
-      //   {
-      //     headers: {
-      //       'content-type': 'application/json',
-      //       Authorization: `token ${cookies.data.token}`,
-      //     },
-      //   },
-      // );
-      // console.log(response);
-      // await router.reload();
     } catch (err) {
-      // console.log(err.message);
+      console.log(err.message);
     }
   };
 
@@ -139,12 +123,14 @@ export default function CommentForm({ id }: { id: string }) {
 
         {commentList?.map((el) => (
           <Card
-            className=" m-2 flex flex-col justify-between rounded-xl border-black p-5 text-left shadow-xl"
+            className="mt-1  flex flex-col justify-between rounded-xl border-black bg-blue-400 p-5 text-left shadow-xl"
             key={el.id}
           >
             {' '}
             <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
-              <h4>{el.StudentProfile.user.name}</h4>
+              <h4 className="text-lg font-bold">
+                {el.StudentProfile.user.name}
+              </h4>
               <Rating name="simple-controlled" value={el.rate} readOnly />
               <h4>{el.ratingReviewDate.split('T')[0]}</h4>
             </Box>
