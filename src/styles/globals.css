@@ -15,14 +15,14 @@ body {
 }
 
 .header {
-  background-color: rgba(247, 247, 247, 0.85);
+  background-color: rgba(247, 247, 247, 0.95);
   padding: 2px;
   /* opacity: 0.9; */
   margin-bottom: 2px;
   /* border: 1px solid lightpink; */
   position: sticky;
   top: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 100;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   /* margin-bottom: 0; */
@@ -40,6 +40,10 @@ body {
   text-decoration: none;
   font-size: 24px;
 }
+.logo:hover{
+  color:  rgb(66, 66, 192);
+}
+
 
 .nav-links li {
   display: inline;
@@ -159,12 +163,14 @@ body {
   align-items: center;
 }
 
+
 .auth-buttons button {
   margin-left: 10px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   font-weight: bold;
   border-radius: 8px;
+  margin-right: 20px;
 }
 .auth-buttons button:hover {
   background-color: rgb(107, 107, 229);
@@ -189,7 +195,16 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+/* .titlename {
+  color: rgb(107, 107, 229);
+  text-transform: capitalize;
+} */
 
+/* Add styles for the hover state of the element */
+.titlename:hover {
+  color: darkmagenta;
+  font-weight: bold;
+}
 .course-card img {
   width: 600px;
   height: 400px;
@@ -290,12 +305,12 @@ body {
   background-color: #1c7cd6;
 }
 
-.footer {
+/* .footer {
   background-color: #1c7cd6;
   padding: 20px;
   color: #fff;
   text-align: center;
-}
+} */
 
 .button.active {
   padding: 8px 16px;
@@ -492,9 +507,12 @@ body {
 
 
 .footer {
-  background-color: #333;
-  color: #fff;
+  background-color: #8B97DD;
+  /* background-color: #69B9FF; */
+  color:white;
   padding: 20px 0;
+  text-align: center;
+  opacity: 0.7;
 }
 
 .footer-content {

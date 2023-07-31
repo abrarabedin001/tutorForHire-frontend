@@ -1,20 +1,34 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
+import { Box,Menu, MenuItem } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 const LandingPage = () => {
   const router = useRouter();
   const [cookie, setCookie, removeCookie] = useCookies(['user']);
   const user = cookie?.data?.user;
+  const [anchorEl, setAnchorEl] = useState(null);
+
   const handleSignIn = () => {
     window.location.href = '/login';
   };
 
   const handleSignUp = () => {
     window.location.href = '/signup';
+  };
+  
+  const handleProfileClick = () => {
+    router.push('/showprofile');
+    setAnchorEl(null); // Close the dropdown menu after clicking
+  };
+
+  const handleEditProfileClick = () => {
+    router.push('/editprofile');
+    setAnchorEl(null); // Close the dropdown menu after clicking
   };
 
   const isLinkActive = (route) => {
@@ -42,14 +56,14 @@ const LandingPage = () => {
               </Link>
             </li>
 
-            {user?.type === 'TUTOR' && (
+            {user?.type === 'TEACHER' && (
               <li>
                 <Link href="/mycourses" className={isLinkActive('/mycourses')}>
                   <Button color="inherit">My Courses</Button>
                 </Link>
               </li>
             )}
-            {user?.type === 'TUTOR' && (
+            {user?.type === 'TEACHER' && (
               <li>
                 <Link
                   href="/createcourse"
@@ -70,21 +84,15 @@ const LandingPage = () => {
               </li>
             )}
 
-            <li>
+            {/* <li>
               <Link
                 href="/editprofile"
                 className={isLinkActive('/editprofile')}
               >
                 <Button color="inherit">Edit Profile</Button>
               </Link>
-            </li>
-            <li>
-              <Link href="#helpdesk" className={isLinkActive('/#helpdesk')}>
-                <Button color="inherit" className="hover:bg-blue-100">
-                  Help-Desk
-                </Button>
-              </Link>
-            </li>
+            </li> */}
+
             <li>
               <Link href="#about" className={isLinkActive('#about')}>
                 <Button color="inherit">About</Button>
@@ -103,13 +111,25 @@ const LandingPage = () => {
               alignItems="flex-end"
               className="w-full"
             >
-              <Button
-                disabled
-                className="text-black"
-                style={{ color: 'black', boxShadow: 'none' }}
+             <Button
+                // disabled
+                className="name"
+                style={{ color: anchorEl ? 'red' : 'black', boxShadow: 'none' }}
+                onClick={(event) => setAnchorEl(event.currentTarget)}
               >
                 {user?.name}
+                {anchorEl ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
               </Button>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)}
+                keepMounted
+              >
+                <MenuItem  onClick={handleProfileClick} className='center-text'>Profile</MenuItem>
+                <MenuItem onClick={handleEditProfileClick} className='center-text'>Edit Profile</MenuItem>
+              </Menu>
+    
               <Button
                 className="text-black"
                 color="inherit"
