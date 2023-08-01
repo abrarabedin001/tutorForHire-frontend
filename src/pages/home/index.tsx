@@ -74,14 +74,15 @@ export default function LoginHome() {
         <Box className="flex  w-full justify-center space-x-5 p-4">
           <TextField
             id="outlined-basic"
-            variant="outlined"
             inputRef={search}
+            variant="filled"
+            size="small"
             onChange={(e) => {
               setQuery(e.target.value);
             }}
           />
           <button
-            className="rounded bg-blue-800 p-3 text-white"
+            className="rounded bg-blue-800 p-2 text-white"
             onClick={() => {
               searchCourse();
             }}
