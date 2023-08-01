@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { Box,Menu, MenuItem } from '@mui/material';
+import { Box, Menu, MenuItem } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -20,7 +20,7 @@ const LandingPage = () => {
   const handleSignUp = () => {
     window.location.href = '/signup';
   };
-  
+
   const handleProfileClick = () => {
     router.push('/showprofile');
     setAnchorEl(null); // Close the dropdown menu after clicking
@@ -92,7 +92,11 @@ const LandingPage = () => {
                 <Button color="inherit">Edit Profile</Button>
               </Link>
             </li> */}
-
+            <li>
+              <Link href="/tutors" className={isLinkActive('/tutors')}>
+                <Button color="inherit">Tutors</Button>
+              </Link>
+            </li>
             <li>
               <Link href="#about" className={isLinkActive('#about')}>
                 <Button color="inherit">About</Button>
@@ -111,7 +115,7 @@ const LandingPage = () => {
               alignItems="flex-end"
               className="w-full"
             >
-             <Button
+              <Button
                 // disabled
                 className="name"
                 style={{ color: anchorEl ? 'red' : 'black', boxShadow: 'none' }}
@@ -126,10 +130,17 @@ const LandingPage = () => {
                 onClose={() => setAnchorEl(null)}
                 keepMounted
               >
-                <MenuItem  onClick={handleProfileClick} className='center-text'>Profile</MenuItem>
-                <MenuItem onClick={handleEditProfileClick} className='center-text'>Edit Profile</MenuItem>
+                <MenuItem onClick={handleProfileClick} className="center-text">
+                  Profile
+                </MenuItem>
+                <MenuItem
+                  onClick={handleEditProfileClick}
+                  className="center-text"
+                >
+                  Edit Profile
+                </MenuItem>
               </Menu>
-    
+
               <Button
                 className="text-black"
                 color="inherit"
