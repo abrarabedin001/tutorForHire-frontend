@@ -139,7 +139,7 @@ const CourseMainBody = ({
               className="px-10 py-5"
               variant="h5"
               component="h5"
-              style={{ fontWeight: 'bold' }}
+              style={{ fontWeight: 'bold',textTransform:'capitalize' }}
             >
               {title}{' '}
             </Typography>

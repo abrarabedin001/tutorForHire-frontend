@@ -8,6 +8,7 @@ import FormLabel from '@mui/material/FormLabel';
 const ClassList = ({ id }: { id: string }) => {
   const [cookies, setCookie] = useCookies(['data']);
   const [classList, setClassList] = React.useState([]);
+  const userType = cookies?.data?.user?.type;
   const kickout = async (studentprofileid: string) => {
     console.log('kickout', studentprofileid);
     try {
@@ -79,12 +80,14 @@ const ClassList = ({ id }: { id: string }) => {
               <h4>{el.StudentProfile.user.name}</h4>
             </Box>
             <br />
+            {userType==='TEACHER' && (
             <Button
               onClick={() => kickout(el.StudentProfile.id)}
               className="w-[60px]"
             >
               Kick out
             </Button>
+            )}
           </Card>
         ))}
       </Box>

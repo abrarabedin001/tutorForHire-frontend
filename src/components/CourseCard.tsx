@@ -154,9 +154,11 @@ export default function CourseCard({ course }: { course: any }) {
               </IconButton>
             }
             titleTypographyProps={{
-              style: { color: 'rgb(107, 107, 229)' },
-              fontWeight: 'bold',
-              textTransform: 'capitalize',
+              className:'titlename',
+              color:'rgb(107, 107, 229)',
+              fontWeight:'bold',
+              textTransform:'capitalize'
+              
             }}
             title={course?.title}
             subheader={course?.createdAt.split('T')[0]}
@@ -196,14 +198,14 @@ export default function CourseCard({ course }: { course: any }) {
           {cookie?.user?.type === 'STUDENT' ? (
             isEnrolled ? (
               <Button
-                className="m-2 border border-black bg-red-500 p-2"
+                className="m-2 border border-black bg-red-500 p-2 hover:text-blue-800"
                 onClick={UnenrollCourse}
               >
                 UnEnroll
               </Button>
             ) : (
               <Button
-                className="m-2 border border-black bg-red-500 p-2"
+                className="m-2 border border-black bg-red-500 p-2 hover:text-blue-800"
                 onClick={enrollCourse}
               >
                 Enroll
