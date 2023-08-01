@@ -67,6 +67,8 @@ const CourseMainBody = ({
   endDate,
   cookies,
   classes,
+  enrolledStudents,
+  TeacherProfile,
 }: {
   id: string;
   slug: string;
@@ -79,6 +81,8 @@ const CourseMainBody = ({
   endDate: Date;
   cookies: Date;
   classes: string;
+  enrolledStudents: any;
+  TeacherProfile: any;
 }) => {
   const data = useCookies(['data']);
   const cookie = data[0].data;
@@ -139,7 +143,7 @@ const CourseMainBody = ({
               className="px-10 py-5"
               variant="h5"
               component="h5"
-              style={{ fontWeight: 'bold',textTransform:'capitalize' }}
+              style={{ fontWeight: 'bold', textTransform: 'capitalize' }}
             >
               {title}{' '}
             </Typography>
@@ -246,7 +250,7 @@ const CourseMainBody = ({
               </Box>
             </Box>
 
-            <TeacherCard className="w-[30%] " />
+            <TeacherCard className="w-[30%] " TeacherProfile={TeacherProfile} />
           </Card>
         </Box>
       </Card>
