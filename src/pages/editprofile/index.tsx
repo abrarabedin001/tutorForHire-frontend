@@ -25,19 +25,19 @@ const validationSchema = yup.object({
     .string('Enter your education')
     .min(5, 'Minimum 5 characters')
     .required('Email is required'),
-    Phone: yup
+  Phone: yup
     .number()
     .typeError('Phone must be a number')
     .min(10, 'Minimum 10 characters including zero')
     .positive('Phone no. must be a positive number')
-    .required('Phone no. is required')
+    .required('Phone no. is required'),
 });
 
 const SignUp = () => {
   const [cookies, setCookie] = useCookies(['user']);
   const [bio, setBio] = React.useState('');
   const [education, setEducation] = React.useState('');
-  const [Phone,setPhone] = React.useState('');
+  const [Phone, setPhone] = React.useState('');
 
   React.useEffect(() => {
     const getStuff = async () => {
@@ -78,7 +78,7 @@ const SignUp = () => {
 
     try {
       let link = '';
-
+      console.log('Not');
       if (cookies.data.user.type === 'STUDENT') {
         link = 'http://localhost:5000/student/studentupdate';
       } else {
@@ -86,7 +86,7 @@ const SignUp = () => {
       }
       const user = await axios.patch(
         link,
-        { bio: bio, education: education,Phone:Phone },
+        { bio: bio, education: education, Phone: Phone },
         {
           headers: {
             'content-type': 'application/json',
@@ -111,7 +111,7 @@ const SignUp = () => {
             }}
             className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
-            <h1 className="text-center text-2xl font-bold">Edit Course</h1>
+            <h1 className="text-center text-2xl font-bold">Edit Profile</h1>
             <p className=" text-lg font-semibold">Subjects: </p>
             <TextField
               fullWidth
@@ -141,19 +141,19 @@ const SignUp = () => {
               className="bg-white"
             />
 
-          <p className=" text-lg font-semibold">Phone-no: </p>
+            <p className=" text-lg font-semibold">Phone-no: </p>
 
-          <TextField
-            fullWidth
-            id="Phone"
-            name="Phone"
-            label="Phone-no"
-            multiline
-            maxRows={1}
-            value={Phone}
-            onChange={(e) => setPhone(e.target.value)}
-            className="bg-white"
-/>
+            <TextField
+              fullWidth
+              id="Phone"
+              name="Phone"
+              label="Phone-no"
+              multiline
+              maxRows={1}
+              value={Phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="bg-white"
+            />
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit
             </Button>
