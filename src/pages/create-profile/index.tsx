@@ -77,12 +77,12 @@ const SignUp = () => {
             onSubmit={formik.handleSubmit}
             className=" mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 font-semibold"
           >
-            <p>Bio</p>
+            <p>Subjects</p>
             <TextField
               fullWidth
               id="bio"
               name="bio"
-              label="Bio"
+              label="subjects"
               multiline // Set the multiline prop to true to make it behave like a textarea
               minRows={1}
               maxRows={4} // Optionally, set the number of rows for the textarea
