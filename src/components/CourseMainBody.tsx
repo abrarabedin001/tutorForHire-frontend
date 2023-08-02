@@ -69,6 +69,8 @@ const CourseMainBody = ({
   classes,
   enrolledStudents,
   TeacherProfile,
+  isTeacher,
+  isStudent,
 }: {
   id: string;
   slug: string;
@@ -83,6 +85,8 @@ const CourseMainBody = ({
   classes: string;
   enrolledStudents: any;
   TeacherProfile: any;
+  isTeacher: boolean;
+  isStudent: boolean;
 }) => {
   const data = useCookies(['data']);
   const cookie = data[0].data;
@@ -152,12 +156,20 @@ const CourseMainBody = ({
             </Typography>
             <Divider />
             <Box className="flex gap-x-3 p-5">
-              <Button variant="contained" onClick={enrollCourse}>
-                Enroll
-              </Button>
-              <a href={'/course/edit/' + slug}>
-                <Button variant="contained">Edit</Button>
-              </a>
+              {isStudent ? (
+                <Button variant="contained" onClick={enrollCourse}>
+                  Enroll
+                </Button>
+              ) : (
+                ''
+              )}
+              {isTeacher ? (
+                <a href={'/course/edit/' + slug}>
+                  <Button variant="contained">Edit</Button>
+                </a>
+              ) : (
+                ''
+              )}
             </Box>
           </Grid>
           <Grid item xs={4}>

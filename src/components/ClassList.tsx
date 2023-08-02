@@ -84,8 +84,30 @@ const ClassList = ({
             key={el.id}
           >
             {' '}
-            <Box className="fit-content m-1 flex w-full justify-between bg-blue-200 p-2">
-              <h4>{el.StudentProfile.user.name}</h4>
+            <Box className="fit-content text m-1 flex w-full  bg-blue-200 p-2">
+              <>
+                <h4 className="p-2  font-semibold">
+                  {' '}
+                  Name: {el.StudentProfile.user.name}
+                </h4>
+              </>
+
+              {isTeacher ? (
+                <>
+                  <h4 className="p-2  font-semibold">
+                    {' '}
+                    Phone: {el.StudentProfile.Phone}
+                  </h4>
+                </>
+              ) : (
+                ''
+              )}
+              <>
+                <h4 className="p-2  font-semibold">
+                  {' '}
+                  Email: {el.StudentProfile.user.email}
+                </h4>
+              </>
             </Box>
             <br />
             {userType === 'TEACHER' && (

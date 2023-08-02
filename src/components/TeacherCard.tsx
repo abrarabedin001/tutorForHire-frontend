@@ -38,6 +38,13 @@ const TeacherCard = ({
           Subject:
         </p>
         <p className="text-black">{TeacherProfile.bio}</p>
+        <p
+          className="mt-3 text-black"
+          style={{ fontWeight: 'bold', fontSize: '16px' }}
+        >
+          Phone:
+        </p>
+        <p className="text-black">{TeacherProfile.Phone}</p>
       </div>
     </Card>
   );

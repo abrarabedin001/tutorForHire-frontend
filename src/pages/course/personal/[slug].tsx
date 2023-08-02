@@ -93,6 +93,8 @@ const EditCourse = () => {
               endDate={data1?.course?.endDate}
               enrolledStudents={data1?.course?.CourseEnroll}
               TeacherProfile={data1?.course?.TeacherProfile}
+              isTeacher={isTeacher}
+              isStudent={isStudent}
               classes={'w-full flex-col justify-center space-y-2 '}
             ></CourseMainBody>
             {isTeacher || isStudent ? (
