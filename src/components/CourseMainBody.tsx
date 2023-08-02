@@ -136,8 +136,11 @@ const CourseMainBody = ({
   return (
     // <Box className="w-70 flex-row space-y-2 ">
     <Box className={classes}>
-      <Card className="  flex flex-col justify-center p-3 shadow-lg ">
-        <Grid container className="mb-5 mt-0 w-full bg-blue-100 p-3 shadow-lg ">
+      <Card className="  flex w-full flex-col justify-center  p-3 shadow-lg">
+        <Grid
+          container
+          className="mb-5 mt-0 w-full bg-blue-100 p-3 shadow-lg  "
+        >
           <Grid item xs={8}>
             <Typography
               className="px-10 py-5"
@@ -162,9 +165,9 @@ const CourseMainBody = ({
           </Grid>
         </Grid>
 
-        <Box className="flex w-full justify-center">
+        <Box className="float-right flex w-full justify-center">
           <Card className="m-3  flex  w-full justify-between bg-blue-500 p-3 shadow-lg ">
-            <Box>
+            <Box className="w-[70%]">
               <Box mb={2}>
                 <Typography
                   variant="h6"
