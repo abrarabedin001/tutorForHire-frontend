@@ -19,18 +19,25 @@ import { Textarea } from '@mui/joy';
 const validationSchema = yup.object({
   bio: yup
     .string('Enter your Bio')
-    .min(10, 'Minimum 10 characters')
+    .min(5, 'Minimum 5 characters')
     .required('Name is required'),
   education: yup
     .string('Enter your education')
-    .min(10, 'Minimum 10 characters')
+    .min(5, 'Minimum 5 characters')
     .required('Email is required'),
+    Phone: yup
+    .number()
+    .typeError('Phone must be a number')
+    .min(10, 'Minimum 10 characters including zero')
+    .positive('Phone no. must be a positive number')
+    .required('Phone no. is required')
 });
 
 const SignUp = () => {
   const [cookies, setCookie] = useCookies(['user']);
   const [bio, setBio] = React.useState('');
   const [education, setEducation] = React.useState('');
+  const [Phone,setPhone] = React.useState('');
 
   React.useEffect(() => {
     const getStuff = async () => {
@@ -55,6 +62,7 @@ const SignUp = () => {
         console.log('profile', profile.data);
         setBio(profile.data.data.bio);
         setEducation(profile.data.data.education);
+        setPhone(profile.data.data.Phone);
         // await router.push('/home');
       } catch (err) {
         console.log(err.message);
@@ -78,7 +86,7 @@ const SignUp = () => {
       }
       const user = await axios.patch(
         link,
-        { bio: bio, education: education },
+        { bio: bio, education: education,Phone:Phone },
         {
           headers: {
             'content-type': 'application/json',
@@ -132,6 +140,20 @@ const SignUp = () => {
               onChange={(e) => setEducation(e.target.value)}
               className="bg-white"
             />
+
+          <p className=" text-lg font-semibold">Phone-no: </p>
+
+          <TextField
+            fullWidth
+            id="Phone"
+            name="Phone"
+            label="Phone-no"
+            multiline
+            maxRows={1}
+            value={Phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="bg-white"
+/>
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit
             </Button>
@@ -142,5 +164,5 @@ const SignUp = () => {
     </>
   );
 };
-
+//hello guys
 export default SignUp;
