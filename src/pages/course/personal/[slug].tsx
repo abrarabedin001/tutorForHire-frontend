@@ -94,13 +94,7 @@ const EditCourse = () => {
                 : ''}
 
               {open === 'chat'
-                ? data1?.course?.id && (
-                    <Chat
-                      id={data1?.course?.id}
-                      change={change}
-                      setChange={setChange}
-                    />
-                  )
+                ? data1?.course?.id && <Chat id={data1?.course?.id} />
                 : ''}
             </Box>
           </Box>

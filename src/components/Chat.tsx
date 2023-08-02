@@ -9,15 +9,7 @@ import { Card, Rating } from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-export default function Chat({
-  id,
-  change,
-  setChange,
-}: {
-  id: string;
-  change: any;
-  setChange: any;
-}) {
+export default function Chat({ id }: { id: string }) {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);

@@ -14,7 +14,7 @@ export default function CommentForm({ id }: { id: string }) {
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [rate, setRate] = React.useState(0);
-
+  const [commentChange, setCommentChange] = React.useState(0);
   const [comment, setComment] = React.useState('');
   const [commentList, setCommentList] = React.useState([]);
   const [cookies, setCookie] = useCookies(['data']);
@@ -44,7 +44,7 @@ export default function CommentForm({ id }: { id: string }) {
       }
     };
     comments();
-  }, []);
+  }, [commentChange]);
 
   const onSubmit = async () => {
     try {
@@ -69,6 +69,9 @@ export default function CommentForm({ id }: { id: string }) {
           },
         },
       );
+      setCommentChange(commentChange + 1);
+      setComment('');
+      setRate(0);
     } catch (err) {
       console.log(err.message);
     }
