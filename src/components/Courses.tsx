@@ -4,7 +4,7 @@ import { Container } from 'postcss';
 
 const Courses = ({ courses }: { courses?: any[] }) => {
   // If courses is undefined, set it to an empty array
-  console.log('courses', typeof courses);
+  console.log('courses', courses);
   const coursesArray: typeof courses = courses;
   return (
     <Box className="m-3 p-3">

@@ -154,11 +154,10 @@ export default function CourseCard({ course }: { course: any }) {
               </IconButton>
             }
             titleTypographyProps={{
-              className:'titlename',
-              color:'rgb(107, 107, 229)',
-              fontWeight:'bold',
-              textTransform:'capitalize'
-              
+              className: 'titlename',
+              color: 'rgb(107, 107, 229)',
+              fontWeight: 'bold',
+              textTransform: 'capitalize',
             }}
             title={course?.title}
             subheader={course?.createdAt.split('T')[0]}
@@ -171,6 +170,7 @@ export default function CourseCard({ course }: { course: any }) {
           image="https://rb.gy/h90m3"
           alt="Paella dish"
         /> */}
+        {course?.TeacherProfile?.user?.name}
         <CourseImage title={course?.title} />
         <Rating
           name="simple-controlled"

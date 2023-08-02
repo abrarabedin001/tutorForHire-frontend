@@ -8,17 +8,27 @@ import Textarea from '@mui/joy/Textarea';
 import { Card, Rating } from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { is } from 'date-fns/locale';
 
-export default function CommentForm({ id }: { id: string }) {
+export default function CommentForm({
+  id,
+  isTeacher,
+  isStudent,
+}: {
+  id: string;
+  isTeacher: boolean;
+  isStudent: boolean;
+}) {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [rate, setRate] = React.useState(0);
-
+  const [commentChange, setCommentChange] = React.useState(0);
   const [comment, setComment] = React.useState('');
   const [commentList, setCommentList] = React.useState([]);
   const [cookies, setCookie] = useCookies(['data']);
   React.useEffect(() => {
+    console.log(isTeacher, isStudent, 'isTeacher, isStudent');
     const comments = async () => {
       try {
         console.log('comments sections');
@@ -28,12 +38,12 @@ export default function CommentForm({ id }: { id: string }) {
         const list = await axios.get(
           link,
 
-          {
-            headers: {
-              'content-type': 'application/json',
-              Authorization: `token ${cookies.data.token}`,
-            },
-          },
+          // {
+          //   headers: {
+          //     'content-type': 'application/json',
+          //     Authorization: `token ${cookies.data.token}`,
+          //   },
+          // },
         );
 
         setCommentList(list.data.ratingReview);
@@ -44,7 +54,7 @@ export default function CommentForm({ id }: { id: string }) {
       }
     };
     comments();
-  }, []);
+  }, [commentChange]);
 
   const onSubmit = async () => {
     try {
@@ -69,6 +79,9 @@ export default function CommentForm({ id }: { id: string }) {
           },
         },
       );
+      setCommentChange(commentChange + 1);
+      setComment('');
+      setRate(0);
     } catch (err) {
       console.log(err.message);
     }
@@ -76,48 +89,53 @@ export default function CommentForm({ id }: { id: string }) {
 
   return (
     <div className="flex w-full flex-col">
-      <FormControl sx={{ width: '100%' }}>
-        <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-          Write a comment
-        </FormLabel>
-        <Textarea
-          placeholder="Type something here…"
-          minRows={3}
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          endDecorator={
-            <Box
-              sx={{
-                display: 'flex',
-                gap: 'var(--Textarea-paddingBlock)',
-                pt: 'var(--Textarea-paddingBlock)',
-                borderTop: '1px solid',
-                borderColor: 'divider',
-                width: '100%',
-                flex: 'auto',
-              }}
-            >
-              <Rating
-                name="simple-controlled"
-                value={rate}
-                onChange={(event, newValue) => {
-                  setRate(newValue);
-                  console.log(newValue);
+      {isTeacher || isStudent ? (
+        <FormControl sx={{ width: '100%' }}>
+          <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+            Write a comment
+          </FormLabel>
+          <Textarea
+            placeholder="Type something here…"
+            minRows={3}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            endDecorator={
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 'var(--Textarea-paddingBlock)',
+                  pt: 'var(--Textarea-paddingBlock)',
+                  borderTop: '1px solid',
+                  borderColor: 'divider',
+                  width: '100%',
+                  flex: 'auto',
                 }}
-              />
+              >
+                <Rating
+                  name="simple-controlled"
+                  value={rate}
+                  onChange={(event, newValue) => {
+                    setRate(newValue);
+                    console.log(newValue);
+                  }}
+                />
 
-              <Button sx={{ ml: 'auto' }} onClick={() => onSubmit()}>
-                Send
-              </Button>
-            </Box>
-          }
-          sx={{
-            minWidth: 300,
-            fontWeight,
-            fontStyle: italic ? 'italic' : 'initial',
-          }}
-        />
-      </FormControl>
+                <Button sx={{ ml: 'auto' }} onClick={() => onSubmit()}>
+                  Send
+                </Button>
+              </Box>
+            }
+            sx={{
+              minWidth: 300,
+              fontWeight,
+              fontStyle: italic ? 'italic' : 'initial',
+            }}
+          />
+        </FormControl>
+      ) : (
+        ' '
+      )}
+
       <Box sx={{ mt: 2 }}>
         <FormLabel></FormLabel>
 

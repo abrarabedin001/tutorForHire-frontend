@@ -46,6 +46,7 @@ const FormikComponent = ({
   categories,
   seatStatus,
   address,
+  startDate,
   endDate,
   cookies,
   classes,

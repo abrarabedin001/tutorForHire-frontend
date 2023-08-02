@@ -97,12 +97,12 @@ const CourseMainBody = ({
       const totalRating = await axios.get(
         TotalRatinglink,
 
-        {
-          headers: {
-            'content-type': 'application/json',
-            Authorization: `token ${cookies.data.token}`,
-          },
-        },
+        // {
+        //   headers: {
+        //     'content-type': 'application/json',
+        //     Authorization: `token ${cookies.data.token}`,
+        //   },
+        // },
       );
       console.log('TotalRatingLink', TotalRatinglink);
       setTotalRating(totalRating.data.averageRating);

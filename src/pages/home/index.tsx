@@ -34,6 +34,7 @@ export default function LoginHome() {
           },
         });
         console.log('kaj kore ki?', response.data.courseshow);
+        console.log(response.data.courseshow);
         setCourses(response.data.courseshow);
       } catch (error) {
         console.error('Error fetching courses:', error);
