@@ -103,7 +103,7 @@ const SignUp = () => {
             }}
             className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
-            <h1 className="text-center text-2xl font-bold">Edit Course</h1>
+            <h1 className="text-center text-2xl font-bold">Edit Profile</h1>
             <p className=" text-lg font-semibold">Subjects: </p>
             <TextField
               fullWidth
