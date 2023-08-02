@@ -20,18 +20,18 @@ export default function LoginHome() {
   const search = React.useRef('');
   React.useEffect(() => {
     console.log('cookies', cookies?.data?.user?.type);
-    if (!cookies?.data?.user) {
-      window.location.href = '/';
-    }
+    // if (!cookies?.data?.user) {
+    //   window.location.href = '/';
+    // }
 
     const fetchCourses = async () => {
       try {
         const link = 'http://localhost:5000/course/showcourse';
         const response = await axios.get(link, {
-          headers: {
-            'content-type': 'application/json',
-            Authorization: `token ${cookies?.data?.token}`,
-          },
+          // headers: {
+          //   'content-type': 'application/json',
+          //   Authorization: `token ${cookies?.data?.token}`,
+          // },
         });
         console.log('kaj kore ki?', response.data.courseshow);
         console.log(response.data.courseshow);
