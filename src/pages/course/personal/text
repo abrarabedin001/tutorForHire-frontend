@@ -1,0 +1,11 @@
+// data1.course.TeacherProfile.user.id === cookies?.data?.user?.id
+//   ? setIsTeacher(true)
+//   : setIsTeacher(false);
+
+// if (isTeacher || isStudent) {
+//   if (open === 'class-list') {
+//     if (data1?.course?.id) {
+//       setClassList(<ClassList id={data1?.course?.id} />);
+//     }
+//   }
+// }
