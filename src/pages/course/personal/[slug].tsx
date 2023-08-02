@@ -140,7 +140,13 @@ const EditCourse = () => {
 
               {isTeacher || isStudent
                 ? open === 'class-list'
-                  ? data1?.course?.id && <ClassList id={data1?.course?.id} />
+                  ? data1?.course?.id && (
+                      <ClassList
+                        id={data1?.course?.id}
+                        enrolledStudents={data1?.course?.CourseEnroll}
+                        isTeacher={isTeacher}
+                      />
+                    )
                   : ''
                 : ''}
               {isTeacher || isStudent
