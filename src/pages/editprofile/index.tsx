@@ -37,7 +37,7 @@ const SignUp = () => {
   const [cookies, setCookie] = useCookies(['user']);
   const [bio, setBio] = React.useState('');
   const [education, setEducation] = React.useState('');
-  const [phone, setPhone] = React.useState('');
+  const [Phone, setPhone] = React.useState('');
 
   React.useEffect(() => {
     const getStuff = async () => {
@@ -78,7 +78,7 @@ const SignUp = () => {
 
     try {
       let link = '';
-
+      console.log('Not');
       if (cookies.data.user.type === 'STUDENT') {
         link = 'http://localhost:5000/student/studentupdate';
       } else {
@@ -145,12 +145,12 @@ const SignUp = () => {
 
             <TextField
               fullWidth
-              id="phone"
-              name="phone"
+              id="Phone"
+              name="Phone"
               label="Phone-no"
               multiline
               maxRows={1}
-              value={phone}
+              value={Phone}
               onChange={(e) => setPhone(e.target.value)}
               className="bg-white"
             />
