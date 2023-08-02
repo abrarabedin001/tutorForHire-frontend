@@ -129,7 +129,13 @@ const EditCourse = () => {
 
             <Box className="flex w-full ">
               {open === 'comment'
-                ? data1?.course?.id && <CommentForm id={data1?.course?.id} />
+                ? data1?.course?.id && (
+                    <CommentForm
+                      id={data1?.course?.id}
+                      isTeacher={isTeacher}
+                      isStudent={isStudent}
+                    />
+                  )
                 : ''}
 
               {isTeacher || isStudent
