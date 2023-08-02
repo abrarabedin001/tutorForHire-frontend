@@ -11,7 +11,7 @@ const LandingPage = () => {
   const router = useRouter();
   const [cookie, setCookie, removeCookie] = useCookies(['user']);
   const user = cookie?.data?.user;
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [menupart, setMenupart] = useState<ReactElement<any, any>>(null);
   const [authButtons, setAuthBUttons] = useState<ReactElement<any, any>>(null);
 
@@ -88,32 +88,40 @@ const LandingPage = () => {
             alignItems="flex-end"
             className="w-full"
           >
-            <Button
-              // disabled
-              className="name"
-              style={{ color: anchorEl ? 'red' : 'black', boxShadow: 'none' }}
-              onClick={(event) => setAnchorEl(event.currentTarget)}
-            >
-              {user?.name}
-              {anchorEl ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-            </Button>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-              keepMounted
-            >
-              <MenuItem onClick={handleProfileClick} className="center-text">
-                Profile
-              </MenuItem>
-              <MenuItem
-                onClick={handleEditProfileClick}
-                className="center-text"
-              >
-                Edit Profile
-              </MenuItem>
-            </Menu>
+            {' '}
+            <Box className="">
+              <Button
+                // disabled
 
+                style={{ color: anchorEl ? 'red' : 'black', boxShadow: 'none' }}
+                onClick={(event) => {
+                  setAnchorEl(event.currentTarget);
+                }}
+                // onClick={(event) => {
+                //   setAnchorEl(event.target.innerText);
+                // }}
+              >
+                {user?.name}
+                {anchorEl ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+              </Button>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                className="translate-x-12"
+                onClose={() => setAnchorEl(null)}
+                keepMounted
+              >
+                <MenuItem onClick={handleProfileClick} className="center-text">
+                  Profile
+                </MenuItem>
+                <MenuItem
+                  onClick={handleEditProfileClick}
+                  className="center-text"
+                >
+                  Edit Profile
+                </MenuItem>
+              </Menu>
+            </Box>
             <Button
               className="text-black"
               color="inherit"
@@ -138,7 +146,7 @@ const LandingPage = () => {
         )}
       </Box>,
     );
-  }, [user]);
+  }, [user, anchorEl]);
   const handleSignIn = () => {
     window.location.href = '/login';
   };

@@ -23,7 +23,8 @@ const EditCourse = () => {
   const router = useRouter();
   const [open, setOpen] = React.useState('comment');
   const [slug, setSlug] = React.useState('');
-
+  const [isTeacher, setIsTeacher] = React.useState(false);
+  const [isStudent, setIsStudent] = React.useState(false);
   const [change, setChange] = React.useState(0);
   const [type] = React.useState(cookies?.data?.user?.type);
 
@@ -34,8 +35,28 @@ const EditCourse = () => {
     fetch(link)
       .then((res) => res.json())
       .then((data) => setData(data));
-  }, [change, router.isReady]);
+    // data1.course.TeacherProfile.user.id === cookies?.data?.user?.id
+    //   ? setIsTeacher(true)
+    //   : setIsTeacher(false);
 
+    // if (isTeacher || isStudent) {
+    //   if (open === 'class-list') {
+    //     if (data1?.course?.id) {
+    //       setClassList(<ClassList id={data1?.course?.id} />);
+    //     }
+    //   }
+    // }
+    console.log('techer', data1);
+    console.log('data1', data1);
+  }, [change, router.isReady]);
+  console.log('data1', data1);
+
+  // console.log(
+  //   'data1',
+  //   data1.course.CourseEnroll.filter(
+  //     (data) => data.StudentProfile.user.id === cookies?.data?.user?.id,
+  //   ),
+  // );
   return (
     <CookiesProvider>
       <Menu />
