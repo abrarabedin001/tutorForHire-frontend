@@ -128,7 +128,7 @@ const LandingPage = () => {
               onClick={() => {
                 removeCookie('data', '/');
                 removeCookie('token', '/');
-                // router.push('/login');
+                router.push('/login');
               }}
             >
               Log Out
