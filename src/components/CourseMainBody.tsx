@@ -69,6 +69,8 @@ const CourseMainBody = ({
   classes,
   enrolledStudents,
   TeacherProfile,
+  isTeacher,
+  isStudent,
 }: {
   id: string;
   slug: string;
@@ -83,6 +85,8 @@ const CourseMainBody = ({
   classes: string;
   enrolledStudents: any;
   TeacherProfile: any;
+  isTeacher: boolean;
+  isStudent: boolean;
 }) => {
   const data = useCookies(['data']);
   const cookie = data[0].data;
@@ -136,8 +140,11 @@ const CourseMainBody = ({
   return (
     // <Box className="w-70 flex-row space-y-2 ">
     <Box className={classes}>
-      <Card className="  flex flex-col justify-center p-3 shadow-lg ">
-        <Grid container className="mb-5 mt-0 w-full bg-blue-100 p-3 shadow-lg ">
+      <Card className="  flex w-full flex-col justify-center  p-3 shadow-lg">
+        <Grid
+          container
+          className="mb-5 mt-0 w-full bg-blue-100 p-3 shadow-lg  "
+        >
           <Grid item xs={8}>
             <Typography
               className="px-10 py-5"
@@ -149,12 +156,20 @@ const CourseMainBody = ({
             </Typography>
             <Divider />
             <Box className="flex gap-x-3 p-5">
-              <Button variant="contained" onClick={enrollCourse}>
-                Enroll
-              </Button>
-              <a href={'/course/edit/' + slug}>
-                <Button variant="contained">Edit</Button>
-              </a>
+              {isStudent ? (
+                <Button variant="contained" onClick={enrollCourse}>
+                  Enroll
+                </Button>
+              ) : (
+                ''
+              )}
+              {isTeacher ? (
+                <a href={'/course/edit/' + slug}>
+                  <Button variant="contained">Edit</Button>
+                </a>
+              ) : (
+                ''
+              )}
             </Box>
           </Grid>
           <Grid item xs={4}>
@@ -162,9 +177,9 @@ const CourseMainBody = ({
           </Grid>
         </Grid>
 
-        <Box className="flex w-full justify-center">
+        <Box className="float-right flex w-full justify-center">
           <Card className="m-3  flex  w-full justify-between bg-blue-500 p-3 shadow-lg ">
-            <Box>
+            <Box className="w-[70%]">
               <Box mb={2}>
                 <Typography
                   variant="h6"

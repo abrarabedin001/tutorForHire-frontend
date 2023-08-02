@@ -5,7 +5,15 @@ import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import FormLabel from '@mui/material/FormLabel';
 
-const ClassList = ({ id }: { id: string }) => {
+const ClassList = ({
+  id,
+  enrolledStudents,
+  isTeacher,
+}: {
+  id: string;
+  enrolledStudents: any;
+  isTeacher: boolean;
+}) => {
   const [cookies, setCookie] = useCookies(['data']);
   const [classList, setClassList] = React.useState([]);
   const userType = cookies?.data?.user?.type;
@@ -70,23 +78,53 @@ const ClassList = ({ id }: { id: string }) => {
         <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
           Class List
         </FormLabel>
-        {classList?.map((el) => (
+        {enrolledStudents?.map((el) => (
           <Card
             className=" mb-1 flex flex-row justify-between rounded-xl border-black p-5 text-left shadow-xl"
             key={el.id}
           >
             {' '}
-            <Box className="fit-content m-1 flex w-full justify-between bg-blue-200 p-2">
-              <h4>{el.StudentProfile.user.name}</h4>
+            <Box className="fit-content text m-1 flex w-full  bg-blue-200 p-2">
+              <>
+                <h4 className="p-2  font-semibold">
+                  {' '}
+                  Name: {el.StudentProfile.user.name}
+                </h4>
+              </>
+
+              {isTeacher ? (
+                <>
+                  <h4 className="p-2  font-semibold">
+                    {' '}
+                    Phone: {el.StudentProfile.Phone}
+                  </h4>
+                </>
+              ) : (
+                ''
+              )}
+              <>
+                <h4 className="p-2  font-semibold">
+                  {' '}
+                  Email: {el.StudentProfile.user.email}
+                </h4>
+              </>
             </Box>
             <br />
-            {userType==='TEACHER' && (
-            <Button
-              onClick={() => kickout(el.StudentProfile.id)}
-              className="w-[60px]"
-            >
-              Kick out
-            </Button>
+            {userType === 'TEACHER' && (
+              <>
+                {' '}
+                {el.paid ? (
+                  <p className="m-1 bg-green-500 p-5 text-white">Paid</p>
+                ) : (
+                  <p className="m-1 bg-red-500 p-5 text-white">Unpaid</p>
+                )}
+                <Button
+                  onClick={() => kickout(el.StudentProfile.id)}
+                  className="w-[60px] bg-red-500"
+                >
+                  Kick out
+                </Button>
+              </>
             )}
           </Card>
         ))}

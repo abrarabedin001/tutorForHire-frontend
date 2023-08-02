@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 
 import Menu from '~/components/Menu';
 import { Textarea } from '@mui/joy';
+import TeacherCard from '~/components/TeacherCard';
 
 const validationSchema = yup.object({
   bio: yup
@@ -37,6 +38,7 @@ const SignUp = () => {
   const [cookies, setCookie] = useCookies(['user']);
   const [bio, setBio] = React.useState('');
   const [education, setEducation] = React.useState('');
+  const [profile, setProfile] = React.useState({});
   const [Phone, setPhone] = React.useState('');
 
   React.useEffect(() => {
@@ -60,6 +62,7 @@ const SignUp = () => {
           },
         );
         console.log('profile', profile.data);
+        setProfile(profile.data.data);
         setBio(profile.data.data.bio);
         setEducation(profile.data.data.education);
         setPhone(profile.data.data.Phone);
@@ -111,52 +114,27 @@ const SignUp = () => {
             }}
             className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
-            <h1 className="text-center text-2xl font-bold">Edit Profile</h1>
+            <h1 className="text-center text-2xl font-bold">Profile</h1>
             <p className=" text-lg font-semibold">Subjects: </p>
-            <TextField
-              fullWidth
-              id="bio"
-              name="bio"
-              label="subjects"
-              multiline
-              minRows={1} // Limiting to 2 rows
-              maxRows={4}
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-              className="bg-white"
-            />
+
+            <p className="bg-white p-2 text-center text-lg">{bio}</p>
 
             <p className=" text-lg font-semibold">Education: </p>
 
-            <TextField
-              fullWidth
-              id="education"
-              name="education"
-              label="education"
-              multiline
-              minRows={1} // Limiting to 2 rows
-              maxRows={4}
-              value={education}
-              onChange={(e) => setEducation(e.target.value)}
-              className="bg-white"
-            />
+            <p className="bg-white p-2 text-center text-lg">{education}</p>
 
             <p className=" text-lg font-semibold">Phone-no: </p>
 
-            <TextField
+            <p className="bg-white p-2 text-center text-lg">{Phone}</p>
+            {/* <Button
+              color="primary"
+              variant="contained"
+              type="submit"
+              className="display-none"
               fullWidth
-              id="Phone"
-              name="Phone"
-              label="Phone-no"
-              multiline
-              maxRows={1}
-              value={Phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="bg-white"
-            />
-            <Button color="primary" variant="contained" type="submit" fullWidth>
+            >
               Submit
-            </Button>
+            </Button> */}
           </form>
         </Box>
       </Container>

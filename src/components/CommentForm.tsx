@@ -9,7 +9,7 @@ import { Card, Rating } from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { is } from 'date-fns/locale';
-
+import { useRouter } from 'next/router';
 export default function CommentForm({
   id,
   isTeacher,
@@ -27,6 +27,7 @@ export default function CommentForm({
   const [comment, setComment] = React.useState('');
   const [commentList, setCommentList] = React.useState([]);
   const [cookies, setCookie] = useCookies(['data']);
+  const router = useRouter();
   React.useEffect(() => {
     console.log(isTeacher, isStudent, 'isTeacher, isStudent');
     const comments = async () => {
@@ -54,11 +55,14 @@ export default function CommentForm({
       }
     };
     comments();
+    console.log('commentList', commentList);
   }, [commentChange]);
 
   const onSubmit = async () => {
+    // setCommentChange(commentChange + 1);
+    // console.log(commentChange, 'commentChange');
     try {
-      // console.log('enters');
+      console.log('enters');
       let link = '';
 
       if (cookies.data.user.type === 'STUDENT') {
@@ -67,8 +71,10 @@ export default function CommentForm({
         window.alert('A teacher can not comment on a course');
         return;
       }
-
+      console.log('center');
+      console.log(commentChange, 'commentChange');
       // console.log({ courseId: id, comment: comment });
+
       const response_comment = await axios.post(
         link,
         { courseId: id, comment: comment, rate: rate },
@@ -79,7 +85,10 @@ export default function CommentForm({
           },
         },
       );
+      console.log('exit');
+      console.log(response_comment);
       setCommentChange(commentChange + 1);
+      console.log('response_comment', commentChange);
       setComment('');
       setRate(0);
     } catch (err) {

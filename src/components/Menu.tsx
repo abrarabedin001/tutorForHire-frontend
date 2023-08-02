@@ -107,7 +107,7 @@ const LandingPage = () => {
               <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                className="translate-x-12"
+                className="translate-x-8"
                 onClose={() => setAnchorEl(null)}
                 keepMounted
               >
@@ -128,7 +128,7 @@ const LandingPage = () => {
               onClick={() => {
                 removeCookie('data', '/');
                 removeCookie('token', '/');
-                // router.push('/login');
+                router.push('/login');
               }}
             >
               Log Out
