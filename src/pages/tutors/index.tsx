@@ -22,9 +22,9 @@ export default function LoginHome() {
   const search = React.useRef('');
   React.useEffect(() => {
     console.log('cookies', cookies?.data?.user?.type);
-    if (!cookies?.data?.user) {
-      window.location.href = '/';
-    }
+    // if (!cookies?.data?.user) {
+    //   window.location.href = '/';
+    // }
 
     const fetchCourses = async () => {
       try {
