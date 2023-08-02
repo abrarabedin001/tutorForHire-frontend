@@ -104,12 +104,12 @@ const SignUp = () => {
             className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
           >
             <h1 className="text-center text-2xl font-bold">Edit Course</h1>
-            <p className=" text-lg font-semibold">Bio: </p>
+            <p className=" text-lg font-semibold">Subjects: </p>
             <TextField
               fullWidth
               id="bio"
               name="bio"
-              label="bio"
+              label="subjects"
               multiline
               minRows={1} // Limiting to 2 rows
               maxRows={4}

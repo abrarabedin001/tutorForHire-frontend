@@ -78,6 +78,12 @@ export default function CourseCard({ course }: { course: any }) {
       </div>
     );
   };
+  const text=course?.TeacherProfile?.user?.name;
+  const words = text.split(' '); // Split the text into an array of words
+  const initials = words.map(word => word.charAt(0)); // Extract the first character from each word
+  const result = initials.join('.'); // Concatenate the initials with "."
+  console.log(result)
+
   const isEnrolled = router.asPath.includes('enrolledcourses');
   const data = useCookies(['data']);
   const cookie = data[0].data;
@@ -144,8 +150,8 @@ export default function CourseCard({ course }: { course: any }) {
         <Link href={'http://localhost:3000/course/personal/' + course?.id}>
           <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                R
+              <Avatar sx={{ bgcolor: red[500], textTransform:'uppercase'}} aria-label="recipe">
+                {result}
               </Avatar>
             }
             action={
@@ -170,7 +176,6 @@ export default function CourseCard({ course }: { course: any }) {
           image="https://rb.gy/h90m3"
           alt="Paella dish"
         /> */}
-        {course?.TeacherProfile?.user?.name}
         <CourseImage title={course?.title} />
         <Rating
           name="simple-controlled"
