@@ -11,6 +11,8 @@ import Container from '@mui/material/Container';
 import Footer from '~/components/Footer';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import { ro } from 'date-fns/locale';
+import { useRouter } from 'next/router';
 
 export default function LoginHome() {
   const [cookies, setCookie] = useCookies(['data']);
@@ -18,30 +20,31 @@ export default function LoginHome() {
   const [searchedCourses, setSearchedCourses] = React.useState([]);
   const [query, setQuery] = React.useState('');
   const search = React.useRef('');
-  React.useEffect(() => {
-    console.log('cookies', cookies?.data?.user?.type);
-    if (!cookies?.data?.user) {
-      window.location.href = '/';
-    }
+  const router = useRouter();
 
+  React.useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const link = 'http://localhost:5000/course/showcourse';
+        if (!router.isReady) return;
+        console.log('router', router.query.slug);
+        const link =
+          'http://localhost:5000/tutor/searchtutor/' + router.query.slug;
+        console.log('link', link);
         const response = await axios.get(link, {
           headers: {
             'content-type': 'application/json',
             Authorization: `token ${cookies?.data?.token}`,
           },
         });
-        console.log('kaj kore ki?', response.data.courseshow);
-        setCourses(response.data.courseshow);
+        console.log('Teachers course?', response.data.data);
+        setCourses(response.data.data);
       } catch (error) {
         console.error('Error fetching courses:', error);
       }
     };
 
     fetchCourses();
-  }, [cookies]);
+  }, [router.isReady]);
 
   const searchCourse = async () => {
     try {
@@ -71,59 +74,15 @@ export default function LoginHome() {
     <CookiesProvider>
       <Menu />
       <Container>
-        <Box className="flex  w-full justify-center space-x-5 p-4">
-          <TextField
-            id="outlined-basic"
-            inputRef={search}
-            variant="filled"
-            size="small"
-            onChange={(e) => {
-              setQuery(e.target.value);
-            }}
-          />
-          <button
-            className="rounded bg-blue-800 p-2 text-white"
-            onClick={() => {
-              searchCourse();
-            }}
-          >
-            Searched courses
-          </button>
-          {/* <button
-            className="rounded bg-blue-800 p-3 text-white"
-            onClick={() => {
-              console.log(searchedCourses);
-            }}
-          >
-            Search
-          </button> */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '1000px',
+          }}
+        >
+          <Courses courses={courses}></Courses>
         </Box>
-        {query == '' ? (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              minHeight: '1000px',
-            }}
-          >
-            <Courses courses={courses}></Courses>
-          </Box>
-        ) : (
-          ' '
-        )}
-        {query != '' ? (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              minHeight: '1000px',
-            }}
-          >
-            <Courses courses={searchedCourses}></Courses>
-          </Box>
-        ) : (
-          ''
-        )}
       </Container>
       <Footer />
     </CookiesProvider>

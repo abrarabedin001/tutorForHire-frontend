@@ -31,7 +31,7 @@ const EditCourse = () => {
   const [type] = React.useState(cookies?.data?.user?.type);
 
   const data1 = hook(link);
-  // console.log('data', data1?.course);
+  console.log('data', data1);
   // console.log(data1?.course?.title);
 
   return (
@@ -51,6 +51,8 @@ const EditCourse = () => {
               address={data1?.course?.address}
               startDate={data1?.course?.startDate}
               endDate={data1?.course?.endDate}
+              enrolledStudents={data1?.course?.CourseEnroll}
+              TeacherProfile={data1?.course?.TeacherProfile}
               classes={'w-full flex-col justify-center space-y-2 '}
             ></CourseMainBody>
             <Box className="mb-5 mt-5 flex w-full justify-center space-x-3 bg-blue-400 p-5 shadow-md">
