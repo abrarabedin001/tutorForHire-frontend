@@ -19,20 +19,22 @@ import Footer from '~/components/Footer';
 
 const EditCourse = () => {
   const [cookies, setCookie] = useCookies(['user']);
-  const [data, setData] = React.useState([]);
+  const [data1, setData] = React.useState([]);
   const router = useRouter();
   const [open, setOpen] = React.useState('comment');
+  const [slug, setSlug] = React.useState('');
 
-  const slug1 = router.asPath.split('course/personal/')[1];
-  // console.log('slug', typeof slug1);
-  const link = 'http://localhost:5000/course/singlecourse/' + slug1;
-  // console.log('link', link);
-  // console.log('cookeise', cookies?.data?.user?.id);
+  const [change, setChange] = React.useState(0);
   const [type] = React.useState(cookies?.data?.user?.type);
 
-  const data1 = hook(link);
-  console.log('data', data1);
-  // console.log(data1?.course?.title);
+  React.useEffect(() => {
+    setSlug(router.query.slug);
+    const link =
+      'http://localhost:5000/course/singlecourse/' + router.query.slug;
+    fetch(link)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, [change, router.isReady]);
 
   return (
     <CookiesProvider>
@@ -42,7 +44,7 @@ const EditCourse = () => {
           <Box className=" flex w-full flex-col justify-center">
             <CourseMainBody
               id={data1?.course?.id}
-              slug={slug1}
+              slug={slug}
               cookies={cookies}
               title={data1?.course?.title}
               description={data1?.course?.description}
@@ -92,7 +94,13 @@ const EditCourse = () => {
                 : ''}
 
               {open === 'chat'
-                ? data1?.course?.id && <Chat id={data1?.course?.id} />
+                ? data1?.course?.id && (
+                    <Chat
+                      id={data1?.course?.id}
+                      change={change}
+                      setChange={setChange}
+                    />
+                  )
                 : ''}
             </Box>
           </Box>

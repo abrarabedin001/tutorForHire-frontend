@@ -9,12 +9,20 @@ import { Card, Rating } from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-export default function Chat({ id }: { id: string }) {
+export default function Chat({
+  id,
+  change,
+  setChange,
+}: {
+  id: string;
+  change: any;
+  setChange: any;
+}) {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [rate, setRate] = React.useState(0);
-
+  const [chatChange, setChatChange] = React.useState(0);
   const [chat, setChat] = React.useState('');
   const [chatList, setChatList] = React.useState([]);
   const [cookies, setCookie] = useCookies(['data']);
@@ -47,7 +55,7 @@ export default function Chat({ id }: { id: string }) {
       }
     };
     chats();
-  }, []);
+  }, [chatChange]);
 
   const onSubmit = async () => {
     try {
@@ -67,6 +75,8 @@ export default function Chat({ id }: { id: string }) {
         },
       );
       console.log(response_chat.data);
+      setChatChange(chatChange + 1);
+      setChat('');
     } catch (err) {
       console.log(err.message);
     }
