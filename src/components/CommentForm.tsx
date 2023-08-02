@@ -80,6 +80,7 @@ export default function CommentForm({
         },
       );
       setCommentChange(commentChange + 1);
+      console.log('response_comment');
       setComment('');
       setRate(0);
     } catch (err) {

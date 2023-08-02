@@ -146,6 +146,7 @@ export default function CourseCard({ course }: { course: any }) {
       console.log(err.message);
     }
   };
+  console.log('rate', course?.rate);
   return (
     <CookiesProvider>
       <Card
@@ -190,23 +191,24 @@ export default function CourseCard({ course }: { course: any }) {
         <CourseImage title={course?.title} />
         <Rating
           name="simple-controlled"
-          value={value}
-          onChange={async (event, newValue) => {
-            try {
-              await axios.post(
-                'http://localhost:5000/rating/giverating',
-                { courseId: course.id, rate: newValue },
-                {
-                  headers: {
-                    'content-type': 'application/json',
-                    Authorization: `token ${cookie.token}`,
-                  },
-                },
-              );
-            } catch (e) {
-              console.log(e);
-            }
-          }}
+          readOnly
+          value={course?.rate}
+          // onChange={async (event, newValue) => {
+          //   try {
+          //     await axios.post(
+          //       'http://localhost:5000/rating/giverating',
+          //       { courseId: course.id, rate: newValue },
+          //       {
+          //         headers: {
+          //           'content-type': 'application/json',
+          //           Authorization: `token ${cookie.token}`,
+          //         },
+          //       },
+          //     );
+          //   } catch (e) {
+          //     console.log(e);
+          //   }
+          // }}
           className=" ml-2 mt-2"
         />
 
