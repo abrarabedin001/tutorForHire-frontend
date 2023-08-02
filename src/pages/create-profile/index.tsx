@@ -23,12 +23,17 @@ import { Textarea } from '@mui/joy';
 const validationSchema = yup.object({
   bio: yup
     .string('Enter your Bio')
-    .min(10, 'Minimum 10 characters')
+    .min(5, 'Minimum 5 characters')
     .required('Name is required'),
   education: yup
     .string('Enter your education')
-    .min(10, 'Minimum 10 characters')
+    .min(5, 'Minimum 5 characters')
     .required('Email is required'),
+  Phone: yup
+    .number()
+    .typeError('Phone must be a number')
+    .min(10, 'Minimum 10 characters including zero')
+    .required('Phone no. is required')
 });
 
 const SignUp = () => {
@@ -39,6 +44,7 @@ const SignUp = () => {
     initialValues: {
       bio: '',
       education: '',
+      Phone:''
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     validationSchema: validationSchema,
@@ -62,6 +68,8 @@ const SignUp = () => {
         formik.setErrors({
           bio: 'Before creating a profile, please sign up',
           education: 'Before creating a profile, please sign up',
+          Phone: 'Before creating a profile, please sign up',
+
         });
         console.log(err.message);
       }
@@ -105,6 +113,22 @@ const SignUp = () => {
               error={formik.touched.education && Boolean(formik.errors.education)}
               helperText={formik.touched.education && formik.errors.education}
             />
+            <p>Phone-no</p>
+            <TextField
+              fullWidth
+              id="Phone"
+              name="Phone"
+              label="Phone-no"
+              multiline // Set the multiline prop to true to make it behave like a textarea
+              minRows={1}
+              maxRows={4} // Optionally, set the number of rows for the textarea
+              value={formik.values.Phone}
+              onChange={formik.handleChange}
+              error={formik.touched.Phone && Boolean(formik.errors.Phone)}
+              helperText={formik.touched.Phone && formik.errors.Phone}
+            />
+
+
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit
             </Button>
