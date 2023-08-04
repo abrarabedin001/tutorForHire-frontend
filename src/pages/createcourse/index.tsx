@@ -57,7 +57,7 @@ const SignUp = () => {
       seatStatus: '0',
       // teacherProfileId: cookies.data.user.id,
       address: '',
-      startDate:new Date(),
+      startDate: new Date(),
       endDate: new Date(),
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -174,7 +174,7 @@ const SignUp = () => {
               helperText={formik.touched.address && formik.errors.address}
             />
 
-              <label className=" text-lg font-semibold" for="startdate">
+            <label className=" text-lg font-semibold" for="startdate">
               Start Date
             </label>
             <input
