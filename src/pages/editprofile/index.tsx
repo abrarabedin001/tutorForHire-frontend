@@ -22,6 +22,8 @@ const SignUp = () => {
   const [education, setEducation] = React.useState('');
   const [Phone, setPhone] = React.useState('');
   const [image, setImage] = React.useState(null);
+  const [oldPass, setOldPass] = React.useState('');
+  const [newPassword, setNewPassword] = React.useState('');
 
   React.useEffect(() => {
     const getStuff = async () => {
@@ -91,11 +93,36 @@ const SignUp = () => {
     }
   };
 
+  const submitForm2 = async (e) => {
+    e.preventDefault();
+
+    try {
+      let link = '';
+      console.log('Not');
+
+      link = 'http://localhost:5000/users/changepass';
+      console.log('link', { bio, education, Phone, image });
+      const user = await axios.patch(
+        link,
+        { newPassword: newPassword, oldPass: oldPass },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `token ${cookies.data.token}`,
+          },
+        },
+      );
+      // await router.push('/home');
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <>
       <Menu />
       <Container>
-        <Box className="mb-20 flex w-full justify-center">
+        <Box className="mb-32 flex flex-wrap justify-center space-x-8">
           <form
             onSubmit={(e) => {
               submitForm(e);
@@ -108,7 +135,6 @@ const SignUp = () => {
               fullWidth
               id="bio"
               name="bio"
-              label="subjects"
               multiline
               minRows={1} // Limiting to 2 rows
               maxRows={4}
@@ -123,7 +149,6 @@ const SignUp = () => {
               fullWidth
               id="education"
               name="education"
-              label="education"
               multiline
               minRows={1} // Limiting to 2 rows
               maxRows={4}
@@ -138,7 +163,6 @@ const SignUp = () => {
               fullWidth
               id="Phone"
               name="Phone"
-              label="Phone-no"
               multiline
               maxRows={1}
               value={Phone}
@@ -153,21 +177,45 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </div>
-            {/* <div>
-              <input
-                type="file"
-                name="image"
-                // set supported file types here,
-                // could also check again within formik validation or backend
-                accept="image/png, .svg"
-                onChange={(e) => {
-                  // Object is possibly null error w/o check
-                  if (e.currentTarget.files) {
-                    setImage('image', e.currentTarget.files[0]);
-                  }
-                }}
-              />
-            </div> */}
+
+            <Button color="primary" variant="contained" type="submit" fullWidth>
+              Submit
+            </Button>
+          </form>
+          <form
+            onSubmit={(e) => {
+              submitForm2(e);
+            }}
+            className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
+          >
+            <h1 className="text-center text-2xl font-bold">Change Password</h1>
+            <p className=" text-lg font-semibold">Old Password: </p>
+            <TextField
+              fullWidth
+              id="Password"
+              name="Password"
+              multiline
+              minRows={1} // Limiting to 2 rows
+              maxRows={4}
+              value={setOldPass}
+              onChange={(e) => setOldPass(e.target.value)}
+              className="bg-white"
+            />
+
+            <p className=" text-lg font-semibold">New Password: </p>
+
+            <TextField
+              fullWidth
+              id="Password"
+              name="Password"
+              multiline
+              minRows={1} // Limiting to 2 rows
+              maxRows={4}
+              value={setNewPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="bg-white"
+            />
+
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit
             </Button>
