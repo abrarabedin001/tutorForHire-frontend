@@ -116,6 +116,11 @@ export default function CourseCard({ course }: { course: any }) {
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
+      if (err.response?.status===500){
+      alert(`No seat available in this course`)
+      }else if(err.response?.status===400){
+        alert(`You can't enroll after course start date`)
+      }
     }
   };
   const UnenrollCourse = async () => {
@@ -144,6 +149,9 @@ export default function CourseCard({ course }: { course: any }) {
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
+      if (err.response?.status === 400) {
+        alert(`Cannot unenroll after course start date`);
+      }
     }
   };
   console.log('rate', course?.rate);
