@@ -1,5 +1,5 @@
 import { Card } from '@mui/material';
-
+import App from './imageupload'
 const TeacherCard = ({
   className,
   TeacherProfile,
@@ -14,6 +14,7 @@ const TeacherCard = ({
           src="https://www.w3schools.com/howto/img_avatar.png"
           alt="teacher"
         />
+        <App/>
       </div>
       <div className="teacher-card__info p-5">
         <h3 className="font-bold text-black">
