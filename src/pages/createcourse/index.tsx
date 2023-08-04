@@ -107,7 +107,6 @@ const SignUp = () => {
               fullWidth
               id="title"
               name="title"
-              label="title"
               value={formik.values.title}
               onChange={formik.handleChange}
               error={formik.touched.title && Boolean(formik.errors.title)}
@@ -119,7 +118,6 @@ const SignUp = () => {
               fullWidth
               id="description"
               name="description"
-              label="description"
               type="description"
               value={formik.values.description}
               onChange={formik.handleChange}
@@ -136,7 +134,6 @@ const SignUp = () => {
               fullWidth
               id="seatStatus"
               name="seatStatus"
-              label="seatStatus"
               type="seatStatus"
               value={formik.values.seatStatus}
               onChange={formik.handleChange}
@@ -151,7 +148,6 @@ const SignUp = () => {
               fullWidth
               id="categories"
               name="categories"
-              label="categories"
               type="categories"
               value={formik.values.categories}
               onChange={formik.handleChange}
@@ -166,7 +162,6 @@ const SignUp = () => {
               fullWidth
               id="address"
               name="address"
-              label="address"
               type="address"
               value={formik.values.address}
               onChange={formik.handleChange}
