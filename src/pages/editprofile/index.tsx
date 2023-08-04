@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Footer from '~/components/Footer';
-
+import UploadFile from '~/components/UploadFile';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -16,28 +16,12 @@ import { useRouter } from 'next/router';
 import Menu from '~/components/Menu';
 import { Textarea } from '@mui/joy';
 
-const validationSchema = yup.object({
-  bio: yup
-    .string('Enter your Bio')
-    .min(5, 'Minimum 5 characters')
-    .required('Name is required'),
-  education: yup
-    .string('Enter your education')
-    .min(5, 'Minimum 5 characters')
-    .required('Email is required'),
-  Phone: yup
-    .number()
-    .typeError('Phone must be a number')
-    .min(10, 'Minimum 10 characters including zero')
-    .positive('Phone no. must be a positive number')
-    .required('Phone no. is required'),
-});
-
 const SignUp = () => {
   const [cookies, setCookie] = useCookies(['user']);
   const [bio, setBio] = React.useState('');
   const [education, setEducation] = React.useState('');
   const [Phone, setPhone] = React.useState('');
+  const [image, setImage] = React.useState(null);
 
   React.useEffect(() => {
     const getStuff = async () => {
@@ -54,7 +38,7 @@ const SignUp = () => {
 
           {
             headers: {
-              'content-type': 'application/json',
+              'Content-Type': 'multipart/form-data',
               Authorization: `token ${cookies.data.token}`,
             },
           },
@@ -63,6 +47,7 @@ const SignUp = () => {
         setBio(profile.data.data.bio);
         setEducation(profile.data.data.education);
         setPhone(profile.data.data.Phone);
+        setFile(profile.data.data.image);
         // await router.push('/home');
       } catch (err) {
         console.log(err.message);
@@ -72,6 +57,11 @@ const SignUp = () => {
   }, []);
   const router = useRouter();
   console.log('cookeise', cookies.Name);
+  const [file, setFile] = React.useState();
+
+  function handleChange(event) {
+    setFile(event.target.files[0]);
+  }
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -84,12 +74,13 @@ const SignUp = () => {
       } else {
         link = 'http://localhost:5000/tutor/tutorupdate';
       }
+      console.log('link', { bio, education, Phone, image });
       const user = await axios.patch(
         link,
-        { bio: bio, education: education, Phone: Phone },
+        { bio: bio, education: education, Phone: Phone, image: file },
         {
           headers: {
-            'content-type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `token ${cookies.data.token}`,
           },
         },
@@ -154,6 +145,29 @@ const SignUp = () => {
               onChange={(e) => setPhone(e.target.value)}
               className="bg-white"
             />
+            <div>
+              <input
+                type="file"
+                accept="image/png, .svg"
+                name="image"
+                onChange={handleChange}
+              />
+            </div>
+            {/* <div>
+              <input
+                type="file"
+                name="image"
+                // set supported file types here,
+                // could also check again within formik validation or backend
+                accept="image/png, .svg"
+                onChange={(e) => {
+                  // Object is possibly null error w/o check
+                  if (e.currentTarget.files) {
+                    setImage('image', e.currentTarget.files[0]);
+                  }
+                }}
+              />
+            </div> */}
             <Button color="primary" variant="contained" type="submit" fullWidth>
               Submit
             </Button>
