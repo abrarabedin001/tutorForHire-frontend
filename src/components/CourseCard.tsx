@@ -159,12 +159,33 @@ export default function CourseCard({ course }: { course: any }) {
         <Link href={'http://localhost:3000/course/personal/' + course?.id}>
           <CardHeader
             avatar={
-              <Avatar
-                sx={{ bgcolor: red[500], textTransform: 'uppercase' }}
-                aria-label="recipe"
-              >
-                {initial}
-              </Avatar>
+              course?.TeacherProfile?.image ? (
+                <Avatar
+                  sx={{
+                    textTransform: 'uppercase',
+                    borderStyle: 'solid',
+                    borderColor: 'black',
+                    borderWidth: '1px',
+                  }}
+                  aria-label="recipe"
+                >
+                  <img
+                    src={
+                      'http://localhost:5000/images/' +
+                      course?.TeacherProfile?.image
+                    }
+                    className=" w-full rounded-full"
+                    alt="teacher"
+                  />
+                </Avatar>
+              ) : (
+                <Avatar
+                  sx={{ bgcolor: red[500], textTransform: 'uppercase' }}
+                  aria-label="recipe"
+                >
+                  {initial}
+                </Avatar>
+              )
             }
             action={
               <IconButton aria-label="settings">
