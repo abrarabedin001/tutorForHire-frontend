@@ -104,10 +104,10 @@ const SignUp = () => {
       console.log('link', { bio, education, Phone, image });
       const user = await axios.patch(
         link,
-        { newPassword: newPassword, oldPass: oldPass },
+        { oldPass: oldPass, newPass: newPassword },
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
             Authorization: `token ${cookies.data.token}`,
           },
         },
@@ -197,7 +197,7 @@ const SignUp = () => {
               multiline
               minRows={1} // Limiting to 2 rows
               maxRows={4}
-              value={setOldPass}
+              value={oldPass}
               onChange={(e) => setOldPass(e.target.value)}
               className="bg-white"
             />
@@ -211,7 +211,7 @@ const SignUp = () => {
               multiline
               minRows={1} // Limiting to 2 rows
               maxRows={4}
-              value={setNewPassword}
+              value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               className="bg-white"
             />
