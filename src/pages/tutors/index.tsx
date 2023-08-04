@@ -66,7 +66,7 @@ export default function LoginHome() {
     <CookiesProvider>
       <Menu />
       <Container>
-        <Box className="m-7 rounded bg-blue-400 p-7 shadow">
+        <Box className="m-7 mb-64  mt-16 rounded bg-blue-400 p-7 shadow">
           <TeacherGrid tutors={tutors}></TeacherGrid>
         </Box>
       </Container>
