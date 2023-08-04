@@ -12,6 +12,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Textarea from '@mui/joy/Textarea';
 import Menu from '~/components/Menu';
+import Footer from '~/components/Footer';
 
 // import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
 
@@ -95,7 +96,7 @@ const SignUp = () => {
     <CookiesProvider>
       <Menu />
       <Container>
-        <Box className="flex w-full justify-center">
+        <Box className="mb-64 flex w-full justify-center">
           <form
             onSubmit={formik.handleSubmit}
             className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
@@ -182,6 +183,7 @@ const SignUp = () => {
               type="date"
               name="startDate"
               value={formik.values.startDate}
+              className="rounded-md p-2"
               onChange={formik.handleChange}
               style={{ width: '100%', color: 'black' }}
             />
@@ -195,6 +197,7 @@ const SignUp = () => {
               name="endDate"
               value={formik.values.endDate}
               onChange={formik.handleChange}
+              className="rounded-md p-2"
               style={{ width: '100%', color: 'black' }}
             />
 
@@ -204,6 +207,7 @@ const SignUp = () => {
           </form>
         </Box>
       </Container>
+      <Footer />
     </CookiesProvider>
   );
 };
