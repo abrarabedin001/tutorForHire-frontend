@@ -17,8 +17,7 @@ const TeacherCard = ({
           />
         ) : (
           <img
-            src="http://localhost:5000/images/teacherProfile"
-            alt="teacher"
+          src={'https://www.w3schools.com/howto/img_avatar.png'}
           />
         )}
       </div>
