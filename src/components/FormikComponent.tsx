@@ -110,7 +110,7 @@ const FormikComponent = ({
       <Box className={classes}>
         <form
           onSubmit={formik.handleSubmit}
-          className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
+          className="mb-32 mt-9 w-[400px] max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
         >
           <h1 className="text-center text-2xl font-bold">Edit Course</h1>
           <p className=" text-lg font-semibold">Title: </p>
@@ -187,16 +187,28 @@ const FormikComponent = ({
             error={formik.touched.address && Boolean(formik.errors.address)}
             helperText={formik.touched.address && formik.errors.address}
           />
-          <label className=" text-lg font-semibold" for="date">
+          <p className=" p-1 text-lg font-semibold" for="date">
             Enter start date
-          </label>
+          </p>
+          <input
+            id="date"
+            type="date"
+            name="startDate"
+            value={formik.values.startDate}
+            onChange={formik.handleChange}
+            className="rounded bg-white p-3"
+            style={{ width: '100%', color: 'black' }}
+          />
+          <p className=" p-1 text-lg font-semibold" for="date">
+            Enter end date
+          </p>
           <input
             id="date"
             type="date"
             name="endDate"
             value={formik.values.endDate}
             onChange={formik.handleChange}
-            className="bg-white"
+            className="rounded bg-white p-3"
             style={{ width: '100%', color: 'black' }}
           />
 

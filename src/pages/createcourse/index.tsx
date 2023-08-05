@@ -12,6 +12,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Textarea from '@mui/joy/Textarea';
 import Menu from '~/components/Menu';
+import Footer from '~/components/Footer';
 
 // import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
 
@@ -57,7 +58,7 @@ const SignUp = () => {
       seatStatus: '0',
       // teacherProfileId: cookies.data.user.id,
       address: '',
-      startDate:new Date(),
+      startDate: new Date(),
       endDate: new Date(),
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -95,7 +96,7 @@ const SignUp = () => {
     <CookiesProvider>
       <Menu />
       <Container>
-        <Box className="flex w-full justify-center">
+        <Box className="mb-64 flex w-full justify-center">
           <form
             onSubmit={formik.handleSubmit}
             className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
@@ -106,7 +107,6 @@ const SignUp = () => {
               fullWidth
               id="title"
               name="title"
-              label="title"
               value={formik.values.title}
               onChange={formik.handleChange}
               error={formik.touched.title && Boolean(formik.errors.title)}
@@ -118,7 +118,6 @@ const SignUp = () => {
               fullWidth
               id="description"
               name="description"
-              label="description"
               type="description"
               value={formik.values.description}
               onChange={formik.handleChange}
@@ -135,7 +134,6 @@ const SignUp = () => {
               fullWidth
               id="seatStatus"
               name="seatStatus"
-              label="seatStatus"
               type="seatStatus"
               value={formik.values.seatStatus}
               onChange={formik.handleChange}
@@ -150,7 +148,6 @@ const SignUp = () => {
               fullWidth
               id="categories"
               name="categories"
-              label="categories"
               type="categories"
               value={formik.values.categories}
               onChange={formik.handleChange}
@@ -165,7 +162,6 @@ const SignUp = () => {
               fullWidth
               id="address"
               name="address"
-              label="address"
               type="address"
               value={formik.values.address}
               onChange={formik.handleChange}
@@ -174,7 +170,7 @@ const SignUp = () => {
               helperText={formik.touched.address && formik.errors.address}
             />
 
-              <label className=" text-lg font-semibold" for="startdate">
+            <label className=" text-lg font-semibold" for="startdate">
               Start Date
             </label>
             <input
@@ -182,6 +178,7 @@ const SignUp = () => {
               type="date"
               name="startDate"
               value={formik.values.startDate}
+              className="rounded-md p-2"
               onChange={formik.handleChange}
               style={{ width: '100%', color: 'black' }}
             />
@@ -195,6 +192,7 @@ const SignUp = () => {
               name="endDate"
               value={formik.values.endDate}
               onChange={formik.handleChange}
+              className="rounded-md p-2"
               style={{ width: '100%', color: 'black' }}
             />
 
@@ -204,6 +202,7 @@ const SignUp = () => {
           </form>
         </Box>
       </Container>
+      <Footer />
     </CookiesProvider>
   );
 };

@@ -30,7 +30,10 @@ const LandingPage = () => {
 
         {user?.type === 'TEACHER' && (
           <li>
-            <Link href="/mycourses" className={isLinkActive('/mycourses')}>
+            <Link
+              href={'/mypersonal/' + user.id}
+              className={isLinkActive('/mypero/' + user.id)}
+            >
               <Button color="inherit">My Courses</Button>
             </Link>
           </li>
