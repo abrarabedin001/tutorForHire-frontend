@@ -62,15 +62,40 @@ export default function LoginHome() {
   }, [cookies]);
 
   console.log('where are my tutors', tutors);
-  return (
-    <CookiesProvider>
-      <Menu />
-      <Container>
-        <Box className="m-7 mb-64  mt-16 rounded bg-blue-400 p-7 shadow">
-          <TeacherGrid tutors={tutors}></TeacherGrid>
-        </Box>
-      </Container>
-      <Footer />
-    </CookiesProvider>
-  );
-}
+//   return (
+//     <CookiesProvider>
+//       <Menu />
+//       <Container>
+//         <Box className="m-7 mb-64  mt-16 rounded bg-white-400 p-7 shadow">
+//           <TeacherGrid tutors={tutors}></TeacherGrid>
+//         </Box>
+//       </Container>
+//       <Footer />
+//     </CookiesProvider>
+//   );
+// }
+
+return (
+  <CookiesProvider>
+    <Menu />
+    <Container>
+      <Box
+        className="m-7 mb-64 mt-16 rounded-lg bg-blue-200 p-7 shadow-lg"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          color: '#FFFFFF',
+          width: '100%', // Use the boxWidth variable here for the width
+        }}
+      >
+        <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
+          List of Tutors
+        </h1>
+        <TeacherGrid tutors={tutors}></TeacherGrid>
+      </Box>
+    </Container>
+    <Footer />
+  </CookiesProvider>
+);
+};

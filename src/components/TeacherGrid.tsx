@@ -15,10 +15,10 @@ import Switch from '@mui/material/Switch';
 import { Button } from '@mui/material';
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 80 },
-  { field: 'name', headerName: 'Name', width: 150 },
-  { field: 'email', headerName: 'Email', width: 150 },
-  { field: 'bio', headerName: 'Bio', type: 'number' },
+  { field: 'id', headerName: 'ID', width: 100 },
+  { field: 'name', headerName: 'Name', width: 200 },
+  { field: 'email', headerName: 'Email', width: 200 },
+  { field: 'bio', headerName: 'Bio', width: 200 },
   {
     field: 'seecoruses',
     headerName: 'Courses',
