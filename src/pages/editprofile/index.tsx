@@ -87,6 +87,7 @@ const SignUp = () => {
           },
         },
       );
+      console.log(user.res);
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
