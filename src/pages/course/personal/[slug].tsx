@@ -17,6 +17,7 @@ import CommentForm from '~/components/CommentForm';
 import ClassList from '~/components/ClassList';
 import Footer from '~/components/Footer';
 import { is } from 'date-fns/locale';
+import Assessments from '~/components/Assessments';
 
 const EditCourse = () => {
   const [cookies, setCookie] = useCookies(['user']);
@@ -36,17 +37,7 @@ const EditCourse = () => {
     fetch(link)
       .then((res) => res.json())
       .then((data) => setData(data));
-    // data1.course.TeacherProfile.user.id === cookies?.data?.user?.id
-    //   ? setIsTeacher(true)
-    //   : setIsTeacher(false);
 
-    // if (isTeacher || isStudent) {
-    //   if (open === 'class-list') {
-    //     if (data1?.course?.id) {
-    //       setClassList(<ClassList id={data1?.course?.id} />);
-    //     }
-    //   }
-    // }
     console.log('techer', data1);
     console.log('data1', data1);
   }, [change, router.isReady]);
@@ -124,6 +115,14 @@ const EditCourse = () => {
                 >
                   Chats
                 </button>
+                <button
+                  className="rounded-md bg-white p-2 hover:scale-105"
+                  onClick={() => {
+                    setOpen('assessments');
+                  }}
+                >
+                  Assessments
+                </button>
               </Box>
             ) : (
               ''
@@ -154,6 +153,12 @@ const EditCourse = () => {
               {isTeacher || isStudent
                 ? open === 'chat'
                   ? data1?.course?.id && <Chat id={data1?.course?.id} />
+                  : ''
+                : ''}
+
+              {isTeacher || isStudent
+                ? open === 'assessments'
+                  ? data1?.course?.id && <Assessments id={data1?.course?.id} />
                   : ''
                 : ''}
             </Box>
