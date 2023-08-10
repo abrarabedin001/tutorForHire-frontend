@@ -17,7 +17,7 @@ import Menu from '~/components/Menu';
 import { Textarea } from '@mui/joy';
 
 const SignUp = () => {
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [bio, setBio] = React.useState('');
   const [education, setEducation] = React.useState('');
   const [Phone, setPhone] = React.useState('');
@@ -88,7 +88,7 @@ const SignUp = () => {
         },
       );
       console.log(user.res);
-      // await router.push('/home');
+      await router.push('/showprofile');
     } catch (err) {
       console.log(err.message);
     }
@@ -113,7 +113,9 @@ const SignUp = () => {
           },
         },
       );
-      // await router.push('/home');
+      removeCookie('data', '/');
+      removeCookie('token', '/');
+      setTimeout(() => router.push('/login'), 1000);
     } catch (err) {
       console.log(err.message);
     }

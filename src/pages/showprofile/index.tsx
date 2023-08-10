@@ -99,6 +99,7 @@ const SignUp = () => {
           },
         },
       );
+
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
@@ -109,14 +110,14 @@ const SignUp = () => {
     <>
       <Menu />
       <Container>
-        <Box className="mb-20 flex w-full justify-center">
+        <Box className="mb-64 flex w-full justify-center">
           <form
             onSubmit={(e) => {
               submitForm(e);
             }}
             className="mt-9 w-[500px] space-y-3 rounded-xl bg-blue-100 p-8 "
           >
-            <div className="teacher-card__img">
+            <div className="teacher-card__img flex justify-center">
               {image ? (
                 <img
                   src={'http://localhost:5000/images/' + image}
@@ -124,7 +125,7 @@ const SignUp = () => {
                 />
               ) : (
                 <img
-                  src="http://localhost:5000/images/teacherProfile"
+                  src={'https://www.w3schools.com/howto/img_avatar.png'}
                   alt="teacher"
                 />
               )}
