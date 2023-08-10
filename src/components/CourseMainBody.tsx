@@ -17,6 +17,7 @@ import { add } from 'date-fns';
 import TeacherCard from './TeacherCard';
 import { useCookies, CookiesProvider } from 'react-cookie';
 import axios from 'axios';
+import TextField from '@mui/material/TextField';
 
 const CourseImage = ({ title }) => {
   const imageStyle = {
@@ -91,6 +92,7 @@ const CourseMainBody = ({
   const data = useCookies(['data']);
   const cookie = data[0].data;
   const [totalRating, setTotalRating] = React.useState(0);
+  const [showPaymentCard, setShowPaymentCard] = React.useState(false);
 
   React.useEffect(() => {
     const TotalRating = async () => {
@@ -115,28 +117,60 @@ const CourseMainBody = ({
     TotalRating();
   }, []);
 
-  const enrollCourse = async () => {
-    try {
-      const link = 'http://localhost:5000/enrollcourse/enroll';
+const enrollCourse = async () => {
+  try {
+    const link = 'http://localhost:5000/enrollcourse/enroll';
 
-      const user = await axios.post(
-        link,
-        {
-          courseId: id,
+    const user = await axios.post(
+      link,
+      {
+        courseId: id,
+      },
+      {
+        headers: {
+          'content-type': 'application/json',
+          Authorization: `token ${cookie.token}`,
         },
-        {
-          headers: {
-            'content-type': 'application/json',
-            Authorization: `token ${cookie.token}`,
-          },
-        },
-      );
+      }
+    );
 
-      // await router.push('/home');
-    } catch (err) {
-      console.log(err.message);
+    // if (user) {
+    //   setIsEnrolled(true);
+    // }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+const confirmPayment = async () => {
+  try {
+    const paidLink = 'http://localhost:5000/enrollcourse/paid';
+
+    const response = await axios.patch(
+      paidLink,
+      {
+        courseId: id,
+        paid: true,
+      },
+      {
+        headers: {
+          'content-type': 'application/json',
+          Authorization: `token ${cookie.token}`,
+        },
+      }
+    );
+    console.log(response.data.coursepay)
+    if (response.data.coursepay) {
+
+      setShowPaymentCard(false); 
+      window.location.reload()
+      // Hide payment card
+      // Optionally, you can update local state or UI to reflect successful payment
     }
-  };
+  } catch (err) {
+    console.log(err.message);
+  }
+};
   return (
     // <Box className="w-70 flex-row space-y-2 ">
     <Box className={classes}>
@@ -156,13 +190,50 @@ const CourseMainBody = ({
             </Typography>
             <Divider />
             <Box className="flex gap-x-3 p-5">
-              {isStudent ? (
-                <Button variant="contained" onClick={enrollCourse}>
+                   {/* ... Other course details */}
+              {isStudent && (
+                <Button variant="contained" onClick={enrollCourse} style={{ height: '40px' }}>
                   Enroll
                 </Button>
-              ) : (
-                ''
               )}
+                {isStudent && !showPaymentCard && !enrolledStudents[0]?.paid && (
+                <Button
+                  variant="contained"
+                  onClick={() => setShowPaymentCard(true)}
+                  style={{ backgroundColor: 'red', color: 'white', height: '40px' }}
+                >
+                  Payment
+                </Button>
+              )}
+              {isStudent && enrolledStudents[0]?.paid && (
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: 'green', color: 'white', height: '40px' }}
+                  disabled
+                >
+                  Paid
+                </Button>
+              )}
+
+
+
+                  {showPaymentCard && (
+              <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
+                <Typography variant="body1" style={{ backgroundColor: 'lightpink', border: '1px', padding: '5px',marginBottom:'8px',fontWeight:'bold' }}>
+                  Pay via Bkash</Typography>
+              
+                {/* Display the phone number using Typography or p */}
+                <Typography variant="body1" style={{color:'blue',fontWeight:'bold',border:'2px solid black', padding: '5px'}}>Bkash: {TeacherProfile.Phone}</Typography>
+
+                <Button
+                  variant="contained"
+                  onClick={confirmPayment}
+                  style={{ backgroundColor: 'green', color: 'white', marginTop: '10px' }}
+                >
+                  Confirm Payment
+                </Button>
+              </Card>
+            )}
               {isTeacher ? (
                 <a href={'/course/edit/' + slug}>
                   <Button variant="contained">Edit</Button>
