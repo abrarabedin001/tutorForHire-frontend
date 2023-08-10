@@ -275,6 +275,9 @@ export default function CourseCard({ course }: { course: any }) {
           <CardContent>
             <Typography paragraph>Descriptions:</Typography>
             <Typography paragraph>{course?.description}</Typography>
+
+            <Typography paragraph>Seat Status:</Typography>
+            <Typography paragraph>{course?.seatStatus}</Typography>
           </CardContent>
         </Collapse>
       </Card>

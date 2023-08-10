@@ -51,6 +51,7 @@ export default function LoginHome() {
             name: teach.user.name,
             email: teach.user.email,
             bio: teach.bio,
+            image: teach.image,
           })),
         );
       } catch (error) {
@@ -66,7 +67,7 @@ export default function LoginHome() {
     <CookiesProvider>
       <Menu />
       <Container>
-        <Box className="m-7 mb-64  mt-16 rounded bg-blue-400 p-7 shadow">
+        <Box className="m-7 mb-64  mt-16 rounded bg-white/80 p-7 shadow">
           <TeacherGrid tutors={tutors}></TeacherGrid>
         </Box>
       </Container>
