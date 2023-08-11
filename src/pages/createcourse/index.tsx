@@ -38,6 +38,12 @@ const validationSchema = yup.object({
     .string('Enter your description')
     .min(1, 'Password should be of minimum 250 characters length')
     .required('Email is required'),
+
+    cost: yup
+    .string('Enter your description')
+    .min(2, 'enter minimum 2 digit')
+    .required('cost is required'),
+
   startDate: yup
     .date('Enter the start date of this course')
     .required('Email is required'),
@@ -58,6 +64,7 @@ const SignUp = () => {
       seatStatus: '0',
       // teacherProfileId: cookies.data.user.id,
       address: '',
+      cost:'0',
       startDate: new Date(),
       endDate: new Date(),
     },
@@ -70,6 +77,7 @@ const SignUp = () => {
           ...values,
           teacherProfileId: cookies.data.user.id,
           seatStatus: parseInt(values.seatStatus),
+          cost: parseInt(values.cost),
           startDate: new Date(values.startDate),
           endDate: new Date(values.endDate),
         };
@@ -169,7 +177,20 @@ const SignUp = () => {
               error={formik.touched.address && Boolean(formik.errors.address)}
               helperText={formik.touched.address && formik.errors.address}
             />
-
+            <p className=" text-lg font-semibold">Course Amount: </p>
+            <Textarea
+              fullWidth
+              id="cost"
+              name="cost"
+              type="cost"
+              value={formik.values.cost}
+              onChange={formik.handleChange}
+              className="bg-white"
+              error={
+                formik.touched.cost && Boolean(formik.errors.cost)
+              }
+              helperText={formik.touched.cost && formik.errors.cost}
+            />
             <label className=" text-lg font-semibold" for="startdate">
               Start Date
             </label>

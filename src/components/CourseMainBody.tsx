@@ -64,6 +64,7 @@ const CourseMainBody = ({
   categories,
   seatStatus,
   address,
+  cost,
   startDate,
   endDate,
   cookies,
@@ -80,6 +81,7 @@ const CourseMainBody = ({
   categories: string;
   seatStatus: number;
   address: string;
+  cost: number;
   startDate: Date;
   endDate: Date;
   cookies: Date;
@@ -89,6 +91,7 @@ const CourseMainBody = ({
   isTeacher: boolean;
   isStudent: boolean;
 }) => {
+
   const data = useCookies(['data']);
   const cookie = data[0].data;
   const [totalRating, setTotalRating] = React.useState(0);
@@ -219,11 +222,17 @@ const confirmPayment = async () => {
 
                   {showPaymentCard && (
               <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
-                <Typography variant="body1" style={{ backgroundColor: 'lightpink', border: '1px', padding: '5px',marginBottom:'8px',fontWeight:'bold' }}>
+                <Typography variant="body1" 
+                style={{ backgroundColor: 'lightpink', border: '1px', padding: '5px',marginBottom:'8px',fontWeight:'bold' }}>
                   Pay via Bkash</Typography>
-              
+                  
+                <Typography variant="p" component="p" 
+                style={{color:'black',backgroundColor:'yellow',fontWeight:'bold',border:'1px', borderRadius:'8px', padding: '5px',marginBottom:'10px'}}>
+                 Amount: {cost} Tk</Typography>
+                  
                 {/* Display the phone number using Typography or p */}
-                <Typography variant="body1" style={{color:'blue',fontWeight:'bold',border:'2px solid black', padding: '5px'}}>Bkash: {TeacherProfile.Phone}</Typography>
+                <Typography variant="body1" style={{color:'blue',backgroundColor:'lightblue',fontWeight:'bold',border:'2px',borderRadius:'8px', padding: '5px'}}>
+                 Bkash: {TeacherProfile.Phone}</Typography>
 
                 <Button
                   variant="contained"
