@@ -18,6 +18,8 @@ import TeacherCard from './TeacherCard';
 import { useCookies, CookiesProvider } from 'react-cookie';
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
+import DemoQuizButton from './DemoQuizButton'; // Adjust the path based on your project structure
+
 
 const CourseImage = ({ title }) => {
   const imageStyle = {
@@ -342,6 +344,8 @@ const confirmPayment = async () => {
                   Total Rating
                 </Typography>
                 <Rating name="simple-controlled" value={totalRating} readOnly />
+
+              <DemoQuizButton />
               </Box>
             </Box>
 
