@@ -92,9 +92,19 @@ export default function CourseCard({ course }: { course: any }) {
     }
   }, [course]);
 
-  const isEnrolled = router.asPath.includes('enrolledcourses');
   const data = useCookies(['data']);
+
   const cookie = data[0].data;
+  console.log('Enrolled', course);
+
+  const isEnrolled =
+    course?.CourseEnroll?.map((el) => el.StudentProfile?.user?.id).filter(
+      (el) => el == cookie.user.id,
+    ).length == 1
+      ? true
+      : false;
+  // const isEnrolled = false;
+  // console.log('asdfasdf', isEnrolled2);
   const enrollCourse = async () => {
     try {
       const link = 'http://localhost:5000/enrollcourse/enroll';
@@ -116,10 +126,10 @@ export default function CourseCard({ course }: { course: any }) {
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
-      if (err.response?.status===500){
-      alert(`No seat available in this course`)
-      }else if(err.response?.status===400){
-        alert(`You can't enroll after course start date`)
+      if (err.response?.status === 500) {
+        alert(`No seat available in this course`);
+      } else if (err.response?.status === 400) {
+        alert(`You can't enroll after course start date`);
       }
     }
   };
