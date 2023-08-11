@@ -31,7 +31,6 @@ const columns: GridColDef[] = [
         <Button>See all Courses</Button>
       </a>
     ),
-    // <a href={`/tutors/${params.row.id}`}> See all courses</a>
   },
 ];
 

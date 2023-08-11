@@ -77,8 +77,12 @@ export default function LoginHome() {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            minHeight: '1000px',
+            flexWrap: 'wrap',
+            minHeight: '500px',
+            backgroundColor: '#FFFFFF',
+            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+            borderRadius: '10px',
+            padding: '20px',
           }}
         >
           <Courses courses={courses}></Courses>

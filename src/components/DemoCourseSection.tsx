@@ -6,28 +6,28 @@ const DemoCourseSection = () => {
   const demoCoursesData = [
     {
       id: 1,
-      image: './images/course4.jpg',
-      description: 'Demo Course 1',
+      image: './images/course1.png',
+      description: 'CSE420',
     },
     {
       id: 2,
-      image: './images/course4.jpg',
-      description: 'Demo Course 2',
+      image: './images/course2.png',
+      description: 'CSE421',
     },
     {
       id: 3,
-      image: './images/course4.jpg',
-      description: 'Demo Course 3',
+      image: './images/course3.png',
+      description: 'CSE422',
     },
     {
       id: 4,
-      image: './images/course4.jpg',
-      description: 'Demo Course 4',
+      image: './images/course4.png',
+      description: 'CSE423',
     },
     {
       id: 5,
-      image: './images/course4.jpg',
-      description: 'Demo Course 5',
+      image: './images/course5.png',
+      description: 'CSE424',
     },
   ];
 
