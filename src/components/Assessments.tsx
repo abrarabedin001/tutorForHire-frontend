@@ -4,10 +4,20 @@ import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
-
-import { Card, Rating } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Collapse,
+  IconButton,
+  type IconButtonProps,
+  Rating,
+} from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import StudentAnswerGrid from './StudentAnswerGrid';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function Assessments({ id }: { id: string }) {
   const [marks, setMarks] = React.useState(0);
@@ -20,12 +30,32 @@ export default function Assessments({ id }: { id: string }) {
   const [assignment, setAssignment] = React.useState('');
   const [assignment_name, setAssignmentName] = React.useState('');
   const [assignmentList, setAssignmentList] = React.useState([]);
+  const [file, setFile] = React.useState(null);
   const [cookies, setCookie] = useCookies(['data']);
+  interface ExpandMoreProps extends IconButtonProps {
+    expand: boolean;
+  }
+
+  const ExpandMore = styled((props: ExpandMoreProps) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({
+    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  }));
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
   React.useEffect(() => {
     const assignments = async () => {
       try {
         console.log('comments sections');
-        const link = 'http://localhost:5000/assignment/seeassignment/' + id;
+        const link = 'http://localhost:5000/classroom/getques/' + id;
         // console.log(id, 'course');
         // console.log(cookies.data.user.id, 'studentProfileId');
         console.log('link', link);
@@ -40,9 +70,9 @@ export default function Assessments({ id }: { id: string }) {
           },
         );
 
-        console.log('comments lists');
-        console.log(list.data.showassignment);
-        setAssignmentList(list.data.showassignment);
+        console.log('Assignment lists');
+        console.log(list.data.question);
+        setAssignmentList(list.data.question);
 
         // await router.push('/home');
       } catch (err) {
@@ -69,10 +99,11 @@ export default function Assessments({ id }: { id: string }) {
           start_date: start_date,
           end_date: end_date,
           courseId: id,
+          files: file,
         },
         {
           headers: {
-            'content-type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `token ${cookies.data.token}`,
           },
         },
@@ -85,6 +116,35 @@ export default function Assessments({ id }: { id: string }) {
     }
   };
 
+  const handleChangeTeacher = async (id) => {
+    console.log('file:', file);
+    console.log(id);
+    try {
+      let link = '';
+      console.log('Not');
+      if (cookies.data.user.type === 'STUDENT') {
+        link = 'http://localhost:5000/classroom/createans';
+      } else {
+        link = 'http://localhost:5000/classroom/createans';
+      }
+      console.log('link', { file: file });
+      const user = await axios.post(
+        link,
+        { answer: 'answer', quesId: id, files: file },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `token ${cookies.data.token}`,
+          },
+        },
+      );
+      console.log(user.res);
+      // await router.push('/home');
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  console.log('assignment', assignmentList);
   return (
     <div className="flex  w-full flex-col rounded bg-white/20 p-5">
       <FormControl sx={{ width: '100%' }}>
@@ -141,6 +201,14 @@ export default function Assessments({ id }: { id: string }) {
                   setEnd_Date(e.target.value);
                 }}
               />
+              <input
+                type="file"
+                accept="image/png, .svg"
+                name="files"
+                onChange={(e) => {
+                  setFile(e.target.files[0]);
+                }}
+              />
               <Button sx={{ ml: 'auto' }} onClick={() => void onSubmit()}>
                 Send
               </Button>
@@ -160,14 +228,78 @@ export default function Assessments({ id }: { id: string }) {
             className=" mb-1 flex flex-col justify-between rounded-xl border-black p-5 text-left shadow-xl"
             key={el.id}
           >
-            {' '}
             <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
-              <h4>{el.user.name}</h4>
-
-              <h4>{el.created_at.split('T')[0]}</h4>
+              <div className="teacher-card__img flex-rows flex w-7 rounded-xl">
+                {el.user.TeacherProfile.image ? (
+                  <img
+                    src={
+                      'http://localhost:5000/images/' +
+                      el.user.TeacherProfile.image
+                    }
+                    alt=""
+                    className="mr-5 h-8 w-8 rounded-full"
+                  />
+                ) : (
+                  <img
+                    src={'https://www.w3schools.com/howto/img_avatar.png'}
+                    className="mr-5 h-8 w-8 rounded-full"
+                    alt="teacher"
+                  />
+                )}
+                {el.user.name}
+              </div>
+              <div className="flex flex-row space-x-4">
+                <h4 className="flex flex-row space-x-4">
+                  Start Date: {el.start_date.split('T')[0] + '      '}
+                </h4>
+                <h4 className="flex flex-row space-x-4">
+                  End Date: {el.end_date.split('T')[0]}
+                </h4>
+              </div>
             </Box>
             <br />
-            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.assignment}</h6>
+            <h6 className="fit-content m-1 bg-blue-200 p-2"></h6>
+            <h6 className="fit-content m-1 bg-blue-200 p-2">
+              Title: {el.title}
+            </h6>
+            <h6 className="fit-content m-1 bg-blue-200 p-2">
+              Instruction: {el.question}
+            </h6>
+            <Card className="flex justify-between rounded bg-blue-300 p-5 shadow-lg">
+              <h6 className="fit-content m-1  p-2">Student Submission</h6>
+              <input
+                type="file"
+                // accept="image/png, .svg"
+                className="p-2"
+                name="files"
+                onChange={(e) => {
+                  setFile(e.target.files[0]);
+                }}
+              />
+              <button
+                className="rounded bg-blue-300 p-1"
+                onClick={() => handleChangeTeacher(el.id)}
+              >
+                Upload
+              </button>
+            </Card>
+            <Card className="bg-blue-300 p-5">
+              <CardActions disableSpacing>
+                <ExpandMore
+                  expand={expanded}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon />
+                </ExpandMore>
+              </CardActions>
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <StudentAnswerGrid answers={el.Answer}></StudentAnswerGrid>
+                </CardContent>
+              </Collapse>
+            </Card>
           </Card>
         ))}
       </Box>
