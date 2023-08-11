@@ -80,6 +80,7 @@ const EditCourse = () => {
               categories={data1?.course?.categories}
               seatStatus={data1?.course?.seatStatus}
               address={data1?.course?.address}
+              cost={data1?.course?.cost}
               startDate={data1?.course?.startDate}
               endDate={data1?.course?.endDate}
               enrolledStudents={data1?.course?.CourseEnroll}

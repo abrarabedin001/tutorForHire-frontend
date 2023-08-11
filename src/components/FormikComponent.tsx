@@ -34,6 +34,11 @@ const validationSchema = yup.object({
     .string('Enter your description')
     .min(1, 'Password should be of minimum 250 characters length')
     .required('Email is required'),
+    cost: yup
+    .number()
+    .min(1, 'Cost should be greater than 0')
+    .required('Cost is required'),
+
   endDate: yup
     .date('Enter the end date of this course')
     .required('Email is required'),
@@ -46,6 +51,7 @@ const FormikComponent = ({
   categories,
   seatStatus,
   address,
+  cost,
   startDate,
   endDate,
   cookies,
@@ -57,6 +63,7 @@ const FormikComponent = ({
   categories: string;
   seatStatus: number;
   address: string;
+  cost:Int;
   startDate: Date;
   endDate: Date;
   cookies: Date;
@@ -71,6 +78,7 @@ const FormikComponent = ({
       seatStatus: seatStatus,
       // teacherProfileId: cookies.data.user.id,
       address: address,
+      cost:cost,
       startDate: new Date(startDate),
       endDate: new Date(endDate),
     },
@@ -83,6 +91,7 @@ const FormikComponent = ({
           ...values,
           teacherProfileId: cookies.data.user.id,
           seatStatus: parseInt(values.seatStatus),
+          cost:parseInt(values.cost),
           newDate: new Date(values.endDate),
         };
         // values.push('teacherProfileId', cookies.data.user.id);
@@ -187,6 +196,22 @@ const FormikComponent = ({
             error={formik.touched.address && Boolean(formik.errors.address)}
             helperText={formik.touched.address && formik.errors.address}
           />
+         <p className=" text-lg font-semibold">Course Amount: </p>
+          <Textarea
+            fullWidth
+            id="cost"
+            name="cost"
+            label="cost"
+            type="cost"
+            value={formik.values.cost}
+            className="bg-white"
+            onChange={formik.handleChange}
+            error={
+              formik.touched.cost && Boolean(formik.errors.cost)
+            }
+            helperText={formik.touched.cost && formik.errors.cost}
+          />
+          
           <p className=" p-1 text-lg font-semibold" for="date">
             Enter start date
           </p>
