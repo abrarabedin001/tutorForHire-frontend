@@ -20,12 +20,13 @@ export default function Assessments({ id }: { id: string }) {
   const [assignment, setAssignment] = React.useState('');
   const [assignment_name, setAssignmentName] = React.useState('');
   const [assignmentList, setAssignmentList] = React.useState([]);
+  const [file, setFile] = React.useState(null);
   const [cookies, setCookie] = useCookies(['data']);
   React.useEffect(() => {
     const assignments = async () => {
       try {
         console.log('comments sections');
-        const link = 'http://localhost:5000/assignment/seeassignment/' + id;
+        const link = 'http://localhost:5000/classroom/getques/' + id;
         // console.log(id, 'course');
         // console.log(cookies.data.user.id, 'studentProfileId');
         console.log('link', link);
@@ -40,9 +41,9 @@ export default function Assessments({ id }: { id: string }) {
           },
         );
 
-        console.log('comments lists');
-        console.log(list.data.showassignment);
-        setAssignmentList(list.data.showassignment);
+        console.log('Assignment lists');
+        console.log(list.data.question);
+        setAssignmentList(list.data.question);
 
         // await router.push('/home');
       } catch (err) {
@@ -80,6 +81,36 @@ export default function Assessments({ id }: { id: string }) {
       console.log(response_assignment.data);
       setAssignmentChange(assignmentChange + 1);
       setAssignment('');
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const handleChangeTeacher = async (event: ChangeEvent<HTMLInputElement>) => {
+    setFile(event.target.files[0]);
+    event.preventDefault();
+
+    try {
+      let link = '';
+      console.log('Not');
+      if (cookies.data.user.type === 'STUDENT') {
+        link = 'http://localhost:5000/classroom/createans';
+      } else {
+        link = 'http://localhost:5000/classroom/createans';
+      }
+      console.log('link', { file: file });
+      const user = await axios.patch(
+        link,
+        { image: file },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `token ${cookies.data.token}`,
+          },
+        },
+      );
+      console.log(user.res);
+      // await router.push('/home');
     } catch (err) {
       console.log(err.message);
     }
@@ -163,11 +194,18 @@ export default function Assessments({ id }: { id: string }) {
             {' '}
             <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
               <h4>{el.user.name}</h4>
-
-              <h4>{el.created_at.split('T')[0]}</h4>
             </Box>
             <br />
-            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.assignment}</h6>
+            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.title}</h6>
+            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.question}</h6>
+            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.start_date}</h6>
+            <h6 className="fit-content m-1 bg-blue-200 p-2">{el.end_date}</h6>
+            <input
+              type="file"
+              accept="image/png, .svg"
+              name="image"
+              onChange={handleChangeTeacher}
+            />
           </Card>
         ))}
       </Box>
