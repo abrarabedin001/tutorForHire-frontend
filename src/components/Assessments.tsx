@@ -18,6 +18,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import StudentAnswerGrid from './StudentAnswerGrid';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import StudentExpand from './StudentExpand';
 
 export default function Assessments({ id }: { id: string }) {
   const [marks, setMarks] = React.useState(0);
@@ -283,23 +284,7 @@ export default function Assessments({ id }: { id: string }) {
                 Upload
               </button>
             </Card>
-            <Card className="bg-blue-300 p-5">
-              <CardActions disableSpacing>
-                <ExpandMore
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                  <StudentAnswerGrid answers={el.Answer}></StudentAnswerGrid>
-                </CardContent>
-              </Collapse>
-            </Card>
+            <StudentExpand el={el}></StudentExpand>
           </Card>
         ))}
       </Box>
