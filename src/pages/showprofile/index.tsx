@@ -40,6 +40,7 @@ const SignUp = () => {
   const [education, setEducation] = React.useState('');
   const [profile, setProfile] = React.useState({});
   const [Phone, setPhone] = React.useState('');
+  const [image, setImage] = React.useState('');
 
   React.useEffect(() => {
     const getStuff = async () => {
@@ -66,6 +67,7 @@ const SignUp = () => {
         setBio(profile.data.data.bio);
         setEducation(profile.data.data.education);
         setPhone(profile.data.data.Phone);
+        setImage(profile.data.data.image);
         // await router.push('/home');
       } catch (err) {
         console.log(err.message);
@@ -97,6 +99,7 @@ const SignUp = () => {
           },
         },
       );
+
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
@@ -107,25 +110,38 @@ const SignUp = () => {
     <>
       <Menu />
       <Container>
-        <Box className="mb-20 flex w-full justify-center">
+        <Box className="mb-64 flex w-full justify-center">
           <form
             onSubmit={(e) => {
               submitForm(e);
             }}
-            className="mt-9 max-w-md space-y-3 rounded-xl bg-blue-100 p-8 "
+            className="mt-9 w-[500px] space-y-3 rounded-xl bg-blue-100 p-8 "
           >
+            <div className="teacher-card__img flex justify-center">
+              {image ? (
+                <img
+                  src={'http://localhost:5000/images/' + image}
+                  alt="teacher"
+                />
+              ) : (
+                <img
+                  src={'https://www.w3schools.com/howto/img_avatar.png'}
+                  alt="teacher"
+                />
+              )}
+            </div>
             <h1 className="text-center text-2xl font-bold">Profile</h1>
             <p className=" text-lg font-semibold">Subjects: </p>
 
-            <p className="bg-white p-2 text-center text-lg">{bio}</p>
+            <p className="bg-white p-2 text-left  text-lg">{bio}</p>
 
             <p className=" text-lg font-semibold">Education: </p>
 
-            <p className="bg-white p-2 text-center text-lg">{education}</p>
+            <p className="bg-white p-2 text-left  text-lg">{education}</p>
 
             <p className=" text-lg font-semibold">Phone-no: </p>
 
-            <p className="bg-white p-2 text-center text-lg">{Phone}</p>
+            <p className="bg-white p-2 text-left  text-lg">{Phone}</p>
             {/* <Button
               color="primary"
               variant="contained"
