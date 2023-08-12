@@ -181,11 +181,22 @@ export default function Assessments({
         },
       );
       console.log(user.res);
+      setAssignmentChange(assignmentChange + 1);
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
     }
   };
+  const answersfunct = (answer) => {
+    console.log('answer');
+    console.log(answer);
+    const mappedAnswers = answer.filter(
+      (answer) => answer.user.id == cookies.data.user.id,
+    );
+    console.log('mappedAnswers', mappedAnswers);
+    return mappedAnswers.length == 0;
+  };
+
   console.log('assignment', assignmentList);
   return (
     <div className="flex  w-full flex-col rounded bg-white/20 p-5">
@@ -312,7 +323,7 @@ export default function Assessments({
               <p className="text-base text-gray-600">{el.question}</p>
             </CardContent>
 
-            <div className="mt-4 flex items-center justify-between px-4">
+            <div className="mt-4 flex items-center justify-between p-2">
               <div className="ml-2 flex items-center space-x-2">
                 {el.file && (
                   <a
@@ -331,33 +342,36 @@ export default function Assessments({
 
               {el.end_date.split('T')[0] >
               new Date().toISOString().split('T')[0] ? (
-                <div className="flex items-center space-x-2">
-                  <label
-                    htmlFor={`file-upload-${el.id}`}
-                    className="flex cursor-pointer items-center space-x-2"
-                  >
-                    <FaCloudUploadAlt className="text-blue-500" />
-                    <span className="font-medium text-gray-600">
-                      Upload Assessment Script
-                    </span>
-                    <input
-                      type="file"
-                      id={`file-upload-${el.id}`}
-                      accept="image/png,.svg"
-                      name="files"
-                      onChange={(e) => {
-                        setFile(e.target.files[0]);
-                      }}
-                      style={{ display: 'none' }}
-                    />
-                  </label>
-                  <button
-                    className="rounded bg-blue-600 px-3 py-1 text-white transition duration-300 hover:bg-blue-700"
-                    onClick={() => handleChangeTeacher(el.id)}
-                  >
-                    Submit
-                  </button>
-                </div>
+                answersfunct(el.Answer) ? (
+                  <div className="flex items-center space-x-2">
+                    <label
+                      htmlFor={`file-upload-${el.id}`}
+                      className="flex cursor-pointer items-center space-x-2"
+                    >
+                      <FaCloudUploadAlt className="text-blue-500" />
+                      <span className="font-medium text-gray-600">
+                        Upload Assessment Script
+                      </span>
+                      <input
+                        type="file"
+                        id={`file-upload-${el.id}`}
+                        name="files"
+                        onChange={(e) => {
+                          setFile(e.target.files[0]);
+                        }}
+                        style={{ display: 'none' }}
+                      />
+                    </label>
+                    <button
+                      className="m-1 rounded  bg-blue-600 p-1 text-white transition duration-300 hover:bg-blue-700"
+                      onClick={() => handleChangeTeacher(el.id)}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                ) : (
+                  ' '
+                )
               ) : (
                 ' '
               )}
