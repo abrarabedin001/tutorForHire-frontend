@@ -124,6 +124,7 @@ export default function CourseCard({ course }: { course: any }) {
       );
       console.log(user);
       // await router.push('/home');
+      window.location.href = window.location.href + '?refresh=' + Date.now();
     } catch (err) {
       console.log(err.message);
       if (err.response?.status === 500) {
@@ -157,6 +158,7 @@ export default function CourseCard({ course }: { course: any }) {
       );
       console.log(user);
       // await router.push('/home');
+
     } catch (err) {
       console.log(err.message);
       if (err.response?.status === 400) {
