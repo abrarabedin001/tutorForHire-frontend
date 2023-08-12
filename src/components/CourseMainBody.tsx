@@ -176,6 +176,9 @@ const confirmPayment = async () => {
     console.log(err.message);
   }
 };
+const togglePaymentCard = () => {
+  setShowPaymentCard(!showPaymentCard); // Toggle the value
+};
   return (
     // <Box className="w-70 flex-row space-y-2 ">
     <Box className={classes}>
@@ -194,17 +197,17 @@ const confirmPayment = async () => {
               {title}{' '}
             </Typography>
             <Divider />
-            <Box className="flex gap-x-3 p-5">
+            <Box className="flex flex-row gap-x-3 p-5">
                    {/* ... Other course details */}
               {isStudent && (
                 <Button variant="contained" onClick={enrollCourse} style={{ height: '40px' }}>
                   Enroll
                 </Button>
               )}
-                {isStudent && !showPaymentCard && !enrolledStudents[0]?.paid && (
+                {isStudent  && !enrolledStudents[0]?.paid && (
                 <Button
                   variant="contained"
-                  onClick={() => setShowPaymentCard(true)}
+                  onClick={togglePaymentCard}
                   style={{ backgroundColor: 'red', color: 'white', height: '40px' }}
                 >
                   Payment
