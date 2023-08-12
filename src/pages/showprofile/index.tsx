@@ -122,11 +122,13 @@ const SignUp = () => {
                 <img
                   src={'http://localhost:5000/images/' + image}
                   alt="teacher"
+                  className="h-[400px] w-[300px]"
                 />
               ) : (
                 <img
                   src={'https://www.w3schools.com/howto/img_avatar.png'}
                   alt="teacher"
+                  className="h-[400px] w-[300px]"
                 />
               )}
             </div>
