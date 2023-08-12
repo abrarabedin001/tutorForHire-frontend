@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 import * as React from 'react';
-
+import { FaPaypal } from 'react-icons/fa';
 import TeacherCard from './TeacherCard';
 import { useCookies, CookiesProvider } from 'react-cookie';
 import axios from 'axios';
@@ -244,26 +244,30 @@ const CourseMainBody = ({
                   variant="contained"
                   onClick={togglePaymentCard}
                   style={{
-                    backgroundColor: 'red',
+                    backgroundColor: '#3498DB', // PayPal Blue
                     color: 'white',
                     height: '40px',
+                    marginBottom: '10px',
+                    borderRadius: '4px',
                   }}
                 >
-                  Payment
+                  Make Payment
                 </Button>
               )}
+
               {isStudent && enrolledStudents[0]?.paid && (
                 <Button
                   variant="contained"
                   style={{
-                    backgroundColor: 'green',
+                    backgroundColor: '#27AE60', // Green
                     color: 'white',
                     height: '40px',
+                    borderRadius: '4px',
+                    pointerEvents: 'none', // Disable pointer events
+                    opacity: 0.7, // Reduce opacity
                   }}
-                  // onClick={togglePaymentCard}
-                  disabled
                 >
-                  Paid
+                  Payment Completed
                 </Button>
               )}
 
@@ -273,66 +277,87 @@ const CourseMainBody = ({
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    padding: '20px',
+                    padding: '30px',
+                    border: 'none',
+                    borderRadius: '8px',
+                    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+                    background: 'linear-gradient(180deg, #FFF9F3 0%, #FFFFFF 100%)', // Subtle gradient background
                   }}
                 >
+                  <FaPaypal
+                    size={40}
+                    color="#169BD7" // PayPal Blue
+                    style={{ marginBottom: '16px' }}
+                  />
+
                   <Typography
-                    variant="body1"
+                    variant="h5"
                     style={{
-                      backgroundColor: 'lightpink',
-                      border: '1px',
-                      padding: '5px',
-                      marginBottom: '8px',
+                      backgroundColor: '#FFC078', // Light Orange
+                      padding: '12px',
+                      borderRadius: '4px',
                       fontWeight: 'bold',
+                      marginBottom: '16px',
                     }}
                   >
-                    Pay via Bkash
+                    Secure Payment
                   </Typography>
 
                   <Typography
-                    variant="p"
-                    component="p"
+                    variant="body1"
                     style={{
-                      color: 'black',
-                      backgroundColor: 'grey',
+                      color: '#444', // Dark Gray
                       fontWeight: 'bold',
-                      border: '1px',
-                      borderRadius: '8px',
-                      padding: '5px',
-                      marginBottom: '10px',
+                      marginBottom: '18px',
                     }}
                   >
-                    Amount: {cost} Tk
+                    Total Amount: {cost} $
                   </Typography>
 
-                  {/* Display the phone number using Typography or p */}
                   <Typography
                     variant="body1"
                     style={{
-                      color: 'blue',
-                      backgroundColor: 'lightblue',
+                      color: '#169BD7', // PayPal Blue
                       fontWeight: 'bold',
-                      border: '2px',
-                      borderRadius: '8px',
-                      padding: '5px',
+                      borderRadius: '4px',
+                      padding: '8px',
+                      backgroundColor: '#EAF2F8', // Light Blue
+                      marginBottom: '16px',
                     }}
                   >
-                    Bkash: {TeacherProfile.Phone}
+                    Payment Method: PayPal
+                  </Typography>
+
+                  <Typography
+                    variant="body1"
+                    style={{
+                      color: '#555', // Dark Gray
+                      fontWeight: 'bold',
+                      borderRadius: '4px',
+                      padding: '8px',
+                      backgroundColor: '#F2F2F2', // Light Gray
+                      marginBottom: '16px',
+                    }}
+                  >
+                    PayPal Email: tutorforhire@gmail.com
                   </Typography>
 
                   <Button
                     variant="contained"
                     onClick={confirmPayment}
                     style={{
-                      backgroundColor: 'green',
+                      background: 'linear-gradient(180deg, #45D49D 0%, #3BB78F 100%)', // Gradient Green
                       color: 'white',
-                      marginTop: '10px',
+                      marginTop: '20px',
+                      borderRadius: '4px',
                     }}
                   >
                     Confirm Payment
                   </Button>
                 </Card>
               )}
+
+
               {isTeacher ? (
                 <a href={'/course/edit/' + slug}>
                   <Button variant="contained">Edit</Button>
