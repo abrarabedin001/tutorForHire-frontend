@@ -226,76 +226,10 @@ export default function Assessments({ id }: { id: string }) {
       <Box sx={{ mt: 2 }}>
         <FormLabel></FormLabel>
 
-        {/* {assignmentList?.map((el) => (
-          <Card
-            className=" mb-1 flex flex-col justify-between rounded-xl border-black p-5 text-left shadow-xl"
-            key={el.id}
-          >
-            <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
-              <div className="teacher-card__img flex-rows flex w-7 rounded-xl">
-                {el.user.TeacherProfile.image ? (
-                  <img
-                    src={
-                      'http://localhost:5000/images/' +
-                      el.user.TeacherProfile.image
-                    }
-                    alt=""
-                    className="mr-5 h-8 w-8 rounded-full"
-                  />
-                ) : (
-                  <img
-                    src={'https://www.w3schools.com/howto/img_avatar.png'}
-                    className="mr-5 h-8 w-8 rounded-full"
-                    alt="teacher"
-                  />
-                )}
-                {el.user.name}
-              </div>
-              <div className="flex flex-row space-x-4">
-                <h4 className="flex flex-row space-x-4">
-                  Start Date: {el.start_date.split('T')[0] + '      '}
-                </h4>
-                <h4 className="flex flex-row space-x-4">
-                  End Date: {el.end_date.split('T')[0]}
-                </h4>
-              </div>
-            </Box>
-            <br />
-            <h6 className="fit-content m-1 bg-blue-200 p-2"></h6>
-            <h6 className="fit-content m-1 bg-blue-200 p-2">
-              Title: {el.title}
-            </h6>
-            <h6 className="fit-content m-1 bg-blue-200 p-2">
-              Instruction: {el.question}
-            </h6>
-            <Card className="flex justify-between rounded bg-blue-300 p-5 shadow-lg">
-              <h6 className="fit-content m-1  p-2">Student Submission</h6>
-              <input
-                type="file"
-                // accept="image/png, .svg"
-                className="p-2"
-                name="files"
-                onChange={(e) => {
-                  setFile(e.target.files[0]);
-                }}
-              />
-              <button
-                className="rounded bg-blue-300 p-1"
-                onClick={() => handleChangeTeacher(el.id)}
-              >
-                Upload
-              </button>
-            </Card>
-            <StudentExpand el={el}></StudentExpand>
-          </Card>
-        ))} */}
         {assignmentList?.map((el) => (
-          <Card
-            key={el.id}
-            className="mb-4 rounded-lg border bg-gray-100"
-          >
+          <Card key={el.id} className="mb-4 rounded-lg border bg-gray-100">
             <CardContent>
-              <div className="flex justify-between items-center mb-4">
+              <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   {el.user?.TeacherProfile?.image ? (
                     <img
@@ -325,18 +259,18 @@ export default function Assessments({ id }: { id: string }) {
                   </p>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="mb-2 text-xl font-semibold text-gray-800">
                 Assignment: {el.title}
               </h3>
               <p className="text-base text-gray-600">{el.question}</p>
-              </CardContent>
-            <div className="flex justify-between items-center mt-4">
+            </CardContent>
+            <div className="mt-4 flex items-center justify-between">
               <label
                 htmlFor={`file-upload-${el.id}`}
-                className="cursor-pointer flex items-center space-x-2 ml-2"
+                className="ml-2 flex cursor-pointer items-center space-x-2"
               >
                 <CloudUploadIcon fontSize="small" className="text-blue-500" />
-                <span className="text-gray-600 font-medium">
+                <span className="font-medium text-gray-600">
                   Upload Assessment
                 </span>
                 <input
@@ -351,25 +285,16 @@ export default function Assessments({ id }: { id: string }) {
                 />
               </label>
               <button
-                className="rounded bg-blue-600 text-white py-1 px-3 transition duration-300 hover:bg-blue-700 mr-2"
+                className="mr-2 rounded bg-blue-600 px-3 py-1 text-white transition duration-300 hover:bg-blue-700"
                 onClick={() => handleChangeTeacher(el.id)}
               >
                 Submit
               </button>
             </div>
-            <div className="flex justify-end mt-3">
-              <button
-                className="rounded bg-blue-600 text-white py-1 px-3 transition duration-300 hover:bg-blue-700 mr-2"
-                onClick={() => setExpanded(el.id)}
-              >
-                {expanded === el.id ? 'Hide Details' : 'Show Details'}
-              </button>
-            </div>
-            {expanded === el.id && (
-              <CardContent>
-                <StudentExpand el={el} />
-              </CardContent>
-            )}
+
+            <CardContent>
+              <StudentExpand el={el} />
+            </CardContent>
           </Card>
         ))}
       </Box>

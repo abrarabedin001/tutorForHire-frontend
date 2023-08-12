@@ -36,7 +36,10 @@ const StudentExpand = ({ el }: { el: any }) => {
     setExpanded(!expanded);
   };
   return (
-    <Card className="bg-blue-300 p-5">
+    <Card
+      className="bg-blue-900 p-5"
+      sx={{ backgroundColor: '#CCE6FD', opacity: '0.8' }}
+    >
       <CardActions disableSpacing>
         <ExpandMore
           expand={expanded}
@@ -48,7 +51,7 @@ const StudentExpand = ({ el }: { el: any }) => {
         </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
+        <CardContent sx={{ backgroundColor: 'white', opacity: '0.8' }}>
           <StudentAnswerGrid answers={el.Answer}></StudentAnswerGrid>
         </CardContent>
       </Collapse>
