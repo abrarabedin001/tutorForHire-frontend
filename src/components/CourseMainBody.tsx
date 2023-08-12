@@ -221,7 +221,7 @@ const CourseMainBody = ({
                       onClick={UnenrollCourse}
                       style={{ height: '40px' }}
                     >
-                      Umenroll
+                      Unenroll
                     </Button>
                   ) : (
                     <Button
