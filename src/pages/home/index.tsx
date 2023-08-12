@@ -11,6 +11,8 @@ import Container from '@mui/material/Container';
 import Footer from '~/components/Footer';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function LoginHome() {
   const [cookies, setCookie] = useCookies(['data']);
@@ -19,6 +21,7 @@ export default function LoginHome() {
   const [query, setQuery] = React.useState('');
   const search = React.useRef('');
   React.useEffect(() => {
+
     console.log('cookies', cookies?.data?.user?.type);
     // if (!cookies?.data?.user) {
     //   window.location.href = '/';
@@ -72,32 +75,26 @@ export default function LoginHome() {
     <CookiesProvider>
       <Menu />
       <Container>
-        <Box className="flex  w-full justify-center space-x-5 p-4">
+      <Box className="flex justify-center space-x-2 p-4">
           <TextField
             id="outlined-basic"
             inputRef={search}
-            variant="filled"
+            // variant="filled"
+            placeholder="Search"
             size="small"
             onChange={(e) => {
               setQuery(e.target.value);
             }}
+            style={{ backgroundColor: "white",border:"1px",borderRadius:"8px",width:"300px" }} // Set the background color of the TextField
           />
-          <button
-            className="rounded bg-blue-800 p-2 text-white"
+          <IconButton
             onClick={() => {
               searchCourse();
             }}
+            style={{ backgroundColor: "#327BE9",border:"1px",borderRadius:"8px" }} // Set the background color of the IconButton
           >
-            Searched courses
-          </button>
-          {/* <button
-            className="rounded bg-blue-800 p-3 text-white"
-            onClick={() => {
-              console.log(searchedCourses);
-            }}
-          >
-            Search
-          </button> */}
+            <SearchIcon style={{ color: "white" }} /> {/* Assuming you have an icon named SearchIcon */}
+          </IconButton>
         </Box>
         {query == '' ? (
           <Box

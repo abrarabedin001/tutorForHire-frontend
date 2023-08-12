@@ -63,7 +63,7 @@ const LandingPage = () => {
             <p>
               Explore a wide range of courses taught by experts in their fields.
             </p>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" href="/home">
               Get Started
             </Button>
           </div>
@@ -107,7 +107,7 @@ const LandingPage = () => {
               Start Your Learning Journey Today
             </h2>
             <p>Sign up now and unlock a world of knowledge.</p>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" href="/signup">
               Sign Up
             </Button>
           </div>
