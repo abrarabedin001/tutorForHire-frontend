@@ -219,33 +219,11 @@ export default function CourseCard({ course }: { course: any }) {
           />
         </Link>
 
-        {/* <CardMedia
-          component="img"
-          height="194"
-          image="https://rb.gy/h90m3"
-          alt="Paella dish"
-        /> */}
         <CourseImage title={course?.title} />
         <Rating
           name="simple-controlled"
           readOnly
           value={course?.rate}
-          // onChange={async (event, newValue) => {
-          //   try {
-          //     await axios.post(
-          //       'http://localhost:5000/rating/giverating',
-          //       { courseId: course.id, rate: newValue },
-          //       {
-          //         headers: {
-          //           'content-type': 'application/json',
-          //           Authorization: `token ${cookie.token}`,
-          //         },
-          //       },
-          //     );
-          //   } catch (e) {
-          //     console.log(e);
-          //   }
-          // }}
           className=" ml-2 mt-2"
         />
 
