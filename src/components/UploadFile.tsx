@@ -1,5 +1,5 @@
-import { FunctionComponent } from 'react';
-import { FormikErrors } from 'formik';
+import { type FunctionComponent } from 'react';
+import { type FormikErrors } from 'formik';
 
 interface IUploadFile {
   data: { image?: File };
@@ -34,7 +34,9 @@ const UploadFile: FunctionComponent<IUploadFile> = ({
       {errors.image && (
         <>
           <br />
-          <span id="error">{errors.image}</span>
+          <span id="error " className="mt-6 bg-red-500 p-1 text-white">
+            {errors.image}
+          </span>
           <br />
         </>
       )}

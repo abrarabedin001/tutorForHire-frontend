@@ -31,6 +31,7 @@ const validationSchema = yup.object({
     .typeError('Phone must be a number')
     .min(10, 'Minimum 10 characters including zero')
     .required('Phone no. is required'),
+  image: yup.string().required('Please upload an image'),
 });
 
 const SignUp = () => {
@@ -42,6 +43,7 @@ const SignUp = () => {
       bio: '',
       education: '',
       Phone: '',
+      image: '',
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     validationSchema: validationSchema,
