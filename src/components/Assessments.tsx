@@ -5,6 +5,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import { styled } from '@mui/material/styles';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {
   Card,
   CardActions,
@@ -13,6 +14,7 @@ import {
   IconButton,
   type IconButtonProps,
   Rating,
+  Typography,
 } from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
@@ -224,7 +226,7 @@ export default function Assessments({ id }: { id: string }) {
       <Box sx={{ mt: 2 }}>
         <FormLabel></FormLabel>
 
-        {assignmentList?.map((el) => (
+        {/* {assignmentList?.map((el) => (
           <Card
             className=" mb-1 flex flex-col justify-between rounded-xl border-black p-5 text-left shadow-xl"
             key={el.id}
@@ -285,6 +287,89 @@ export default function Assessments({ id }: { id: string }) {
               </button>
             </Card>
             <StudentExpand el={el}></StudentExpand>
+          </Card>
+        ))} */}
+        {assignmentList?.map((el) => (
+          <Card
+            key={el.id}
+            className="mb-4 rounded-lg border bg-gray-100"
+          >
+            <CardContent>
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center space-x-3">
+                  {el.user?.TeacherProfile?.image ? (
+                    <img
+                      src={`http://localhost:5000/images/${el.user.TeacherProfile.image}`}
+                      alt=""
+                      className="h-12 w-12 rounded-full"
+                    />
+                  ) : (
+                    <img
+                      src="https://www.w3schools.com/howto/img_avatar.png"
+                      className="h-12 w-12 rounded-full"
+                      alt="teacher"
+                    />
+                  )}
+                  <div className="flex flex-col">
+                    <p className="text-lg font-semibold text-gray-700">
+                      {el.user.name}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Posted on: {el.start_date.split('T')[0]}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-gray-500">
+                    Due Date: {el.end_date.split('T')[0]}
+                  </p>
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                Assignment: {el.title}
+              </h3>
+              <p className="text-base text-gray-600">{el.question}</p>
+              </CardContent>
+            <div className="flex justify-between items-center mt-4">
+              <label
+                htmlFor={`file-upload-${el.id}`}
+                className="cursor-pointer flex items-center space-x-2 ml-2"
+              >
+                <CloudUploadIcon fontSize="small" className="text-blue-500" />
+                <span className="text-gray-600 font-medium">
+                  Upload Assessment
+                </span>
+                <input
+                  type="file"
+                  id={`file-upload-${el.id}`}
+                  accept="image/png,.svg"
+                  name="files"
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
+                  }}
+                  style={{ display: 'none' }}
+                />
+              </label>
+              <button
+                className="rounded bg-blue-600 text-white py-1 px-3 transition duration-300 hover:bg-blue-700 mr-2"
+                onClick={() => handleChangeTeacher(el.id)}
+              >
+                Submit
+              </button>
+            </div>
+            <div className="flex justify-end mt-3">
+              <button
+                className="rounded bg-blue-600 text-white py-1 px-3 transition duration-300 hover:bg-blue-700 mr-2"
+                onClick={() => setExpanded(el.id)}
+              >
+                {expanded === el.id ? 'Hide Details' : 'Show Details'}
+              </button>
+            </div>
+            {expanded === el.id && (
+              <CardContent>
+                <StudentExpand el={el} />
+              </CardContent>
+            )}
           </Card>
         ))}
       </Box>

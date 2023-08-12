@@ -169,7 +169,6 @@ export default function CommentForm({
                 ) : (
                   <img
                     src={'https://www.w3schools.com/howto/img_avatar.png'}
-                    alt="teacher"
                   />
                 )}
               </div>

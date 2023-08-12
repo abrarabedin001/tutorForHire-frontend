@@ -131,7 +131,10 @@ const LandingPage = () => {
               onClick={() => {
                 removeCookie('data', '/');
                 removeCookie('token', '/');
-                router.push('/login');
+                setTimeout(() => {
+                  void router.push('/login');
+                }, 500);
+                //
               }}
             >
               Log Out

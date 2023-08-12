@@ -34,7 +34,6 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function CourseCard({ course }: { course: any }) {
-  const router = useRouter();
   const [expanded, setExpanded] = React.useState(false);
   const [value, setValue] = React.useState(2);
   const [initial, setinitial] = React.useState('');
@@ -91,7 +90,7 @@ export default function CourseCard({ course }: { course: any }) {
       console.log(result);
     }
   }, [course]);
-
+  const router = useRouter();
   const data = useCookies(['data']);
 
   const cookie = data[0].data;
@@ -146,9 +145,7 @@ export default function CourseCard({ course }: { course: any }) {
       console.log(course.id, 'course');
       const user = await axios.delete(
         link,
-        {
-          id: course.id,
-        },
+
         {
           headers: {
             'content-type': 'application/json',
@@ -157,7 +154,7 @@ export default function CourseCard({ course }: { course: any }) {
         },
       );
       console.log(user);
-      // await router.push('/home');
+      await router.reload();
     } catch (err) {
       console.log(err.message);
       if (err.response?.status === 400) {

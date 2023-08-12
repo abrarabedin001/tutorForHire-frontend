@@ -84,13 +84,32 @@ const ClassList = ({
             key={el.id}
           >
             {' '}
-            <Box className="fit-content text m-1 flex w-full  bg-blue-200 p-2">
+            {/* <Box className="fit-content text m-1 flex w-full  bg-blue-200 p-2">
               <>
                 <h4 className="p-2  font-semibold">
                   {' '}
                   Name: {el.StudentProfile.user.name}
                 </h4>
-              </>
+              </> */}
+              <Box className="fit-content m-1 flex justify-between bg-white p-2">
+              <div className="teacher-card__img" style={{ display: 'flex', alignItems: 'center' }}>
+              <div className="image-box" style={{ width: '40px', height: '40px', marginRight: '8px' }}>
+                {el.StudentProfile.user.image ? (
+                  <img
+                    src={'http://localhost:5000/images/' + el.user.image}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <img
+                    src={'https://www.w3schools.com/howto/img_avatar.png'}
+                  />
+                )}
+              </div>
+              <h4 className="p-2  font-semibold">
+                  {' '}
+                  Name: {el.StudentProfile.user.name}
+                </h4>
+            </div>
 
               {isTeacher ? (
                 <>
