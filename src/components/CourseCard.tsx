@@ -99,7 +99,7 @@ export default function CourseCard({ course }: { course: any }) {
 
   const isEnrolled =
     course?.CourseEnroll?.map((el) => el.StudentProfile?.user?.id).filter(
-      (el) => el == cookie.user.id,
+      (el) => el == cookie?.user?.id,
     ).length == 1
       ? true
       : false;
@@ -124,6 +124,7 @@ export default function CourseCard({ course }: { course: any }) {
       );
       console.log(user);
       // await router.push('/home');
+      window.location.href = window.location.href + '?refresh=' + Date.now();
     } catch (err) {
       console.log(err.message);
       if (err.response?.status === 500) {

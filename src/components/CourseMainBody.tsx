@@ -229,7 +229,7 @@ const confirmPayment = async () => {
                   Pay via Bkash</Typography>
                   
                 <Typography variant="p" component="p" 
-                style={{color:'black',backgroundColor:'yellow',fontWeight:'bold',border:'1px', borderRadius:'8px', padding: '5px',marginBottom:'10px'}}>
+                style={{color:'black',backgroundColor:'grey',fontWeight:'bold',border:'1px', borderRadius:'8px', padding: '5px',marginBottom:'10px'}}>
                  Amount: {cost} Tk</Typography>
                   
                 {/* Display the phone number using Typography or p */}
