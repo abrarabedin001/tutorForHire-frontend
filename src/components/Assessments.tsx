@@ -259,10 +259,25 @@ export default function Assessments({ id }: { id: string }) {
                   </p>
                 </div>
               </div>
+
               <h3 className="mb-2 text-xl font-semibold text-gray-800">
                 Assignment: {el.title}
               </h3>
+
               <p className="text-base text-gray-600">{el.question}</p>
+              {el.file && (
+                <p className="text-base text-gray-600">
+                  {' '}
+                  <a
+                    className="flex w-full items-center justify-center"
+                    href={`http://localhost:5000/files/${el.file}`}
+                  >
+                    <button className="w-full bg-blue-200 p-2 text-center ">
+                      Download Assignment
+                    </button>
+                  </a>
+                </p>
+              )}
             </CardContent>
             <div className="mt-4 flex items-center justify-between">
               <label
