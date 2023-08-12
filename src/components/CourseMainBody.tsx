@@ -242,7 +242,7 @@ const CourseMainBody = ({
               {isStudent && !enrolledStudents[0]?.paid && (
                 <Button
                   variant="contained"
-                  onClick={() => togglePaymentCard}
+                  onClick={togglePaymentCard}
                   style={{
                     backgroundColor: 'red',
                     color: 'white',
