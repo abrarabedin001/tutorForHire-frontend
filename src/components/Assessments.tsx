@@ -5,23 +5,24 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import { styled } from '@mui/material/styles';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { FaCloudDownloadAlt, FaCloudUploadAlt, FaTrashAlt } from 'react-icons/fa';
+
+import {
+  FaCloudDownloadAlt,
+  FaCloudUploadAlt,
+  FaTrashAlt,
+} from 'react-icons/fa';
 import {
   Card,
-  CardActions,
   CardContent,
-  Collapse,
   IconButton,
   type IconButtonProps,
-  Rating,
-  Typography,
 } from '@mui/material';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import StudentAnswerGrid from './StudentAnswerGrid';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import StudentExpand from './StudentExpand';
+import { useRouter } from 'next/router';
 
 export default function Assessments({
   id,
@@ -30,7 +31,6 @@ export default function Assessments({
   id: string;
   isTeacher: boolean;
 }) {
-  const [marks, setMarks] = React.useState(0);
   const [start_date, setStart_Date] = React.useState(0);
   const [end_date, setEnd_Date] = React.useState(0);
   const [fontWeight, setFontWeight] = React.useState('normal');
@@ -45,6 +45,7 @@ export default function Assessments({
   interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
   }
+  const router = useRouter();
 
   const ExpandMore = styled((props: ExpandMoreProps) => {
     const { expand, ...other } = props;
@@ -92,10 +93,36 @@ export default function Assessments({
     assignments();
   }, [assignmentChange]);
 
+  const deleteAssignment = async (id) => {
+    try {
+      console.log('delete student');
+      const link = 'http://localhost:5000/classroom/deleteques/' + id;
+      // console.log(id, 'course');
+      console.log(cookies.data.user.id, 'studentProfileId');
+      console.log('link', link);
+      const classList = await axios.delete(
+        link,
+
+        {
+          headers: {
+            'content-type': 'application/json',
+            Authorization: `token ${cookies.data.token}`,
+          },
+        },
+      );
+      console.log('delete student');
+
+      // await router.push('/home');
+    } catch (err) {
+      console.log(err.message);
+    }
+    setAssignmentChange(assignmentChange + 1);
+  };
+
   const onSubmit = async () => {
     try {
       console.log('enters');
-      console.log(assignment, assignment_name, marks, start_date, end_date);
+      console.log(assignment, assignment_name, start_date, end_date);
       console.log();
       const link = 'http://localhost:5000/classroom/createques';
 
@@ -105,7 +132,7 @@ export default function Assessments({
         {
           title: assignment_name,
           question: assignment,
-          marks: marks,
+          marks: '10',
           start_date: start_date,
           end_date: end_date,
           courseId: id,
@@ -121,6 +148,11 @@ export default function Assessments({
       console.log(response_assignment.data);
       setAssignmentChange(assignmentChange + 1);
       setAssignment('');
+      setStart_Date(0);
+      setEnd_Date(0);
+      setAssignment('');
+      setAssignmentName('');
+      setFile(null);
     } catch (err) {
       console.log(err.message);
     }
@@ -187,13 +219,6 @@ export default function Assessments({
                 }}
               >
                 {' '}
-                <p className="p-2 text-center">Marks: </p>
-                <Textarea
-                  placeholder="Type something here…"
-                  minRows={1}
-                  value={marks}
-                  onChange={(e) => setMarks(e.target.value)}
-                ></Textarea>
                 <p className="p-2 text-center">Start Date: </p>
                 <input
                   type="date"
@@ -256,7 +281,7 @@ export default function Assessments({
                       alt="teacher"
                     />
                   )}
-                <div className="flex flex-col">
+                  <div className="flex flex-col">
                     <p className="text-lg font-semibold text-gray-700">
                       {el.user.name}
                     </p>
@@ -268,8 +293,8 @@ export default function Assessments({
                 <div className="text-right">
                   <div className="flex items-center">
                     <button
-                      className="flex items-center bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1 focus:outline-none ml-auto"
-                      onClick={() => handleDeleteAssignment(el.id)}
+                      className="m-1 ml-auto flex items-center rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600 focus:outline-none"
+                      onClick={() => deleteAssignment(el.id)}
                     >
                       <FaTrashAlt className="mr-1" />
                       <span>Delete</span>
@@ -346,7 +371,6 @@ export default function Assessments({
             ) : (
               ''
             )}
-
           </Card>
         ))}
       </Box>
