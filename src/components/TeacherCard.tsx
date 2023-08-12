@@ -14,12 +14,13 @@ const TeacherCard = ({
           <img
             src={'http://localhost:5000/images/' + TeacherProfile.image}
             alt="teacher"
+            className="max-h-[400px] max-w-[400px]"
           />
         ) : (
           <img
             src={'https://www.w3schools.com/howto/img_avatar.png'}
             alt="teacher"
-            className="max-h-[500px] max-w-[500px]"
+            className="max-h-[400px] max-w-[400px]"
           />
         )}
       </div>
