@@ -6,7 +6,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { FaCloudDownloadAlt, FaCloudUploadAlt } from 'react-icons/fa';
+import { FaCloudDownloadAlt, FaCloudUploadAlt, FaTrashAlt } from 'react-icons/fa';
 import {
   Card,
   CardActions,
@@ -256,7 +256,7 @@ export default function Assessments({
                       alt="teacher"
                     />
                   )}
-                  <div className="flex flex-col">
+                <div className="flex flex-col">
                     <p className="text-lg font-semibold text-gray-700">
                       {el.user.name}
                     </p>
@@ -266,6 +266,15 @@ export default function Assessments({
                   </div>
                 </div>
                 <div className="text-right">
+                  <div className="flex items-center">
+                    <button
+                      className="flex items-center bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1 focus:outline-none ml-auto"
+                      onClick={() => handleDeleteAssignment(el.id)}
+                    >
+                      <FaTrashAlt className="mr-1" />
+                      <span>Delete</span>
+                    </button>
+                  </div>
                   <p className="text-sm text-gray-500">
                     Due Date: {el.end_date.split('T')[0]}
                   </p>
@@ -329,6 +338,7 @@ export default function Assessments({
                 ' '
               )}
             </div>
+
             {isTeacher ? (
               <CardContent>
                 <StudentExpand el={el} />
@@ -336,6 +346,7 @@ export default function Assessments({
             ) : (
               ''
             )}
+
           </Card>
         ))}
       </Box>
