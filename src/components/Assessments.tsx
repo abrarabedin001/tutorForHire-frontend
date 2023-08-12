@@ -6,6 +6,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { FaCloudDownloadAlt, FaCloudUploadAlt } from 'react-icons/fa';
 import {
   Card,
   CardActions,
@@ -276,46 +277,50 @@ export default function Assessments({
               </h3>
 
               <p className="text-base text-gray-600">{el.question}</p>
-              {el.file && (
-                <p className="text-base text-gray-600">
-                  {' '}
-                  <a
-                    className="flex w-full items-center justify-center"
-                    href={`http://localhost:5000/files/${el.file}`}
-                  >
-                    <button className="w-full bg-blue-200 p-2 text-center ">
-                      Download Assignment
-                    </button>
-                  </a>
-                </p>
-              )}
             </CardContent>
-            <div className="mt-4 flex items-center justify-between">
-              <label
-                htmlFor={`file-upload-${el.id}`}
-                className="ml-2 flex cursor-pointer items-center space-x-2"
-              >
-                <CloudUploadIcon fontSize="small" className="text-blue-500" />
-                <span className="font-medium text-gray-600">
-                  Upload Assessment
-                </span>
-                <input
-                  type="file"
-                  id={`file-upload-${el.id}`}
-                  accept="image/png,.svg"
-                  name="files"
-                  onChange={(e) => {
-                    setFile(e.target.files[0]);
-                  }}
-                  style={{ display: 'none' }}
-                />
-              </label>
-              <button
-                className="mr-2 rounded bg-blue-600 px-3 py-1 text-white transition duration-300 hover:bg-blue-700"
-                onClick={() => handleChangeTeacher(el.id)}
-              >
-                Submit
-              </button>
+
+            <div className="flex items-center justify-between mt-4">
+              <div className="flex items-center space-x-2 ml-2">
+                {el.file && (
+                  <a
+                    className="flex items-center justify-center"
+                    href={`http://localhost:5000/files/${el.file}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaCloudDownloadAlt className="text-blue-500" />
+                    <span className="font-medium text-gray-600 ml-1">
+                      Download Assessment
+                    </span>
+                  </a>
+                )}
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <label
+                  htmlFor={`file-upload-${el.id}`}
+                  className="flex cursor-pointer items-center space-x-2"
+                >
+                  <FaCloudUploadAlt className="text-blue-500" />
+                  <span className="font-medium text-gray-600">Upload Assessment Script</span>
+                  <input
+                    type="file"
+                    id={`file-upload-${el.id}`}
+                    accept="image/png,.svg"
+                    name="files"
+                    onChange={(e) => {
+                      setFile(e.target.files[0]);
+                    }}
+                    style={{ display: 'none' }}
+                  />
+                </label>
+                <button
+                  className="rounded bg-blue-600 px-3 py-1 text-white transition duration-300 hover:bg-blue-700"
+                  onClick={() => handleChangeTeacher(el.id)}
+                >
+                  Submit
+                </button>
+              </div>
             </div>
             {isTeacher ? (
               <CardContent>
