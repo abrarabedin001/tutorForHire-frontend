@@ -73,7 +73,7 @@ const ClassList = ({
     classList();
   }, []);
   return (
-    <div className="w-full">
+    <div className="flex  w-full flex-col rounded bg-white/20 p-5">
       <Box sx={{}}>
         <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
           Class List
@@ -91,25 +91,35 @@ const ClassList = ({
                   Name: {el.StudentProfile.user.name}
                 </h4>
               </> */}
-              <Box className="fit-content m-1 flex justify-between bg-white p-2">
-              <div className="teacher-card__img" style={{ display: 'flex', alignItems: 'center' }}>
-              <div className="image-box" style={{ width: '40px', height: '40px', marginRight: '8px' }}>
-                {el.StudentProfile.user.image ? (
-                  <img
-                    src={'http://localhost:5000/images/' + el.user.image}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                ) : (
-                  <img
-                    src={'https://www.w3schools.com/howto/img_avatar.png'}
-                  />
-                )}
-              </div>
-              <h4 className="p-2  font-semibold">
+            <Box className="fit-content m-1 flex justify-between bg-white p-2">
+              <div
+                className="teacher-card__img"
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
+                <div
+                  className="image-box"
+                  style={{ width: '40px', height: '40px', marginRight: '8px' }}
+                >
+                  {el.StudentProfile.user.image ? (
+                    <img
+                      src={'http://localhost:5000/images/' + el.user.image}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={'https://www.w3schools.com/howto/img_avatar.png'}
+                    />
+                  )}
+                </div>
+                <h4 className="p-2  font-semibold">
                   {' '}
                   Name: {el.StudentProfile.user.name}
                 </h4>
-            </div>
+              </div>
 
               {isTeacher ? (
                 <>

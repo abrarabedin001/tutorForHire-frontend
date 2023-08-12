@@ -239,7 +239,6 @@ export default function Assessments({
                 />
                 <input
                   type="file"
-                  accept="image/png, .svg"
                   name="files"
                   onChange={(e) => {
                     setFile(e.target.files[0]);

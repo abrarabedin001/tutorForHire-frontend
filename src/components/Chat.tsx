@@ -75,7 +75,7 @@ export default function Chat({ id }: { id: string }) {
   };
 
   return (
-    <div className="flex  w-full flex-col">
+    <div className="flex  w-full flex-col rounded bg-white/20 p-5">
       <FormControl sx={{ width: '100%' }}>
         <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
           Chat
@@ -119,21 +119,31 @@ export default function Chat({ id }: { id: string }) {
           >
             {' '}
             <Box className="fit-content m-1 flex justify-between bg-blue-400 p-2">
-              <div className="teacher-card__img" style={{ display: 'flex', alignItems: 'center' }}>
-              <div className="image-box" style={{ width: '40px', height: '40px', marginRight: '8px' }}>
-                {el.user.image ? (
-                  <img
-                    src={'http://localhost:5000/images/' + el.user.image}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                ) : (
-                  <img
-                    src={'https://www.w3schools.com/howto/img_avatar.png'}
-                  />
-                )}
+              <div
+                className="teacher-card__img"
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
+                <div
+                  className="image-box"
+                  style={{ width: '40px', height: '40px', marginRight: '8px' }}
+                >
+                  {el.user.image ? (
+                    <img
+                      src={'http://localhost:5000/images/' + el.user.image}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={'https://www.w3schools.com/howto/img_avatar.png'}
+                    />
+                  )}
+                </div>
+                <h4>{el.user.name}</h4>
               </div>
-              <h4>{el.user.name}</h4>
-            </div>
 
               <h4>{el.created_at.split('T')[0]}</h4>
             </Box>
