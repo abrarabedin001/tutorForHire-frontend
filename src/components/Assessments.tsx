@@ -23,7 +23,13 @@ import StudentAnswerGrid from './StudentAnswerGrid';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import StudentExpand from './StudentExpand';
 
-export default function Assessments({ id }: { id: string }) {
+export default function Assessments({
+  id,
+  isTeacher,
+}: {
+  id: string;
+  isTeacher: boolean;
+}) {
   const [marks, setMarks] = React.useState(0);
   const [start_date, setStart_Date] = React.useState(0);
   const [end_date, setEnd_Date] = React.useState(0);
@@ -151,79 +157,84 @@ export default function Assessments({ id }: { id: string }) {
   console.log('assignment', assignmentList);
   return (
     <div className="flex  w-full flex-col rounded bg-white/20 p-5">
-      <FormControl sx={{ width: '100%' }}>
-        <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-          Assessments
-        </FormLabel>
-        <Textarea
-          placeholder="Assignment Name"
-          minRows={1}
-          value={assignment_name}
-          onChange={(e) => setAssignmentName(e.target.value)}
-        ></Textarea>
-        <Textarea
-          placeholder="Type something here…"
-          minRows={3}
-          value={assignment}
-          onChange={(e) => setAssignment(e.target.value)}
-          endDecorator={
-            <Box
-              sx={{
-                display: 'flex',
-                gap: 'var(--Textarea-paddingBlock)',
-                pt: 'var(--Textarea-paddingBlock)',
-                borderTop: '1px solid',
-                borderColor: 'divider',
-                width: '100%',
-                flex: 'auto',
-                text: 'center',
-              }}
-            >
-              {' '}
-              <p className="p-2 text-center">Marks: </p>
-              <Textarea
-                placeholder="Type something here…"
-                minRows={1}
-                value={marks}
-                onChange={(e) => setMarks(e.target.value)}
-              ></Textarea>
-              <p className="p-2 text-center">Start Date: </p>
-              <input
-                type="date"
-                className="rounded border"
-                value={start_date}
-                onChange={(e) => {
-                  setStart_Date(e.target.value);
+      {isTeacher ? (
+        <FormControl sx={{ width: '100%' }}>
+          <FormLabel style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+            Assignment
+          </FormLabel>
+          <Textarea
+            placeholder="Assignment Name"
+            minRows={1}
+            value={assignment_name}
+            onChange={(e) => setAssignmentName(e.target.value)}
+          ></Textarea>
+          <Textarea
+            placeholder="Type something here…"
+            minRows={3}
+            value={assignment}
+            onChange={(e) => setAssignment(e.target.value)}
+            endDecorator={
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 'var(--Textarea-paddingBlock)',
+                  pt: 'var(--Textarea-paddingBlock)',
+                  borderTop: '1px solid',
+                  borderColor: 'divider',
+                  width: '100%',
+                  flex: 'auto',
+                  text: 'center',
                 }}
-              />
-              <p className="p-2 text-center">End Date: </p>
-              <input
-                type="date"
-                className="rounded border"
-                value={end_date}
-                onChange={(e) => {
-                  setEnd_Date(e.target.value);
-                }}
-              />
-              <input
-                type="file"
-                accept="image/png, .svg"
-                name="files"
-                onChange={(e) => {
-                  setFile(e.target.files[0]);
-                }}
-              />
-              <Button sx={{ ml: 'auto' }} onClick={() => void onSubmit()}>
-                Send
-              </Button>
-            </Box>
-          }
-          sx={{
-            minWidth: 300,
-            fontWeight,
-          }}
-        />
-      </FormControl>
+              >
+                {' '}
+                <p className="p-2 text-center">Marks: </p>
+                <Textarea
+                  placeholder="Type something here…"
+                  minRows={1}
+                  value={marks}
+                  onChange={(e) => setMarks(e.target.value)}
+                ></Textarea>
+                <p className="p-2 text-center">Start Date: </p>
+                <input
+                  type="date"
+                  className="rounded border"
+                  value={start_date}
+                  onChange={(e) => {
+                    setStart_Date(e.target.value);
+                  }}
+                />
+                <p className="p-2 text-center">End Date: </p>
+                <input
+                  type="date"
+                  className="rounded border"
+                  value={end_date}
+                  onChange={(e) => {
+                    setEnd_Date(e.target.value);
+                  }}
+                />
+                <input
+                  type="file"
+                  accept="image/png, .svg"
+                  name="files"
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
+                  }}
+                />
+                <Button sx={{ ml: 'auto' }} onClick={() => void onSubmit()}>
+                  Send
+                </Button>
+              </Box>
+            }
+            sx={{
+              minWidth: 300,
+              fontWeight,
+            }}
+          />
+        </FormControl>
+      ) : (
+        ' '
+      )}
+
       <Box sx={{ mt: 2 }}>
         <FormLabel></FormLabel>
 
@@ -277,8 +288,8 @@ export default function Assessments({ id }: { id: string }) {
               <p className="text-base text-gray-600">{el.question}</p>
             </CardContent>
 
-            <div className="flex items-center justify-between mt-4">
-              <div className="flex items-center space-x-2 ml-2">
+            <div className="mt-4 flex items-center justify-between px-4">
+              <div className="ml-2 flex items-center space-x-2">
                 {el.file && (
                   <a
                     className="flex items-center justify-center"
@@ -287,42 +298,55 @@ export default function Assessments({ id }: { id: string }) {
                     rel="noopener noreferrer"
                   >
                     <FaCloudDownloadAlt className="text-blue-500" />
-                    <span className="font-medium text-gray-600 ml-1">
+                    <span className="ml-1 font-medium text-gray-600">
                       Download Assessment
                     </span>
                   </a>
                 )}
               </div>
 
-              <div className="flex items-center space-x-2">
-                <label
-                  htmlFor={`file-upload-${el.id}`}
-                  className="flex cursor-pointer items-center space-x-2"
-                >
-                  <FaCloudUploadAlt className="text-blue-500" />
-                  <span className="font-medium text-gray-600">Upload Assessment Script</span>
-                  <input
-                    type="file"
-                    id={`file-upload-${el.id}`}
-                    accept="image/png,.svg"
-                    name="files"
-                    onChange={(e) => {
-                      setFile(e.target.files[0]);
-                    }}
-                    style={{ display: 'none' }}
-                  />
-                </label>
-                <button
-                  className="rounded bg-blue-600 px-3 py-1 text-white transition duration-300 hover:bg-blue-700"
-                  onClick={() => handleChangeTeacher(el.id)}
-                >
-                  Submit
-                </button>
-              </div>
+              {el.end_date.split('T')[0] >
+              new Date().toISOString().split('T')[0] ? (
+                <div className="flex items-center space-x-2">
+                  <label
+                    htmlFor={`file-upload-${el.id}`}
+                    className="flex cursor-pointer items-center space-x-2"
+                  >
+                    <FaCloudUploadAlt className="text-blue-500" />
+                    <span className="font-medium text-gray-600">
+                      Upload Assessment Script
+                    </span>
+                    <input
+                      type="file"
+                      id={`file-upload-${el.id}`}
+                      accept="image/png,.svg"
+                      name="files"
+                      onChange={(e) => {
+                        setFile(e.target.files[0]);
+                      }}
+                      style={{ display: 'none' }}
+                    />
+                  </label>
+                  <button
+                    className="rounded bg-blue-600 px-3 py-1 text-white transition duration-300 hover:bg-blue-700"
+                    onClick={() => handleChangeTeacher(el.id)}
+                  >
+                    Submit
+                  </button>
+                </div>
+              ) : (
+                ' '
+              )}
             </div>
-            <CardContent>
-              <StudentExpand el={el} />
-            </CardContent>
+
+            {isTeacher ? (
+              <CardContent>
+                <StudentExpand el={el} />
+              </CardContent>
+            ) : (
+              ''
+            )}
+
           </Card>
         ))}
       </Box>

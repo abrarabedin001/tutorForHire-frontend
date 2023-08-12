@@ -9,16 +9,18 @@ const TeacherCard = ({
 }) => {
   return (
     <Card className={className} sx={{ width: 500, height: 800 }}>
-      <div className="teacher-card__img">
+      <div className="teacher-card__img  overflow-hidden">
         {TeacherProfile.image ? (
           <img
             src={'http://localhost:5000/images/' + TeacherProfile.image}
             alt="teacher"
+            className="max-h-[400px] max-w-[400px]"
           />
         ) : (
           <img
             src={'https://www.w3schools.com/howto/img_avatar.png'}
             alt="teacher"
+            className="max-h-[400px] max-w-[400px]"
           />
         )}
       </div>
