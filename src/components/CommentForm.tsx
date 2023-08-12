@@ -154,10 +154,27 @@ export default function CommentForm({
             key={el.id}
           >
             {' '}
-            <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
+            {/* <Box className="fit-content m-1 flex justify-between bg-blue-200 p-2">
               <h4 className="text-lg font-bold">
                 {el.StudentProfile.user.name}
-              </h4>
+              </h4> */}
+              <Box className="fit-content m-1 flex justify-between bg-blue-400 p-2">
+              <div className="teacher-card__img" style={{ display: 'flex', alignItems: 'center' }}>
+              <div className="image-box" style={{ width: '40px', height: '40px', marginRight: '8px' }}>
+                {el.StudentProfile.user.image ? (
+                  <img
+                    src={'http://localhost:5000/images/' + el.StudentProfile.user.image}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <img
+                    src={'https://www.w3schools.com/howto/img_avatar.png'}
+                    alt="teacher"
+                  />
+                )}
+              </div>
+              <h4>{el.StudentProfile.user.name}</h4>
+              </div>
               <Rating name="simple-controlled" value={el.rate} readOnly />
               <h4>{el.ratingReviewDate.split('T')[0]}</h4>
             </Box>

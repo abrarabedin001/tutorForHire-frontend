@@ -368,9 +368,9 @@ body {
 }
 
 .demo-course-item img {
-  width: 600px;
-  height: 300px;
-  border-radius: 50%;
+  width: 700px;
+  height: 350px;
+  /* border-radius: 50%; */
   margin-bottom: 10px;
 }
 
