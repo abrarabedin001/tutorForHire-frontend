@@ -245,37 +245,37 @@ export default function Assessments({ id }: { id: string }) {
                       alt="teacher"
                     />
                   )}
-         <div className="flex flex-col">
-            <p className="text-lg font-semibold text-gray-700">
-              {el.user.name}
-            </p>
-            <p className="text-sm text-gray-500">
-              Posted on: {el.start_date.split('T')[0]}
-            </p>
-          </div>
-        </div>
-        <div className="text-right">
-          <div className="flex items-center">
-            <button
-              className="flex items-center bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1 focus:outline-none ml-auto"
-              onClick={() => handleDeleteAssignment(el.id)}
-            >
-              <FaTrashAlt className="mr-1" />
-              <span>Delete</span>
-            </button>
-          </div>
-          <p className="text-sm text-gray-500">
-            Due Date: {el.end_date.split('T')[0]}
-          </p>
-        </div>
-      </div>
+                <div className="flex flex-col">
+                    <p className="text-lg font-semibold text-gray-700">
+                      {el.user.name}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Posted on: {el.start_date.split('T')[0]}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center">
+                    <button
+                      className="flex items-center bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1 focus:outline-none ml-auto"
+                      onClick={() => handleDeleteAssignment(el.id)}
+                    >
+                      <FaTrashAlt className="mr-1" />
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Due Date: {el.end_date.split('T')[0]}
+                  </p>
+                </div>
+              </div>
 
-      <h3 className="mb-2 text-xl font-semibold text-gray-800">
-        Assignment: {el.title}
-      </h3>
+              <h3 className="mb-2 text-xl font-semibold text-gray-800">
+                Assignment: {el.title}
+              </h3>
 
-      <p className="text-base text-gray-600">{el.question}</p>
-    </CardContent>
+              <p className="text-base text-gray-600">{el.question}</p>
+            </CardContent>
 
             <div className="flex items-center justify-between mt-4">
               <div className="flex items-center space-x-2 ml-2">
@@ -320,7 +320,6 @@ export default function Assessments({ id }: { id: string }) {
                 </button>
               </div>
             </div>
-
             <CardContent>
               <StudentExpand el={el} />
             </CardContent>
