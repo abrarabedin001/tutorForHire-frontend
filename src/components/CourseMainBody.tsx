@@ -187,7 +187,7 @@ const CourseMainBody = ({
         setShowPaymentCard(false);
         window.location.reload();
         // Hide payment card
-        // Optionally, you can update local state or UI to reflect successful payment
+        // Optionally, you can update local state or UI to reflect successful payment//
       }
     } catch (err) {
       console.log(err.message);
