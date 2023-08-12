@@ -122,7 +122,7 @@ const EditCourse = () => {
                     setOpen('assessments');
                   }}
                 >
-                  Assessments
+                  Assignments
                 </button>
               </Box>
             ) : (
@@ -159,7 +159,12 @@ const EditCourse = () => {
 
               {isTeacher || isStudent
                 ? open === 'assessments'
-                  ? data1?.course?.id && <Assessments id={data1?.course?.id} />
+                  ? data1?.course?.id && (
+                      <Assessments
+                        id={data1?.course?.id}
+                        isTeacher={isTeacher}
+                      />
+                    )
                   : ''
                 : ''}
             </Box>
