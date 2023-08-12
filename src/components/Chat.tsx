@@ -129,7 +129,6 @@ export default function Chat({ id }: { id: string }) {
                 ) : (
                   <img
                     src={'https://www.w3schools.com/howto/img_avatar.png'}
-                    alt="teacher"
                   />
                 )}
               </div>
