@@ -138,12 +138,11 @@ const CourseMainBody = ({
       }
       // await router.reload();
     }
-  
-};
-const togglePaymentCard = () => {
-  setShowPaymentCard(!showPaymentCard); // Toggle the value
-};
   };
+  const togglePaymentCard = () => {
+    setShowPaymentCard(!showPaymentCard); // Toggle the value
+  };
+
   const enrollCourse = async () => {
     try {
       const link = 'http://localhost:5000/enrollcourse/enroll';
@@ -240,10 +239,10 @@ const togglePaymentCard = () => {
                 ' '
               )}
               {}
-              {isStudent  && !enrolledStudents[0]?.paid && (
+              {isStudent && !enrolledStudents[0]?.paid && (
                 <Button
                   variant="contained"
-                  onClick={() => setShowPaymentCard(true)}
+                  onClick={() => togglePaymentCard}
                   style={{
                     backgroundColor: 'red',
                     color: 'white',
@@ -261,6 +260,7 @@ const togglePaymentCard = () => {
                     color: 'white',
                     height: '40px',
                   }}
+                  // onClick={togglePaymentCard}
                   disabled
                 >
                   Paid
