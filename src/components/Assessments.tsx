@@ -191,7 +191,7 @@ export default function Assessments({
     console.log('answer');
     console.log(answer);
     const mappedAnswers = answer.filter(
-      (answer) => answer.user.id == cookies.data.user.id,
+      (answer) => answer.user.id == cookies?.data?.user?.id,
     );
     console.log('mappedAnswers', mappedAnswers);
     return mappedAnswers.length == 0;
@@ -334,7 +334,7 @@ export default function Assessments({
                   >
                     <FaCloudDownloadAlt className="text-blue-500" />
                     <span className="ml-1 font-medium text-gray-600">
-                      Download Assessment
+                      Download Assignment
                     </span>
                   </a>
                 )}
@@ -350,7 +350,7 @@ export default function Assessments({
                     >
                       <FaCloudUploadAlt className="text-blue-500" />
                       <span className="font-medium text-gray-600">
-                        Upload Assessment Script
+                        Upload Assignment Script
                       </span>
                       <input
                         type="file"

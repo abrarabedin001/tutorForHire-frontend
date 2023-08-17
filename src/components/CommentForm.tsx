@@ -168,12 +168,14 @@ export default function CommentForm({
                   className="image-box"
                   style={{ width: '40px', height: '40px', marginRight: '8px' }}
                 >
-                  {el.StudentProfile.user.image ? (
+                  {el.StudentProfile.image ? (
                     <img
+                      className="rounded-full"
                       src={
                         'http://localhost:5000/images/' +
-                        el.StudentProfile.user.image
+                        el.StudentProfile.image
                       }
+                      className="rounded-full"
                       style={{
                         width: '100%',
                         height: '100%',
@@ -183,6 +185,7 @@ export default function CommentForm({
                   ) : (
                     <img
                       src={'https://www.w3schools.com/howto/img_avatar.png'}
+                      className="rounded-full"
                     />
                   )}
                 </div>
