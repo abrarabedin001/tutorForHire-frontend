@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 import FormLabel from '@mui/material/FormLabel';
 
 const ClassList = ({
@@ -17,6 +18,7 @@ const ClassList = ({
   const [cookies, setCookie] = useCookies(['data']);
   const [classList, setClassList] = React.useState([]);
   const userType = cookies?.data?.user?.type;
+  const router = useRouter();
   const kickout = async (studentprofileid: string) => {
     console.log('kickout', studentprofileid);
     try {
@@ -40,7 +42,7 @@ const ClassList = ({
         },
       );
       console.log('delete student');
-
+      router.reload();
       // await router.push('/home');
     } catch (err) {
       console.log(err.message);
@@ -100,9 +102,13 @@ const ClassList = ({
                   className="image-box"
                   style={{ width: '40px', height: '40px', marginRight: '8px' }}
                 >
-                  {el.StudentProfile.user.image ? (
+                  {el.StudentProfile.image ? (
                     <img
-                      src={'http://localhost:5000/images/' + el.user.image}
+                      className="rounded-full"
+                      src={
+                        'http://localhost:5000/images/' +
+                        el.StudentProfile.image
+                      }
                       style={{
                         width: '100%',
                         height: '100%',
@@ -111,6 +117,7 @@ const ClassList = ({
                     />
                   ) : (
                     <img
+                      className="rounded-full"
                       src={'https://www.w3schools.com/howto/img_avatar.png'}
                     />
                   )}

@@ -127,9 +127,26 @@ export default function Chat({ id }: { id: string }) {
                   className="image-box"
                   style={{ width: '40px', height: '40px', marginRight: '8px' }}
                 >
-                  {el.user.image ? (
+                  {el.user?.TeacherProfile?.image ? (
                     <img
-                      src={'http://localhost:5000/images/' + el.user.image}
+                      className="rounded-full"
+                      src={
+                        'http://localhost:5000/images/' +
+                        el.user.TeacherProfile.image
+                      }
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  ) : el.user?.StudentProfile?.image ? (
+                    <img
+                      className="rounded-full"
+                      src={
+                        'http://localhost:5000/images/' +
+                        el.user.StudentProfile.image
+                      }
                       style={{
                         width: '100%',
                         height: '100%',

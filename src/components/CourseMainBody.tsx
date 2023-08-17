@@ -133,8 +133,13 @@ const CourseMainBody = ({
       await router.reload();
     } catch (err) {
       console.log(err.message);
-      if (err.response?.status === 400) {
-        alert(`Cannot unenroll after course start date`);
+      // if (err.response?.status === 400) {
+      //   alert(`Cannot unenroll after course start date`);
+      // }
+      if (err.response?.status === 500) {
+        alert(`No seat available in this course`);
+      } else if (err.response?.status === 400) {
+        alert(`You can't enroll after course start date`);
       }
       // await router.reload();
     }
@@ -161,6 +166,7 @@ const CourseMainBody = ({
       );
       await router.reload();
     } catch (err) {
+      await router.reload();
       console.log(err.message);
     }
   };
@@ -281,7 +287,8 @@ const CourseMainBody = ({
                     border: 'none',
                     borderRadius: '8px',
                     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-                    background: 'linear-gradient(180deg, #FFF9F3 0%, #FFFFFF 100%)', // Subtle gradient background
+                    background:
+                      'linear-gradient(180deg, #FFF9F3 0%, #FFFFFF 100%)', // Subtle gradient background
                   }}
                 >
                   <FaPaypal
@@ -346,7 +353,8 @@ const CourseMainBody = ({
                     variant="contained"
                     onClick={confirmPayment}
                     style={{
-                      background: 'linear-gradient(180deg, #45D49D 0%, #3BB78F 100%)', // Gradient Green
+                      background:
+                        'linear-gradient(180deg, #45D49D 0%, #3BB78F 100%)', // Gradient Green
                       color: 'white',
                       marginTop: '20px',
                       borderRadius: '4px',
@@ -356,7 +364,6 @@ const CourseMainBody = ({
                   </Button>
                 </Card>
               )}
-
 
               {isTeacher ? (
                 <a href={'/course/edit/' + slug}>
